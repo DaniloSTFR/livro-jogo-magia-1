@@ -1340,12 +1340,11 @@ Jogue um dado para descobrir se você encontra alguma criatura noturna:
 
 Você deve lutar contra qualquer criatura que encontrar. As seguintes magias podem ser usadas:
 
-RAN — vá para 396  
-GUM — vá para 421  
-LAW — vá para 448  
-WIK — vá para 437  
-BIG — vá para 453
-
+**RAN** — vá para 396
+**GUM** — vá para 421
+**LAW** — vá para 448
+**WIK** — vá para 437
+**BIG** — vá para 453
 Depois de verificar seu encontro, retorne à referência anterior.
 
 
@@ -1410,12 +1409,11 @@ Um grande barulho de água faz você se virar e prender a respiração ao ver ce
 
 Você lançará uma magia:
 
-SUS — vá para 390  
-HUF — vá para 324  
-DIP — vá para 416  
-FOF — vá para 365  
-SUD — vá para 445
-
+**SUS** — vá para 390
+**HUF** — vá para 324
+**DIP** — vá para 416
+**FOF** — vá para 365
+**SUD** — vá para 445
 Ou você tem outro plano (vá para 64)?
 
 Se ainda não pediu a ajuda de sua deusa, você pode fazê-lo agora (vá para 260).
@@ -1432,12 +1430,11 @@ _________________________________
 
 Eles soltam suas mãos, permitindo que você escolha uma magia para impressioná-los:
 
-KID — vá para 353  
-JAP — vá para 376  
-DUD — vá para 292  
-GOB — vá para 401  
-SIX — vá para 316
-
+**KID** — vá para 353
+**JAP** — vá para 376
+**DUD** — vá para 292
+**GOB** — vá para 401
+**SIX** — vá para 316
 Se você não conhecer nenhuma delas, vá para 218.
 
 
@@ -1468,12 +1465,11 @@ O caminho através do campo continua por cima da colina até um vale abaixo. Jan
 
 Se você não confia no julgamento dele, pode usar uma magia:
 
-FIF — vá para 435  
-SUD — vá para 341  
-HUF — vá para 419  
-MAG — vá para 321  
-SUS — vá para 394
-
+**FIF** — vá para 435
+**SUD** — vá para 341
+**HUF** — vá para 419
+**MAG** — vá para 321
+**SUS** — vá para 394
 Ou pode continuar em frente (vá para 73). Alternativamente, pode refazer seus passos e pegar o outro caminho descendo de Birritanti (vá para 51).
 
 
@@ -1506,12 +1502,11 @@ Quando recupera a consciência, você está amarrado pelas mãos e pelos pés. A
 
 Você pode tentar lançar uma magia:
 
-RIS — vá para 357  
-DUD — vá para 406  
-HOT — vá para 333  
-KID — vá para 450  
-WIK — vá para 379
-
+**RIS** — vá para 357
+**DUD** — vá para 406
+**HOT** — vá para 333
+**KID** — vá para 450
+**WIK** — vá para 379
 Ou pode esperar para ver o que pretendem fazer com você (vá para 112).
 
 
@@ -1679,12 +1674,11 @@ Lá dentro, a cabana não tem móveis. Uma pequena fogueira queima no meio do ch
 
 Você estenderá a mão em sinal de amizade (vá para 79) ou lançará uma magia:
 
-GAK — vá para 385  
-FOF — vá para 431  
-RAN — vá para 337  
-FAM — vá para 413  
-DOC — vá para 299
-
+**GAK** — vá para 385
+**FOF** — vá para 431
+**RAN** — vá para 337
+**FAM** — vá para 413
+**DOC** — vá para 299
 Como alternativa, você pode deixar a aldeia (vá para 220).
 
 
@@ -1973,13 +1967,11 @@ Atrás de você, um rugido o deixa em alerta. As paredes do corredor começam a 
 
 Diante de você, sobre quatro patas, está uma enorme MANTÍCORA — uma criatura híbrida com corpo de leão e cauda de escorpião. Seu rosto é o de um homem velho e, ao vê-lo, ela recua, batendo duas enormes asas. Você vai lutar contra a criatura (vá para 227) ou lançar um feitiço?
 
-PEP — vá para 302  
-BAG — vá para 389  
-HOP — vá para 345  
-FOF — vá para 415  
-DOZ — vá para 325
-
-
+**PEP** — vá para 302
+**BAG** — vá para 389
+**HOP** — vá para 345
+**FOF** — vá para 415
+**DOZ** — vá para 325
 _________________________________
 ## 196
 
@@ -2020,12 +2012,11 @@ _________________________________
 
 O trabalho é realmente desagradável. O aldeão alimenta você (acrescente 2 pontos de ENERGIA), mas você perde 3 pontos de ENERGIA por ter passado uma noite sem dormir. Você pode, se quiser, usar sua magia para ajudá-lo com o trabalho:
 
-BIG - vá para 298  
-DIP - vá para 444  
-PEP - vá para 362  
-FIL - vá para 412  
-ZAP - vá para 318  
-
+**BIG** — vá para 298
+**DIP** — vá para 444
+**PEP** — vá para 362
+**FIL** — vá para 412
+**ZAP** — vá para 318
 Caso contrário, vá para 263.
 
 
@@ -2044,13 +2035,11 @@ ELVIN — HABILIDADE: 6, ENERGIA: 4.
 
 Se vencer, vá para 121. Como alternativa, você pode lançar uma magia:
 
-HOT - vá para 405  
-ZEL - vá para 294  
-WOK - vá para 441  
-BIG - vá para 356  
-YAZ - vá para 378  
-
-
+**HOT** — vá para 405
+**ZEL** — vá para 294
+**WOK** — vá para 441
+**BIG** — vá para 356
+**YAZ** — vá para 378
 _________________________________
 ## 204
 
@@ -2080,13 +2069,11 @@ GIGANTE DA COLINA: HABILIDADE 9, ENERGIA 11.
 
 ou com uma magia:
 
-KIL - vá para 430  
-BIG - vá para 411  
-YAZ - vá para 384  
-YOB - vá para 361  
-DUM - vá para 338
-
-
+**KIL** — vá para 430
+**BIG** — vá para 411
+**YAZ** — vá para 384
+**YOB** — vá para 361
+**DUM** — vá para 338
 _________________________________
 ## 208
 
@@ -2154,13 +2141,11 @@ TERCEIRO GOBLIN — HABILIDADE: 5, ENERGIA: 5
 
 Ataque cada um por vez e, se vencer, vá para 155. Ou você pode lançar uma magia:
 
-HOP - vá para 428  
-ZAP - vá para 407  
-RAP - vá para 358  
-RAW - vá para 381  
-RAZ - vá para 442
-
-
+**HOP** — vá para 428
+**ZAP** — vá para 407
+**RAP** — vá para 358
+**RAW** — vá para 381
+**RAZ** — vá para 442
 _________________________________
 ## 218
 
@@ -2182,14 +2167,11 @@ _________________________________
 
 Mais abaixo na colina, você para para descansar. Você se senta em uma pedra para observar o que existe à sua frente. O caminho desce até um vale. Entre três colinas há uma aldeia — e uma bastante grande. O sol está baixando rapidamente e você decide descer em direção ao povoado. Um galho pendente toca seu rosto e você ouve um chilreio animado. Pairando junto ao seu ombro está uma pequena criatura do tamanho do seu polegar. Ela tem aparência infantil, mas é muito magra, com pele verde, e voa ao seu redor com asas transparentes. Parece bastante amigável e pousa em seu ombro. Você pode conversar com ela (vá para 171) ou tentar se livrar dela com uma magia:
 
-SIX - vá para 387  
-WIK - vá para 336  
-HOP - vá para 451  
-GAK - vá para 300  
-WAL - vá para 306
-
-
-
+**SIX** — vá para 387
+**WIK** — vá para 336
+**HOP** — vá para 451
+**GAK** — vá para 300
+**WAL** — vá para 306
 _________________________________
 ## 221
 
@@ -2263,12 +2245,11 @@ _________________________________
 
 Mais adiante, junto ao rio, há outra ponte pela qual o caminho continua. Você atravessa a ponte e começa a subir pelas colinas. O caminho serpenteia por algum tempo, seguindo a inclinação suavemente. De repente, uma bolota cai sobre sua cabeça e você ouve risadinhas vindas das árvores acima. Olhando para cima, você vê pequenas figuras nos galhos altos, voando de árvore em árvore. Outra bolota cai, depois outra. Você está sendo bombardeado pelos ELVINS! Você pode se proteger com uma magia:
 
-ZIP — vá para 359  
-FOF — vá para 408  
-WOK — vá para 296  
-HOP — vá para 382  
-YAG — vá para 340
-
+**ZIP** — vá para 359
+**FOF** — vá para 408
+**WOK** — vá para 296
+**HOP** — vá para 382
+**YAG** — vá para 340
 Se não quiser usar uma magia, vá para 85.
 
 
@@ -2329,12 +2310,11 @@ _________________________________
 
 A porta se abre lentamente sobre dobradiças bem lubrificadas, e você se encontra em uma passagem completamente escura. Você pode lançar uma magia, se quiser:
 
-SUS — vá para 372  
-FAR — vá para 349  
-FIX — vá para 422  
-BAG — vá para 398  
-HOW — vá para 454
-
+**SUS** — vá para 372
+**FAR** — vá para 349
+**FIX** — vá para 422
+**BAG** — vá para 398
+**HOW** — vá para 454
 Ou pode tatear pelo corredor no escuro (vá para 6). Você pode decidir não seguir por essa passagem e retornar pela sala até a encruzilhada (vá para 120).
 
 
@@ -2412,12 +2392,11 @@ A caixa está vazia. Mas, enquanto você olha para dentro, uma fumaça começa a
 
 Você usará uma magia:
 
-FOG — vá para 455  
-MAG — vá para 403  
-RIS — vá para 293  
-RAN — vá para 377  
-GAK — vá para 354
-
+**FOG** — vá para 455
+**MAG** — vá para 403
+**RIS** — vá para 293
+**RAN** — vá para 377
+**GAK** — vá para 354
 Ou tentará escapar da sala (vá para 124)?
 
 
@@ -2533,12 +2512,11 @@ _________________________________
 
 A porta está trancada. Você pode tentar arrombá-la (vá para 93) ou lançar uma magia:
 
-DOM — vá para 351
-PAP — vá para 311
-HUF — vá para 374
-HOW — vá para 449
-DOP — vá para 291
-
+**DOM** — vá para 351
+**PAP** — vá para 311
+**HUF** — vá para 374
+**HOW** — vá para 449
+**DOP** — vá para 291
 _________________________________
 ## 269
 
@@ -2578,12 +2556,11 @@ _________________________________
 
 Você puxa o braço de volta contra a força que o prende e, ao fazer isso, uma forma começa a se formar diante de você. Agora você está diante de uma grande SERPENTE de duas caudas, que sibila ameaçadoramente. Uma de suas caudas está enrolada em seu braço. Qual magia você usará?
 
-KIL — vá para 314
-SUN — vá para 404
-GOP — vá para 334
-LAW — vá para 355
-HOW — vá para 426
-
+**KIL** — vá para 314
+**SUN** — vá para 404
+**GOP** — vá para 334
+**LAW** — vá para 355
+**HOW** — vá para 426
 Se não puder, ou escolher não usar nenhuma dessas magias, terá de se armar. Vá para 2.
 
 _________________________________
@@ -2593,12 +2570,11 @@ Quando você se levanta, a velha aparece de repente diante de você. “Você n�
 
 Se você for um guerreiro, não terá como escapar da rajada.
 
-ZIP — vá para 322
-GUM — vá para 434
-LAM — vá para 418
-FIL — vá para 304
-SUS — vá para 392
-
+**ZIP** — vá para 322
+**GUM** — vá para 434
+**LAM** — vá para 418
+**FIL** — vá para 304
+**SUS** — vá para 392
 Se não conhecer nenhuma dessas magias, a rajada o atingirá e restarão apenas seus restos carbonizados. A Feiticeira Gaza Moon não deve ser ignorada...
 
 _________________________________
@@ -2669,13 +2645,11 @@ OGRO — HABILIDADE: 8, ENERGIA: 7.
 
 Se vencer, vá para 15. Como alternativa, você pode lançar uma magia;
 
-WOK — vá para 400  
-WAL — vá para 352  
-KIL — vá para 331  
-DIM — vá para 375  
-ROK — vá para 312
-
-
+**WOK** — vá para 400
+**WAL** — vá para 352
+**KIL** — vá para 331
+**DIM** — vá para 375
+**ROK** — vá para 312
 _________________________________
 ## 286
 
@@ -3617,13 +3591,11 @@ _________________________________
 
 Se você não tiver ENERGIA suficiente para lançar uma magia, pode ir para 227 e lutar contra a criatura com sua arma. Caso contrário, escolha sua magia:
 
-ZIP — vá para 347
-NIT — vá para 326
-FIF — vá para 436
-WAL — vá para 447
-SOD — vá para 370
-
-
+**ZIP** — vá para 347
+**NIT** — vá para 326
+**FIF** — vá para 436
+**WAL** — vá para 447
+**SOD** — vá para 370
 _________________________________
 ## 421
 
