@@ -67,7 +67,8 @@ export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => v
       </Section>
 
       {s.cls === "mago" && (
-        <Section icon={ScrollText} title="FEITIÇOS MEMORIZADOS">
+        <Section icon={ScrollText} title="MAGIAS DE REFERÊNCIA">
+          {s.spells.length === 0 && <p className="text-sm italic text-muted-foreground">Nenhuma magia marcada.</p>}
           <ul className="space-y-1 text-sm">
             {s.spells.map((c) => {
               const sp = SPELLS.find((x) => x.code === c);

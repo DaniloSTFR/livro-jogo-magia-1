@@ -1,0 +1,28 @@
+# Specs — correções do livro-jogo Magia! Vol. 1
+
+Origem: `.plan/correcoes-magias-e-livro-2026-10-24.md` (cada fase do plano virou uma spec).
+
+| # | Spec | Status | Depende de |
+|---|------|--------|------------|
+| 01 | [Magias: todas visíveis, as 6 iniciais viram dica](01-magias-todas-visiveis.md) | Concluída (2026-10-24) | — |
+| 02 | [book.json: mortes falsas e saídas perdidas](02-book-json-saidas-e-mortes-falsas.md) | A fazer | — |
+| 03 | [Erros de tradução e parágrafos inalcançáveis](03-traducao-e-inalcancaveis.md) | A fazer | 02 |
+| 04 | [Ficha e regras divergentes das fontes](04-ficha-e-regras.md) | A fazer | 01 |
+| 05 | [Combates especiais](05-combates-especiais.md) | A fazer | 02, 04 |
+| 06 | [Testes e verificação](06-testes-e-verificacao.md) | A fazer | 02 (iniciar junto) |
+| 07 | Limite de visualização da referência de magias | A definir (spec a criar) | 01 |
+
+Ordem sugerida: 01 e 02 → 06 (junto com 02) e §236 da 03 → 04 → 03 → 05.
+
+## Fontes de verdade (vale para todas as specs)
+
+1. `fontes_base/Steve Jackson's Sorcery (1of5) - The Shamutanti Hills.pdf`: livro original (OCR em `.plan/referencias/`).
+2. `fontes_base/REGRAS.md`, `fontes_base/MAGIA.md`, `fontes_base/FICHA_DE_AVENTUREIRO.md`.
+3. `src/game/book.json`: fonte principal da história no jogo, editada direto.
+4. `scripts/Pages_pt-BR.md` e `scripts/parse-book.py`: apenas históricos. Não rodar o parser.
+
+## Regras gerais
+
+- Toda edição do `book.json` mantém o JSON válido e todos os destinos (`to`, `win`, `lucky`, `unlucky`) apontando para parágrafos existentes.
+- Saves existentes no navegador (`grimorio-save-v2`) devem continuar carregando.
+- Seguir o `AGENTS.md`.

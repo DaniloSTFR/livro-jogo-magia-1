@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SPELLS } from "@/game/adventure";
+import { MAX_REFERENCE_SPELLS } from "@/game/spells";
 import { createCharacter, d6, type GameState, type Stats } from "@/game/useGame";
 import { Dices, Sword, Wand2, Check } from "lucide-react";
 
@@ -20,7 +21,7 @@ export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
 
   const pick = (c: GameState["cls"]) => { setCls(c); setStats(rollStats(c)); setStep("roll"); };
   const toggle = (code: string) =>
-    setSpells((s) => (s.includes(code) ? s.filter((x) => x !== code) : s.length < 6 ? [...s, code] : s));
+    setSpells((s) => (s.includes(code) ? s.filter((x) => x !== code) : s.length < MAX_REFERENCE_SPELLS ? [...s, code] : s));
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
@@ -36,7 +37,7 @@ export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
         <div className="grid gap-4 sm:grid-cols-2">
           {([
             ["guerreiro", "Guerreiro", "Habilidade alta (1d6+6). Confia no aço.", Sword],
-            ["mago", "Mago", "Habilidade menor (1d6+4), mas memoriza 6 feitiços.", Wand2],
+            ["mago", "Mago", "Habilidade menor (1d6+4), mas conhece magias. Marque até 6 como referência.", Wand2],
           ] as const).map(([id, name, desc, Icon]) => (
             <button key={id} onClick={() => pick(id)}
               className="group rounded-lg border border-border bg-card p-6 text-left transition hover:border-primary">
@@ -73,8 +74,8 @@ export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
 
       {step === "spells" && stats && (
         <div>
-          <h2 className="font-display text-2xl">Memorize 6 feitiços</h2>
-          <p className="mt-1 text-muted-foreground">Escolha 6 entre as 48 magias. Somente as memorizadas poderão ser usadas na jornada. ({spells.length}/6)</p>
+          <h2 className="font-display text-2xl">Magias de referência</h2>
+          <p className="mt-1 text-muted-foreground">Marque até {MAX_REFERENCE_SPELLS} entre as 48 magias. Elas ficam destacadas como referência durante a aventura, mas não limitam as opções: todas as magias oferecidas pelo texto continuam disponíveis. ({spells.length}/{MAX_REFERENCE_SPELLS})</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {SPELLS.map((sp) => {
               const on = spells.includes(sp.code);
@@ -92,7 +93,7 @@ export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
               );
             })}
           </div>
-          <Button className="mt-6" disabled={spells.length !== 6} onClick={() => onStart(createCharacter("mago", stats, spells))}>
+          <Button className="mt-6" onClick={() => onStart(createCharacter("mago", stats, spells))}>
             Iniciar a jornada
           </Button>
         </div>

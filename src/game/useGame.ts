@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { SPELLS } from "./adventure";
 import { DEATH_ID, LIBRA_TARGETS, STAT_LABEL, WIN_ID, getParagraph, type BookChoice, type BookEffect } from "./book";
 
 export type Stats = { skill: number; stamina: number; luck: number };
@@ -20,10 +19,6 @@ export type GameState = {
 };
 
 const KEY = "grimorio-save-v2";
-const LEGACY_SPELLS: Record<string, string> = {
-  IGNIS: "HOT", LUMEN: "SUN", SOMNUS: "NAP", CLAVIS: "DOP",
-  VENTUS: "HUF", SANAR: "DOC", ESCUDO: "FOF", VOX: "YAP",
-};
 export const d6 = () => Math.floor(Math.random() * 6) + 1;
 export const roll2 = () => [d6(), d6()] as const;
 
@@ -81,10 +76,7 @@ export function useGame() {
       const raw = localStorage.getItem(KEY);
       if (raw) {
         const saved = JSON.parse(raw) as GameState;
-        const spells = saved.spells
-          .map((code) => LEGACY_SPELLS[code] ?? code)
-          .filter((code, index, list) => SPELLS.some((spell) => spell.code === code) && list.indexOf(code) === index);
-        setState({ ...saved, spells });
+        setState({ ...saved, spells: Array.isArray(saved.spells) ? saved.spells : [] });
       }
     } catch { /* ignore */ }
     setLoaded(true);

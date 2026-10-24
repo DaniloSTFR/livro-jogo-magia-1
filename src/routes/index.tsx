@@ -4,7 +4,7 @@ import introduction from "@/game/introduction.txt?raw";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { SPELLS } from "@/game/adventure";
+import { visibleChoices } from "@/game/spells";
 import { DEATH_ID, MONSTERS, STAT_LABEL, getParagraph } from "@/game/book";
 import { applyEffect, d6, goto, previousParagraph, useGame, type GameState } from "@/game/useGame";
 import { Creation } from "@/components/game/Creation";
@@ -171,10 +171,7 @@ function Index() {
                 {p.luckTest && (
                   <Button className="w-full justify-start" disabled={!!luckMsg} onClick={doLuck}><Clover /> Testar a Sorte (Sortudo → {p.luckTest.lucky} · Azarado → {p.luckTest.unlucky})</Button>
                 )}
-                {p.choices.map((c, i) => {
-                  if (c.spell && s.cls !== "mago") return null;
-                  const known = c.spell ? SPELLS.find((x) => x.code === c.spell) : null;
-                  if (known && !s.spells.includes(known.code)) return null;
+                {visibleChoices(p.choices, s.cls, s.spells).map(({ choice: c, reference }, i) => {
                   const libraBlocked = c.libra && s.libraUsed;
                   const label = /^(vá|va|continue|siga)\b/i.test(c.label) && c.label.length < 30 ? "Continuar" : c.label;
                   return (
@@ -184,7 +181,17 @@ function Index() {
                       <span className="flex items-center gap-2">
                         {c.spell && <Wand2 className="shrink-0" />}
                         {c.libra && <Sparkles className="shrink-0 text-gold" />}
-                        {c.libra ? `Invocar Libra — ${label}` : label}
+                        {c.spell ? (
+                          <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                            <span>Lançar <b className="font-display tracking-wider">{c.spell}</b></span>
+                            {reference && (
+                              <>
+                                <span className="rounded border border-parchment-edge px-1.5 py-0.5 text-xs uppercase tracking-wider">memorizada</span>
+                                <span className="text-sm opacity-80">{reference.name} · {reference.cost} Energia</span>
+                              </>
+                            )}
+                          </span>
+                        ) : c.libra ? `Invocar Libra — ${label}` : label}
                         {libraBlocked && " (Libra já foi invocada)"}
                       </span>
                       <span className="shrink-0 font-display text-sm opacity-70">→ {c.to}</span>
