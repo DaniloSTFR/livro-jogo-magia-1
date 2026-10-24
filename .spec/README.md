@@ -5,12 +5,13 @@ Origem: `.plan/correcoes-magias-e-livro-2026-10-24.md` (cada fase do plano virou
 | # | Spec | Status | Depende de |
 |---|------|--------|------------|
 | 01 | [Magias: todas visíveis, as 6 iniciais viram dica](01-magias-todas-visiveis.md) | Concluída (2026-10-24) | — |
-| 02 | [book.json: mortes falsas e saídas perdidas](02-book-json-saidas-e-mortes-falsas.md) | A fazer | — |
+| 02 | [book.json: mortes falsas e saídas perdidas](02-book-json-saidas-e-mortes-falsas.md) | Concluída (2026-10-24) | — |
 | 03 | [Erros de tradução e parágrafos inalcançáveis](03-traducao-e-inalcancaveis.md) | A fazer | 02 |
 | 04 | [Ficha e regras divergentes das fontes](04-ficha-e-regras.md) | A fazer | 01 |
 | 05 | [Combates especiais](05-combates-especiais.md) | A fazer | 02, 04 |
 | 06 | [Testes e verificação](06-testes-e-verificacao.md) | A fazer | 02 (iniciar junto) |
 | 07 | Limite de visualização da referência de magias | A definir (spec a criar) | 01 |
+| 08 | [Caminhos ocultos: §44, §101, §205 e §319](08-caminhos-ocultos.md) | Em refinamento | 02, 03 |
 
 Ordem sugerida: 01 e 02 → 06 (junto com 02) e §236 da 03 → 04 → 03 → 05.
 

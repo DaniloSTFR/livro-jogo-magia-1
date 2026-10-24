@@ -43,8 +43,22 @@ Nenhum parágrafo pode encerrar a aventura se o texto continua a história, e to
 `src/game/book.json` (e opcionalmente `scripts/fixes/`).
 
 ## Critérios de aceite
-- [ ] Os parágrafos 165, 190, 305, 328, 346 e 431 não mostram mais "Fim da jornada".
-- [ ] Todas as saídas das tabelas acima existem e levam ao parágrafo certo.
-- [ ] Nenhum texto contém `\r`.
-- [ ] Todos os destinos apontam para parágrafos existentes (1–456).
-- [ ] Os testes da Spec 06 passam.
+- [x] Os parágrafos 165, 190, 305, 328, 346 e 431 não mostram mais "Fim da jornada".
+- [x] Todas as saídas das tabelas acima existem e levam ao parágrafo certo.
+- [x] Nenhum texto contém `\r`.
+- [x] Todos os destinos apontam para parágrafos existentes (1–456).
+- [x] Os testes passam (`npm test`: 3 arquivos, 30 testes).
+
+## Implementação (2026-10-24)
+- Script de correção: `scripts/fixes/2026-10-24-spec02.py` (já executado; recusa rodar de novo).
+- Parágrafos alterados no `book.json`: 165, 190, 206, 228, 299, 303, 305, 328, 346, 388, 390, 420, 431, 433. Todos os textos passaram de CRLF para LF.
+- §165: escolha para 206 e efeito de −3 ENERGIA **repetível** (botão pode ser usado a cada Azar). Novo campo `repeatable` em `BookEffect`.
+- §328: efeito condicional de −3 ENERGIA quando não houver cera de abelha.
+- §390: teste de sorte livre, com as saídas "Azar → 64", "Sorte → 151" e "Sorte → 3".
+- **Acréscimo fora da tabela original:** §206, §228, §303 e §433 só tinham saída pela Libra; com ela já usada, o jogador ficava preso. Ganharam uma escolha de morte (`to: 0`) que só aparece depois que Libra foi invocada. Novo campo `libraUsedOnly` em `BookChoice`, tratado em `visibleChoices`.
+- O texto do parágrafo de morte (`DEATH`, em `book.ts`) ficou genérico, porque agora também é usado por esses finais.
+- A revisão dos 19 finais de morte confirmou que todos são mortes reais.
+- Testes em `src/test/book.test.ts` (consistência do `book.json` e as correções desta spec).
+- Inalcançáveis a partir do §1: de 31 para 30 (o §206 voltou a ser alcançável). O restante fica para a Spec 03.
+- `npm test` no Windows: 3 arquivos, 30 testes, todos passando.
+- Pendência encontrada depois (ver Spec 08): o §45 também perdeu uma saída (→ 226), o mesmo tipo de erro desta spec.

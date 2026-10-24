@@ -9,10 +9,12 @@ export type ChoiceView = { choice: BookChoice; reference?: Spell };
 /**
  * Choices to show on a paragraph. Spell options are shown only to wizards, and always all of
  * them: the spells chosen at creation are only a reference and never hide an option.
+ * Choices marked `libraUsedOnly` appear only once Libra has been invoked.
  */
-export function visibleChoices(choices: BookChoice[], cls: "guerreiro" | "mago", referenceSpells: string[]): ChoiceView[] {
+export function visibleChoices(choices: BookChoice[], cls: "guerreiro" | "mago", referenceSpells: string[], libraUsed = false): ChoiceView[] {
   return choices
     .filter((c) => !c.spell || cls === "mago")
+    .filter((c) => !c.libraUsedOnly || libraUsed)
     .map((choice) => {
       const reference = choice.spell && referenceSpells.includes(choice.spell)
         ? SPELLS.find((s) => s.code === choice.spell)

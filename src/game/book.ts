@@ -1,8 +1,10 @@
 import data from "./book.json";
 
 export type StatKey = "stamina" | "skill" | "luck";
-export type BookEffect = { stat: StatKey; amount: number; auto: boolean; text: string };
-export type BookChoice = { to: number; label: string; spell?: string; libra?: boolean };
+/** `repeatable`: a conditional effect the text may apply several times (e.g. each failed luck test). */
+export type BookEffect = { stat: StatKey; amount: number; auto: boolean; text: string; repeatable?: boolean };
+/** `libraUsedOnly`: shown only after Libra was invoked (the text's outcome when her help is no longer available). */
+export type BookChoice = { to: number; label: string; spell?: string; libra?: boolean; libraUsedOnly?: boolean };
 export type Enemy = { name: string; skill: number; stamina: number };
 export type BookParagraph = {
   id: number;
@@ -22,7 +24,7 @@ export const WIN_ID = 456;
 
 const DEATH: BookParagraph = {
   id: DEATH_ID,
-  text: "Sua ENERGIA chegou a zero. Os ferimentos são graves demais e sua visão escurece nas encostas de Shamutanti. Sua aventura termina aqui.",
+  text: "Sua aventura termina aqui. Os perigos das Montanhas de Shamutanti foram demais para você, e sua visão escurece nas encostas.",
   choices: [],
   effects: [],
   end: "death",

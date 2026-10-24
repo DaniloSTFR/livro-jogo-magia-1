@@ -762,7 +762,11 @@
             "choices": [
                 {
                     "to": 125,
-                    "label": "Escolha seu caminho"
+                    "label": "Vá para 125"
+                },
+                                {
+                    "to": 226,
+                    "label": "Vá para 226"
                 }
             ],
             "effects": [
@@ -3012,10 +3016,22 @@
         "165": {
             "id": 165,
             "text": "Você pode tentar matar todas as cobras no fosso com sua arma. Teste sua SORTE. Se tiver SORTE, teste sua SORTE novamente. Você deve continuar tentando até conseguir três testes de SORTE consecutivos. Cada vez que tiver Azar, uma cobra o morde, causando 3 pontos de dano à sua ENERGIA. Se conseguir três testes de SORTE consecutivos, você consegue matar todas as cobras e pode ir para 206.",
-            "choices": [],
-            "effects": [],
-            "luckFree": true,
-            "end": "death"
+            "choices": [
+                {
+                    "to": 206,
+                    "label": "Conseguiu três testes de SORTE seguidos: as cobras estão mortas"
+                }
+            ],
+            "effects": [
+                {
+                    "stat": "stamina",
+                    "amount": -3,
+                    "auto": false,
+                    "text": "Cada vez que tiver Azar, uma cobra o morde (3 pontos de ENERGIA).",
+                    "repeatable": true
+                }
+            ],
+            "luckFree": true
         },
         "166": {
             "id": 166,
@@ -3383,9 +3399,13 @@
         "190": {
             "id": 190,
             "text": "Os dentes na bolsa são realmente de várias criaturas: vários de Cães da Morte, três de um Macaco, quatro de um Goblin, dois de um Snattacat e um grande molar de um Gigante. Você pode levar qualquer um ou todos eles e então voltar para 126.",
-            "choices": [],
-            "effects": [],
-            "end": "death"
+            "choices": [
+                {
+                    "to": 126,
+                    "label": "Volte para 126 levando os dentes que quiser"
+                }
+            ],
+            "effects": []
         },
         "191": {
             "id": 191,
@@ -3704,6 +3724,11 @@
                     "to": 273,
                     "label": "Sua única chance restante é se ainda não tiver invocado Libra",
                     "libra": true
+                },
+                {
+                    "to": 0,
+                    "label": "Libra já foi invocada: você morre preso no fosso",
+                    "libraUsedOnly": true
                 }
             ],
             "effects": []
@@ -4113,6 +4138,11 @@
                     "to": 160,
                     "label": "Se o total obtido for igual ou maior que sua HABILIDADE, a porta não se moverá e você ficará preso na caverna desmoronada, a menos que consiga pedir ajuda à sua deusa Libra",
                     "libra": true
+                },
+                {
+                    "to": 0,
+                    "label": "Libra já foi invocada: você fica preso na caverna desmoronada",
+                    "libraUsedOnly": true
                 }
             ],
             "effects": [
@@ -5448,6 +5478,10 @@
             "text": "Subtraia 1 ponto de ENERGIA. Você tem suco de Blimberry com você? Se não tiver, deverá voltar para 158 e escolher novamente. Se puder lançar a magia sobre o suco de Blimberry, faça isso e borrife o suco encantado sobre os aldeões. A princípio, parece que isso os queima, mas então a poção de cura começa a fazer efeito. Esta é uma aldeia assolada pela peste; todos nela estão contaminados. Você acaba de curar essa família, e eles estão de joelhos, agradecendo a você. Você conversa com eles por algum tempo e eles lhe dão um aviso importante: Cuidado com a Flor de Lótus Negra. Por fim, você parte. Vá para 220.",
             "choices": [
                 {
+                    "to": 158,
+                    "label": "Volte para 158 e escolha novamente (sem suco de Blimberry)"
+                },
+                {
                     "to": 220,
                     "label": "Vá para 220"
                 }
@@ -5530,9 +5564,18 @@
             "text": "Subtraia 1 ponto de ENERGIA. Você tem pequenas pedras com você? Se não tiver, deverá voltar para 63 e escolher novamente, depressa. Se tiver pequenas pedras, lance a magia sobre elas e atire-as contra as serpentes. Elas explodem ao atingir o alvo, matando várias das serpentes e assustando as outras. Você lança três desses projéteis e consegue algum espaço para respirar. No entanto, pensando melhor, parece não haver maneira de escapar do poço a menos que consiga invocar Libra. Se ainda não usou a ajuda dela, vá para 273. Caso contrário, há pouco que você possa fazer. Sua jornada termina aqui...",
             "choices": [
                 {
+                    "to": 63,
+                    "label": "Volte para 63 e escolha novamente, depressa (sem pedrinhas)"
+                },
+                {
                     "to": 273,
                     "label": "Se ainda não usou a ajuda dela",
                     "libra": true
+                },
+                {
+                    "to": 0,
+                    "label": "Libra já foi invocada: sua jornada termina aqui",
+                    "libraUsedOnly": true
                 }
             ],
             "effects": [
@@ -5561,7 +5604,12 @@
         "305": {
             "id": 305,
             "text": "Subtraia 4 pontos de ENERGIA. Você lança a magia e espera que o raio atinja o assassino. Mas nada acontece! O Minimita grita para você: “Não perca seu tempo com magias. Os Minimitas são protegidos — embora às vezes isso seja uma maldição — por uma aura de proteção. Você não pode lançar magias quando estou por perto!” Você deve voltar para 117 e lutar contra o assassino.",
-            "choices": [],
+            "choices": [
+                {
+                    "to": 117,
+                    "label": "Volte para 117 e lute contra o assassino"
+                }
+            ],
             "effects": [
                 {
                     "stat": "stamina",
@@ -5569,8 +5617,7 @@
                     "auto": true,
                     "text": "Subtraia 4 pontos de ENERGIA."
                 }
-            ],
-            "end": "death"
+            ]
         },
         "306": {
             "id": 306,
@@ -5977,16 +6024,26 @@
         "328": {
             "id": 328,
             "text": "Subtraia 1 ponto de ENERGIA. Você tenta, em vão, lançar a magia, pois não possui o Chifre de Gale necessário para isso.\nSe tiver cera de abelha, você pode esfregá-la na sua espada e voltar para 47. Lute contra o Goblin normalmente, mas poderá dobrar qualquer dano causado ao Goblin enquanto sua espada estiver magicamente afiada.\nO efeito durará apenas durante esta luta, e você terá usado metade da sua cera de abelha.\nSe não tiver cera de abelha, deverá subtrair 3 pontos adicionais de ENERGIA enquanto o Goblin o ataca e voltar para 47.",
-            "choices": [],
+            "choices": [
+                {
+                    "to": 47,
+                    "label": "Volte para 47 e lute contra o Goblin"
+                }
+            ],
             "effects": [
                 {
                     "stat": "stamina",
                     "amount": -1,
                     "auto": true,
                     "text": "Subtraia 1 ponto de ENERGIA."
+                },
+                {
+                    "stat": "stamina",
+                    "amount": -3,
+                    "auto": false,
+                    "text": "Sem cera de abelha: o Goblin o ataca (3 pontos adicionais de ENERGIA)."
                 }
-            ],
-            "end": "death"
+            ]
         },
         "329": {
             "id": 329,
@@ -6302,7 +6359,12 @@
         "346": {
             "id": 346,
             "text": "Deduza 4 pontos de ENERGIA. Sua magia cria uma grande bola de fogo em sua mão, que você arremessa contra a fera. Ela atinge a Mantícora na lateral, e a criatura ruge de dor. Você pode ir para 420 para terminar de derrotá-la.",
-            "choices": [],
+            "choices": [
+                {
+                    "to": 420,
+                    "label": "Vá para 420 para terminar de derrotá-la"
+                }
+            ],
             "effects": [
                 {
                     "stat": "stamina",
@@ -6310,8 +6372,7 @@
                     "auto": true,
                     "text": "Deduza 4 pontos de ENERGIA."
                 }
-            ],
-            "end": "death"
+            ]
         },
         "347": {
             "id": 347,
@@ -7158,7 +7219,16 @@
         "388": {
             "id": 388,
             "text": "Deduza 1 ponto de ENERGIA. Você tem um dente de Gigante com você? Se não tiver, não poderá lançar esta magia e deverá ir para a referência 227 para se defender com sua arma. Se tiver um dente de Gigante, coloque-o no chão e lance a magia. Uma nuvem de fumaça aparece ao redor do dente e, quando se dissipa, um enorme Gigante está em seu lugar! Você ordena que o Gigante ataque a Mantícora, e ele se volta contra a fera assustada. Resolva este combate:\n\n**MANTÍCORA — HABILIDADE: 12, ENERGIA: 18.**\n\n**GIGANTE — HABILIDADE: 8, ENERGIA: 9.**\n\nCada vez que a Mantícora atingir o Gigante, lance um dado. Um resultado de 5 ou 6 indica um golpe com o ferrão da cauda, que é venenoso e causará 6 pontos de dano de ENERGIA. Um resultado de 1 a 4 indica dano normal. Se seu Gigante vencer, vá para a referência 456. Se a Mantícora vencer, você poderá terminar o trabalho pessoalmente (referência 227) ou lançar outra magia (referência 420).",
-            "choices": [],
+            "choices": [
+                {
+                    "to": 227,
+                    "label": "Sem dente de Gigante, ou se a Mantícora vencer o Gigante: lute com sua arma"
+                },
+                {
+                    "to": 420,
+                    "label": "Se a Mantícora vencer o Gigante: lance outra magia"
+                }
+            ],
             "effects": [
                 {
                     "stat": "stamina",
@@ -7211,7 +7281,15 @@
             "choices": [
                 {
                     "to": 64,
-                    "label": "Se tiver Azar, perde o controle da mochila e precisa tentar outro método de fuga"
+                    "label": "Se tiver Azar: perde a mochila e precisa tentar outro método de fuga"
+                },
+                {
+                    "to": 151,
+                    "label": "Se tiver SORTE: volte à bifurcação e siga pelo outro caminho"
+                },
+                {
+                    "to": 3,
+                    "label": "Se tiver SORTE: retorne à câmara principal e pegue a outra passagem"
                 }
             ],
             "effects": [
@@ -7795,6 +7873,10 @@
             "text": "Se você não tiver ENERGIA suficiente para lançar uma magia, pode ir para 227 e lutar contra a criatura com sua arma. Caso contrário, escolha sua magia:\n\n**ZIP** — vá para 347\n**NIT** — vá para 326\n**FIF** — vá para 436\n**WAL** — vá para 447\n**SOD** — vá para 370",
             "choices": [
                 {
+                    "to": 227,
+                    "label": "Sem ENERGIA para lançar magia: lute contra a criatura com sua arma"
+                },
+                {
                     "to": 347,
                     "label": "Lançar ZIP",
                     "spell": "ZIP",
@@ -8016,7 +8098,12 @@
         "431": {
             "id": 431,
             "text": "Deduza 4 pontos de ENERGIA. Você lança a magia e um campo de força protetor envolve seu corpo. Você pode ir para 79, mas nenhum mal lhe acontecerá, pois não haverá contato entre você e qualquer um dos aldeões.",
-            "choices": [],
+            "choices": [
+                {
+                    "to": 79,
+                    "label": "Vá para 79, protegido pelo campo de força"
+                }
+            ],
             "effects": [
                 {
                     "stat": "stamina",
@@ -8024,8 +8111,7 @@
                     "auto": true,
                     "text": "Deduza 4 pontos de ENERGIA."
                 }
-            ],
-            "end": "death"
+            ]
         },
         "432": {
             "id": 432,
@@ -8049,6 +8135,11 @@
                     "to": 273,
                     "label": "Se ainda não pediu ajuda a Libra",
                     "libra": true
+                },
+                {
+                    "to": 0,
+                    "label": "Libra já foi invocada: sua jornada termina aqui",
+                    "libraUsedOnly": true
                 }
             ],
             "effects": [

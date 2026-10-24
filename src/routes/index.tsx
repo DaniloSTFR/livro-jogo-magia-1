@@ -143,7 +143,7 @@ function Index() {
                 return (
                   <div key={k} className="flex items-center justify-between gap-3 text-sm">
                     <span className="italic opacity-80">{e.text}</span>
-                    <Button size="sm" variant="outline" disabled={applied.includes(k)} className="shrink-0 border-parchment-edge bg-transparent text-parchment-foreground"
+                    <Button size="sm" variant="outline" disabled={!e.repeatable && applied.includes(k)} className="shrink-0 border-parchment-edge bg-transparent text-parchment-foreground"
                       onClick={() => { setApplied((a) => [...a, k]); game.update((st) => applyEffect(st, e)); }}>
                       {e.amount > 0 ? "+" : ""}{e.amount} {STAT_LABEL[e.stat]}
                     </Button>
@@ -171,7 +171,7 @@ function Index() {
                 {p.luckTest && (
                   <Button className="w-full justify-start" disabled={!!luckMsg} onClick={doLuck}><Clover /> Testar a Sorte (Sortudo → {p.luckTest.lucky} · Azarado → {p.luckTest.unlucky})</Button>
                 )}
-                {visibleChoices(p.choices, s.cls, s.spells).map(({ choice: c, reference }, i) => {
+                {visibleChoices(p.choices, s.cls, s.spells, s.libraUsed).map(({ choice: c, reference }, i) => {
                   const libraBlocked = c.libra && s.libraUsed;
                   const label = /^(vá|va|continue|siga)\b/i.test(c.label) && c.label.length < 30 ? "Continuar" : c.label;
                   return (
