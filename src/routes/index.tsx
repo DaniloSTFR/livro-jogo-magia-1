@@ -6,11 +6,13 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { visibleChoices } from "@/game/spells";
 import { DEATH_ID, MONSTERS, STAT_LABEL, getParagraph } from "@/game/book";
-import { applyEffect, d6, goto, previousParagraph, useGame, type GameState } from "@/game/useGame";
+import {
+  applyEffect, d6, gainItem, goto, hasItem, itemLabel, numberedItems, previousParagraph, useGame, applyNumberedItem, type GameState,
+} from "@/game/useGame";
 import { Creation } from "@/components/game/Creation";
 import { AdventureSheet } from "@/components/game/Sheet";
 import { CombatModal } from "@/components/game/Combat";
-import { BookOpen, Clover, Dices, Skull, Undo2, RotateCcw, Sparkles, Swords, User, Wand2 } from "lucide-react";
+import { Backpack, BookOpen, Clover, KeyRound, Dices, Skull, Undo2, RotateCcw, Sparkles, Swords, User, Wand2 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +37,7 @@ function Index() {
   const [dice, setDice] = useState<string | null>(null);
   const [bestiary, setBestiary] = useState(false);
   const [pendingCharacter, setPendingCharacter] = useState<GameState | null>(null);
+  const [itemMsg, setItemMsg] = useState<{ paragraph: number; text: string } | null>(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -97,6 +100,14 @@ function Index() {
     setLibraOpen(false); setCombatKey(null);
   };
 
+  const tryItem = (item: (typeof keyItems)[number]) => {
+    const use = p.numberedItem!;
+    const next = applyNumberedItem(s, item, use);
+    if (next) game.update(() => next);
+    else setItemMsg({ paragraph: s.paragraph, text: `O número ${item.number + use.offset} não leva a lugar nenhum: ${itemLabel(item)} não serve aqui.` });
+  };
+  const keyItems = p.numberedItem ? numberedItems(s, p.numberedItem.kind) : [];
+
   const sheet = <AdventureSheet game={game} onLibra={() => setLibraOpen(true)} />;
 
   return (
@@ -153,6 +164,21 @@ function Index() {
             </div>
           )}
 
+          {p.gainItems && !p.end && (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {p.gainItems.map((item) => {
+                const has = hasItem(s, item);
+                return (
+                  <Button key={`${item.kind}-${item.number}`} size="sm" variant="outline" disabled={has}
+                    className="border-parchment-edge bg-transparent text-parchment-foreground"
+                    onClick={() => game.update((st) => gainItem(st, item))}>
+                    <Backpack /> {has ? "Na ficha" : "Guardar na ficha"}: {itemLabel(item)}
+                  </Button>
+                );
+              })}
+            </div>
+          )}
+
           {(luckMsg || dice) && <p className="mt-6 rounded border border-parchment-edge p-3 text-center font-display">{luckMsg ?? `Dados: ${dice}`}</p>}
 
           <div className="mt-10 space-y-3 border-t border-parchment-edge pt-6">
@@ -198,6 +224,19 @@ function Index() {
                     </Button>
                   );
                 })}
+                {p.numberedItem && (
+                  <div className="space-y-2 rounded border border-parchment-edge p-3">
+                    <p className="flex items-center gap-2 font-display text-sm tracking-wider"><KeyRound className="h-4 w-4" /> {p.numberedItem.label}</p>
+                    {keyItems.length === 0 && <p className="text-sm italic opacity-80">Nenhum item desse tipo com número na ficha.</p>}
+                    {keyItems.map((item) => (
+                      <Button key={item.number} variant="outline" disabled={!!luckMsg} onClick={() => { setDice(null); tryItem(item); }}
+                        className="h-auto w-full justify-start whitespace-normal border-parchment-edge bg-transparent py-2 text-left text-parchment-foreground hover:bg-parchment-edge/25">
+                        Usar {itemLabel(item)}
+                      </Button>
+                    ))}
+                    {itemMsg?.paragraph === s.paragraph && <p className="text-sm italic">{itemMsg.text}</p>}
+                  </div>
+                )}
                 {p.back && prev !== null && (
                   <Button variant="outline" className="w-full justify-between border-parchment-edge bg-transparent text-parchment-foreground" onClick={game.goBack}>
                     <span className="flex items-center gap-2"><Undo2 /> Voltar à referência anterior</span>

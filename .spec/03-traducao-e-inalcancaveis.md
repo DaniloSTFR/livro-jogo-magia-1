@@ -39,8 +39,24 @@ Corrigir os textos que divergem do original e tornar alcançáveis todos os par�
 `src/game/book.json`, `src/game/book.ts` (tipos), `src/game/useGame.ts` (itens), `src/routes/index.tsx`, `src/components/game/Sheet.tsx`.
 
 ## Critérios de aceite
-- [ ] §236 mostra o teste de sorte que leva a 118 ou 223.
-- [ ] Os 46 parágrafos da revisão estão marcados como revisados.
-- [ ] Com a chave 111, o §4 leva ao §101.
-- [ ] A lista de inalcançáveis contém só exceções documentadas.
-- [ ] Saves antigos com itens em texto continuam carregando.
+- [x] §236 mostra o teste de sorte que leva a 118 ou 223.
+- [x] Os 46 parágrafos da revisão estão marcados como revisados.
+- [x] Com a chave 111, o §4 leva ao §101.
+- [x] A lista de inalcançáveis contém só exceções documentadas.
+- [x] Saves antigos com itens em texto continuam carregando.
+
+## Implementação (2026-10-24)
+- Script de correção: `scripts/fixes/2026-10-24-spec03.mjs` (Node, já executado; recusa rodar de novo). Python não estava disponível no Windows.
+- **A.** §236 virou o teste de sorte do original (118 / 223), sem escolhas nem efeitos. Anotação no `Pages_pt-BR.md`.
+- **B.** Os 46 parágrafos foram conferidos com o OCR (§331–333 com o OCR completo, pois o trecho da revisão era do §330). Divergências corrigidas:
+  - §9: o caminho elevado leva ao 157 (texto e escolha diziam 57).
+  - §166: as 5 opções (NAP, SIX, BAG, LAW, KIL) passaram a ser escolhas de magia.
+  - §277: nova saída de morte "dois seis" (`to: 0`, novo campo `diceDeath` em `BookChoice`).
+  - §317 (HABILIDADE variável do Troll) fica para a Spec 05.
+- **C.** Decisões com o usuário: o jogo faz a conta; só itens guardados na ficha podem ser usados; nesta spec o uso fica só no §4 (§114 e §182 continuam na Spec 08).
+  - Itens podem ser texto (saves antigos) ou `{ name, kind, number }` (`Item` em `useGame.ts`).
+  - `gainItems` no `book.json`: §199 (chave 54), §186 (chave 111), §244 (chave de cobre 206), §183 (página 102), §72 (machado 233). Botão "Guardar na ficha" no parágrafo.
+  - `numberedItem` no §4: `{ kind: "chave", offset: -10 }`. Botão por chave da ficha; número sem parágrafo mostra uma mensagem.
+  - A lista da Spec 03 estava incompleta: a chave da gaiola que abre é a nº 54 (§44), conforme a investigação da Spec 08.
+- **D.** `src/game/reachability-exceptions.json`: §44 e §101 alcançados só por chave; inalcançáveis §205 e §233 (uso pendente da Spec 08) e §319 (órfão do original). O teste de alcance compara com esse arquivo.
+- `npm test`: 4 arquivos, 48 testes passando. UI conferida no navegador (save antigo, chave 111 → §101, chave inválida, §236).

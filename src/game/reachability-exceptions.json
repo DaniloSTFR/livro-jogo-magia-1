@@ -1,0 +1,28 @@
+{
+    "itemOnly": [
+        {
+            "id": 44,
+            "via": "§4 com a chave velha e enferrujada nº 54 (§199): 54 − 10",
+            "reason": "Nenhum \"vá para\" leva ao §44, nem no original: só o número gravado na chave."
+        },
+        {
+            "id": 101,
+            "via": "§4 com a chave de prata nº 111 (§186): 111 − 10",
+            "reason": "Nenhum \"vá para\" leva ao §101, nem no original: só o número gravado na chave."
+        }
+    ],
+    "unreachable": [
+        {
+            "id": 205,
+            "reason": "Página do Grimório nº 102 (§183) usada no §114 (102 + 103). Uso do item pendente da Spec 08."
+        },
+        {
+            "id": 233,
+            "reason": "Machado nº 233 (§72) usado no §182. Uso do item pendente da Spec 08."
+        },
+        {
+            "id": 319,
+            "reason": "Órfão do original: nenhum parágrafo nem item leva a ele (YOB contra o Gigante já é tratado no §361)."
+        }
+    ]
+}

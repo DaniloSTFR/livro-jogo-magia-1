@@ -2290,6 +2290,8 @@ Ela grita atrás de você e ordena que volte. Parece muito indignada por você t
 _________________________________
 ## 236
 
+> **Correção (Spec 03, 2026-10-24):** o texto abaixo é de outro parágrafo do corcunda. No original, o §236 é: "Teste sua Sorte. Se tiver Sorte, vá para 118. Se tiver Azar, vá para 223." O jogo usa a versão corrigida em src/game/book.json.
+
 Sua resposta está incorreta. Com um movimento da mão do corcunda, você sente uma dor aguda percorrer seu corpo. Perca 2 pontos de ENERGIA e 1 ponto de SORTE e volte à encruzilhada para seguir pelo outro caminho (vá para 38).
 
 

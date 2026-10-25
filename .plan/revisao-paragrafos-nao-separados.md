@@ -10,7 +10,7 @@ Marque cada item ao revisar: `[x]` = tradução confere; anote ao lado se houver
 ---
 ## 1
 
-- [ ] §1 revisado
+- [x] §1 revisado
 
 **Português (jogo):**
 
@@ -197,7 +197,7 @@ started your adventure.
 ---
 ## 3
 
-- [ ] §3 revisado
+- [x] §3 revisado
 
 **Português (jogo):**
 
@@ -467,7 +467,7 @@ junction where you may turn left (turn to 63) or right (turn to 26).
 ---
 ## 7
 
-- [ ] §7 revisado
+- [x] §7 revisado
 
 **Português (jogo):**
 
@@ -495,7 +495,7 @@ into a hill village. Proceed by turning to 28.
 ---
 ## 9
 
-- [ ] §9 revisado
+- [x] §9 revisado — divergência corrigida (Spec 03): o caminho elevado é o 157, não o 57.
 
 **Português (jogo):**
 
@@ -518,7 +518,7 @@ valley (turn to 164) or by taking the high path up into the hills (turn to
 ---
 ## 11
 
-- [ ] §11 revisado
+- [x] §11 revisado
 
 **Português (jogo):**
 
@@ -561,7 +561,7 @@ up, leave the hut and make your way out of the village. Turn to 196.
 ---
 ## 14
 
-- [ ] §14 revisado
+- [x] §14 revisado
 
 **Português (jogo):**
 
@@ -590,7 +590,7 @@ sheltered spot not far from another path. Will you camp for the night
 ---
 ## 27
 
-- [ ] §27 revisado
+- [x] §27 revisado
 
 **Português (jogo):**
 
@@ -639,7 +639,7 @@ the valley (turn to 38)?
 ---
 ## 29
 
-- [ ] §29 revisado
+- [x] §29 revisado
 
 **Português (jogo):**
 
@@ -671,7 +671,7 @@ ee
 ---
 ## 33
 
-- [ ] §33 revisado
+- [x] §33 revisado
 
 **Português (jogo):**
 
@@ -712,7 +712,7 @@ onwards, turn to 81.
 ---
 ## 37
 
-- [ ] §37 revisado
+- [x] §37 revisado
 
 **Português (jogo):**
 
@@ -738,7 +738,7 @@ with Jann who has hitched a ride on your shoulder. Turn to 111.
 ---
 ## 55
 
-- [ ] §55 revisado
+- [x] §55 revisado
 
 **Português (jogo):**
 
@@ -765,7 +765,7 @@ turn to 67.
 ---
 ## 57
 
-- [ ] §57 revisado
+- [x] §57 revisado
 
 **Português (jogo):**
 
@@ -810,7 +810,7 @@ belongings and continue. Turn to 159.
 ---
 ## 59
 
-- [ ] §59 revisado
+- [x] §59 revisado
 
 **Português (jogo):**
 
@@ -836,7 +836,7 @@ and return to the junction to take the other path. Turn to 38.
 ---
 ## 79
 
-- [ ] §79 revisado
+- [x] §79 revisado
 
 **Português (jogo):**
 
@@ -879,7 +879,7 @@ quickly. Turn to 220.
 ---
 ## 90
 
-- [ ] §90 revisado
+- [x] §90 revisado
 
 **Português (jogo):**
 
@@ -910,7 +910,7 @@ as your reward a magical item (turn to 248) oran aid in combat (turn to
 ---
 ## 117
 
-- [ ] §117 revisado
+- [x] §117 revisado
 
 **Português (jogo):**
 
@@ -952,7 +952,7 @@ to 187.
 ---
 ## 139
 
-- [ ] §139 revisado
+- [x] §139 revisado
 
 **Português (jogo):**
 
@@ -987,7 +987,7 @@ Or you may wait to see what they intend to do with you (turn to 112).
 ---
 ## 152
 
-- [ ] §152 revisado
+- [x] §152 revisado
 
 **Português (jogo):**
 
@@ -1025,7 +1025,7 @@ EPL IE ITTER
 ---
 ## 153
 
-- [ ] §153 revisado
+- [x] §153 revisado
 
 **Português (jogo):**
 
@@ -1061,7 +1061,7 @@ EPL IE ITTER
 ---
 ## 155
 
-- [ ] §155 revisado
+- [x] §155 revisado
 
 **Português (jogo):**
 
@@ -1113,7 +1113,7 @@ continue, turn to 210.
 ---
 ## 156
 
-- [ ] §156 revisado
+- [x] §156 revisado
 
 **Português (jogo):**
 
@@ -1167,7 +1167,7 @@ continue, turn to 210.
 ---
 ## 157
 
-- [ ] §157 revisado
+- [x] §157 revisado
 
 **Português (jogo):**
 
@@ -1219,7 +1219,7 @@ continue, turn to 210.
 ---
 ## 159
 
-- [ ] §159 revisado
+- [x] §159 revisado
 
 **Português (jogo):**
 
@@ -1262,7 +1262,7 @@ village. Turn to 231.
 ---
 ## 163
 
-- [ ] §163 revisado
+- [x] §163 revisado
 
 **Português (jogo):**
 
@@ -1296,7 +1296,7 @@ fork in the path gives you a choice of two ways. Turn to 183. iy
 ---
 ## 166
 
-- [ ] §166 revisado
+- [x] §166 revisado — texto confere; as 5 opções passaram a ser marcadas como magias (Spec 03).
 
 **Português (jogo):**
 
@@ -1337,7 +1337,7 @@ to use your weapon. Turn to 20. i
 ---
 ## 171
 
-- [ ] §171 revisado
+- [x] §171 revisado
 
 **Português (jogo):**
 
@@ -1379,7 +1379,7 @@ Birritanti (turn to 111) or will you tell it you would rather travel alone
 ---
 ## 177
 
-- [ ] §177 revisado
+- [x] §177 revisado
 
 **Português (jogo):**
 
@@ -1405,7 +1405,7 @@ one point from your dice roll each time you Test your Luck. Turn to 237.
 ---
 ## 179
 
-- [ ] §179 revisado
+- [x] §179 revisado
 
 **Português (jogo):**
 
@@ -1455,7 +1455,7 @@ yourself. Slowly you drift away. Turn to 279.
 ---
 ## 239
 
-- [ ] §239 revisado
+- [x] §239 revisado
 
 **Português (jogo):**
 
@@ -1491,7 +1491,7 @@ junction (turn to 120).
 ---
 ## 245
 
-- [ ] §245 revisado
+- [x] §245 revisado
 
 **Português (jogo):**
 
@@ -1519,7 +1519,7 @@ You creep by the sentry post unnoticed. Turn to 237.
 ---
 ## 249
 
-- [ ] §249 revisado
+- [x] §249 revisado
 
 **Português (jogo):**
 
@@ -1556,7 +1556,7 @@ Nines to 176) or a path running along the crest of the hill (turn to
 ---
 ## 250
 
-- [ ] §250 revisado
+- [x] §250 revisado
 
 **Português (jogo):**
 
@@ -1593,7 +1593,7 @@ Nines to 176) or a path running along the crest of the hill (turn to
 ---
 ## 253
 
-- [ ] §253 revisado
+- [x] §253 revisado
 
 **Português (jogo):**
 
@@ -1616,7 +1616,7 @@ LUCK point and return to the junction to take the other path (turn to
 ---
 ## 257
 
-- [ ] §257 revisado
+- [x] §257 revisado
 
 **Português (jogo):**
 
@@ -1642,7 +1642,7 @@ you wish to continue with or without new Provisions, turn to 131.
 ---
 ## 259
 
-- [ ] §259 revisado
+- [x] §259 revisado
 
 **Português (jogo):**
 
@@ -1677,7 +1677,7 @@ into the woods: Tum tease. k off along a downhill path
 ---
 ## 277
 
-- [ ] §277 revisado
+- [x] §277 revisado — texto confere; ganhou a saída de morte para "dois seis" (Spec 03).
 
 **Português (jogo):**
 
@@ -1715,7 +1715,7 @@ not die.
 ---
 ## 285
 
-- [ ] §285 revisado
+- [x] §285 revisado
 
 **Português (jogo):**
 
@@ -1748,7 +1748,7 @@ woK WAL KIL DIM ROK
 ---
 ## 290
 
-- [ ] §290 revisado
+- [x] §290 revisado
 
 **Português (jogo):**
 
@@ -1768,7 +1768,7 @@ down into the pit. Turn to 277.
 ---
 ## 317
 
-- [ ] §317 revisado
+- [x] §317 revisado — texto confere; a HABILIDADE variável do Troll após 4 rodadas fica para a Spec 05.
 
 **Português (jogo):**
 
@@ -1812,7 +1812,7 @@ SKILL 4 STAMINA 7
 ---
 ## 331
 
-- [ ] §331 revisado
+- [x] §331 revisado — confere (no OCR o cabeçalho saiu como "334").
 
 **Português (jogo):**
 
@@ -1832,7 +1832,7 @@ spell, you must add 3 points to the dice roll.
 ---
 ## 332
 
-- [ ] §332 revisado
+- [x] §332 revisado — confere com o original (o trecho abaixo é do §330; original no OCR completo).
 
 **Português (jogo):**
 
@@ -1853,7 +1853,7 @@ spell, you must add 3 points to the dice roll.
 ---
 ## 333
 
-- [ ] §333 revisado
+- [x] §333 revisado — confere com o original (o trecho abaixo é do §330; original no OCR completo).
 
 **Português (jogo):**
 
@@ -1874,7 +1874,7 @@ spell, you must add 3 points to the dice roll.
 ---
 ## 394
 
-- [ ] §394 revisado
+- [x] §394 revisado
 
 **Português (jogo):**
 
@@ -1898,7 +1898,7 @@ path (turn to 51)?
 ---
 ## 403
 
-- [ ] §403 revisado
+- [x] §403 revisado
 
 **Português (jogo):**
 
@@ -1927,7 +1927,7 @@ leave the village (turn to 196).
 ---
 ## 405
 
-- [ ] §405 revisado
+- [x] §405 revisado
 
 **Português (jogo):**
 
@@ -1951,7 +1951,7 @@ it to drop from the air like a flaming torch. Turn to 121.
 ---
 ## 452
 
-- [ ] §452 revisado
+- [x] §452 revisado
 
 **Português (jogo):**
 

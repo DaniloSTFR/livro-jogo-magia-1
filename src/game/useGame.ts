@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { DEATH_ID, LIBRA_TARGETS, STAT_LABEL, WIN_ID, getParagraph, type BookChoice, type BookEffect } from "./book";
+import {
+  DEATH_ID, LIBRA_TARGETS, STAT_LABEL, WIN_ID, getParagraph, hasParagraph,
+  type BookChoice, type BookEffect, type NumberedItem, type NumberedItemUse,
+} from "./book";
 
+/** Saves made before numbered items keep plain strings, so both shapes stay valid. */
+export type Item = string | NumberedItem;
 export type Stats = { skill: number; stamina: number; luck: number };
 export type GameState = {
   cls: "guerreiro" | "mago";
@@ -8,7 +13,7 @@ export type GameState = {
   current: Stats;
   provisions: number;
   gold: number;
-  items: string[];
+  items: Item[];
   curses: string[];
   notes: string;
   spells: string[];
@@ -21,6 +26,23 @@ export type GameState = {
 const KEY = "grimorio-save-v2";
 export const d6 = () => Math.floor(Math.random() * 6) + 1;
 export const roll2 = () => [d6(), d6()] as const;
+
+export const itemLabel = (i: Item) => (typeof i === "string" ? i : `${i.name} (nº ${i.number})`);
+const sameItem = (a: Item, b: NumberedItem) => typeof a !== "string" && a.kind === b.kind && a.number === b.number;
+export const hasItem = (s: GameState, item: NumberedItem) => s.items.some((i) => sameItem(i, item));
+export const numberedItems = (s: GameState, kind: string) =>
+  s.items.filter((i): i is NumberedItem => typeof i !== "string" && i.kind === kind);
+
+export function gainItem(s: GameState, item: NumberedItem): GameState {
+  return hasItem(s, item) ? s : addLog({ ...s, items: [...s.items, item] }, `Guardou: ${itemLabel(item)}`);
+}
+
+/** Goes to the item's number + offset; returns null when that reference does not exist in the book. */
+export function applyNumberedItem(s: GameState, item: NumberedItem, use: NumberedItemUse): GameState | null {
+  const to = item.number + use.offset;
+  if (!hasParagraph(to)) return null;
+  return goto(addLog(s, `Usou: ${itemLabel(item)}`), to);
+}
 
 function addLog(s: GameState, msg: string): GameState {
   return { ...s, log: [msg, ...s.log].slice(0, 80) };

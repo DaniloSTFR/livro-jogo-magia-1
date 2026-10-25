@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { SPELLS } from "@/game/adventure";
-import type { Game } from "@/game/useGame";
+import { itemLabel, type Game } from "@/game/useGame";
 import { Coins, Drumstick, Backpack, ScrollText, Sparkles, Skull, History } from "lucide-react";
 
 function StatBar({ label, cur, init, color }: { label: string; cur: number; init: number; color: string }) {
@@ -62,7 +62,7 @@ export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => v
 
       <Section icon={Backpack} title="EQUIPAMENTO">
         <ul className="flex flex-wrap gap-2">
-          {s.items.map((i) => <li key={i} className="rounded border border-border bg-muted px-2 py-0.5 text-sm">{i}</li>)}
+          {s.items.map((i, k) => <li key={k} className="rounded border border-border bg-muted px-2 py-0.5 text-sm">{itemLabel(i)}</li>)}
         </ul>
       </Section>
 

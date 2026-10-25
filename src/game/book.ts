@@ -3,8 +3,15 @@ import data from "./book.json";
 export type StatKey = "stamina" | "skill" | "luck";
 /** `repeatable`: a conditional effect the text may apply several times (e.g. each failed luck test). */
 export type BookEffect = { stat: StatKey; amount: number; auto: boolean; text: string; repeatable?: boolean };
-/** `libraUsedOnly`: shown only after Libra was invoked (the text's outcome when her help is no longer available). */
-export type BookChoice = { to: number; label: string; spell?: string; libra?: boolean; libraUsedOnly?: boolean };
+/**
+ * `libraUsedOnly`: shown only after Libra was invoked (the text's outcome when her help is no longer available).
+ * `diceDeath`: a death the text deals on a dice result the reader rolls (e.g. a double six).
+ */
+export type BookChoice = { to: number; label: string; spell?: string; libra?: boolean; libraUsedOnly?: boolean; diceDeath?: boolean };
+/** An object with a number stamped on it; some paragraphs send the reader to a reference computed from it. */
+export type NumberedItem = { name: string; kind: string; number: number };
+/** `numberedItem`: the paragraph lets the reader use an item of `kind`, going to its number + `offset`. */
+export type NumberedItemUse = { kind: string; offset: number; label: string };
 export type Enemy = { name: string; skill: number; stamina: number };
 export type BookParagraph = {
   id: number;
@@ -13,6 +20,8 @@ export type BookParagraph = {
   effects: BookEffect[];
   combat?: { enemies: Enemy[]; win: number };
   luckTest?: { lucky: number; unlucky: number };
+  gainItems?: NumberedItem[];
+  numberedItem?: NumberedItemUse;
   luckFree?: boolean;
   back?: boolean;
   end?: "win" | "death";
@@ -37,6 +46,10 @@ export const MONSTERS = (data as unknown as { monsters: Monster[] }).monsters;
 export const LIBRA_TARGETS = new Set<number>(
   Object.values(BOOK).flatMap((p) => p.choices.filter((c) => c.libra).map((c) => c.to)),
 );
+
+export function hasParagraph(id: number): boolean {
+  return BOOK[String(id)] !== undefined;
+}
 
 export function getParagraph(id: number): BookParagraph {
   if (id === DEATH_ID) return DEATH;

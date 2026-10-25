@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import data from "@/game/book.json";
+import exceptions from "@/game/reachability-exceptions.json";
 import { DEATH_ID, type BookParagraph } from "@/game/book";
 
 const BOOK = (data as unknown as { paragraphs: Record<string, BookParagraph> }).paragraphs;
@@ -20,7 +21,7 @@ describe("book.json consistency", () => {
   it("points every exit to an existing paragraph (0 only for death fallbacks)", () => {
     for (const p of paragraphs) {
       for (const c of p.choices) {
-        if (c.to === DEATH_ID) expect(c.libraUsedOnly, `§${p.id}`).toBe(true);
+        if (c.to === DEATH_ID) expect(c.libraUsedOnly || c.diceDeath, `§${p.id}`).toBe(true);
         else expect(BOOK[String(c.to)], `§${p.id} → ${c.to}`).toBeDefined();
       }
       for (const to of exits(p).filter((t) => t !== DEATH_ID)) expect(BOOK[String(to)], `§${p.id} → ${to}`).toBeDefined();
@@ -45,20 +46,34 @@ describe("book.json consistency", () => {
 });
 
 describe("reachability from §1", () => {
-  // Pending: §44, §101, §205, §233 need hidden numbers (Spec 08), §223 needs the §236 fix (Spec 03),
-  // §319 looks orphaned in the original book. Shrink this list as those specs are done.
-  const KNOWN_UNREACHABLE = [44, 101, 205, 223, 233, 319];
-
-  it("reaches every paragraph except the known pending ones", () => {
+  // Numbered items: wherever the book hands one out, it can be used where a paragraph asks for its kind.
+  const gained = paragraphs.flatMap((p) => p.gainItems ?? []);
+  const itemExits = (p: BookParagraph) => {
+    const use = p.numberedItem;
+    return use ? gained.filter((i) => i.kind === use.kind).map((i) => i.number + use.offset) : [];
+  };
+  const reach = (withItems: boolean) => {
     const seen = new Set([1]);
     const stack = [1];
     while (stack.length) {
-      for (const to of exitsOf(stack.pop()!)) {
+      const p = BOOK[String(stack.pop()!)]!;
+      for (const to of [...exits(p), ...(withItems ? itemExits(p) : [])]) {
         if (to !== DEATH_ID && !seen.has(to)) { seen.add(to); stack.push(to); }
       }
     }
-    const unreachable = paragraphs.map((p) => p.id).filter((id) => !seen.has(id));
-    expect(unreachable).toEqual(KNOWN_UNREACHABLE);
+    return seen;
+  };
+  const ids = paragraphs.map((p) => p.id);
+
+  it("leaves unreachable only the documented exceptions", () => {
+    const seen = reach(true);
+    expect(ids.filter((id) => !seen.has(id))).toEqual(exceptions.unreachable.map((e) => e.id));
+  });
+
+  it("documents every paragraph reached only through a numbered item", () => {
+    const plain = reach(false);
+    const withItems = reach(true);
+    expect(ids.filter((id) => withItems.has(id) && !plain.has(id))).toEqual(exceptions.itemOnly.map((e) => e.id));
   });
 });
 
@@ -73,5 +88,32 @@ describe("Spec 02 fixes", () => {
     [45, 125], [45, 226],
   ])("§%i leads to %i", (from, to) => {
     expect(exitsOf(from)).toContain(to);
+  });
+});
+
+describe("Spec 03 fixes", () => {
+  it("§236 is the original luck test (118 / 223) with no stray effects", () => {
+    const p = BOOK["236"]!;
+    expect(p.luckTest).toEqual({ lucky: 118, unlucky: 223 });
+    expect(p.choices).toEqual([]);
+    expect(p.effects).toEqual([]);
+  });
+
+  it.each([[9, 157], [277, DEATH_ID]])("§%i leads to %i", (from, to) => {
+    expect(exitsOf(from)).toContain(to);
+  });
+
+  it("§9 no longer leads to §57", () => {
+    expect(exitsOf(9)).not.toContain(57);
+  });
+
+  it("§166 offers its five options as spells", () => {
+    expect(BOOK["166"]!.choices.filter((c) => c.spell).map((c) => c.spell)).toEqual(["NAP", "SIX", "BAG", "LAW", "KIL"]);
+  });
+
+  it.each([
+    [199, "chave", 54], [186, "chave", 111], [244, "chave", 206], [183, "página", 102], [72, "machado", 233],
+  ])("§%i hands out the %s nº %i", (id, kind, number) => {
+    expect(BOOK[String(id)]!.gainItems).toContainEqual(expect.objectContaining({ kind, number }));
   });
 });

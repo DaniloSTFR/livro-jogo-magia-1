@@ -40,6 +40,12 @@ Fontes: `book.json`, OCR do original em `.plan/referencias/shamutanti_en_ocr.txt
 - Mas as duas listas de magia contra o Gigante (§162 e §207) mandam YOB para o §361, e o §361 já trata a falta do dente ("se não tiver, vá para 256").
 - No OCR do original, nenhum parágrafo cita 319. Tudo indica que é um resto de uma versão anterior do livro (comum em livros-jogo).
 
+## Já feito pela Spec 03 (2026-10-24)
+- Modelo de item com número e botão "Guardar na ficha" em §199, §186, §244, §183 e §72 (`gainItems`).
+- Uso no §4 (chaves 54 → §44 e 111 → §101), com o jogo fazendo a conta e exigindo o item na ficha.
+- §45 → 226 já existia (Spec 02). §319 documentado como órfão em `src/game/reachability-exceptions.json`.
+- Falta aqui: uso no §114 (página, `2n+1`, não cabe em `offset`) e no §182 (machado), e o §141 (compra do machado) entregar o item.
+
 ## Proposta de requisitos (a refinar)
 
 ### A. Itens com número

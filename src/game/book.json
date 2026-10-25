@@ -88,7 +88,12 @@
                     "label": "Como alternativa, poderá tentar arrombar a fechadura"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "numberedItem": {
+                "kind": "chave",
+                "offset": -10,
+                "label": "Usar uma chave na porta da gaiola"
+            }
         },
         "5": {
             "id": 5,
@@ -140,14 +145,14 @@
         },
         "9": {
             "id": 9,
-            "text": "Você pode continuar sua jornada seguindo o caminho para dentro do vale (vá para 164) ou pegar o caminho elevado que sobe pelas colinas (vá para 57).",
+            "text": "Você pode continuar sua jornada seguindo o caminho para dentro do vale (vá para 164) ou pegar o caminho elevado que sobe pelas colinas (vá para 157).",
             "choices": [
                 {
                     "to": 164,
                     "label": "Você pode continuar sua jornada seguindo o caminho para dentro do vale"
                 },
                 {
-                    "to": 57,
+                    "to": 157,
                     "label": "pegar o caminho elevado que sobe pelas colinas"
                 }
             ],
@@ -764,7 +769,7 @@
                     "to": 125,
                     "label": "Vá para 125"
                 },
-                                {
+                {
                     "to": 226,
                     "label": "Vá para 226"
                 }
@@ -1260,7 +1265,14 @@
                     "label": "Vá para 126"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "gainItems": [
+                {
+                    "name": "Machado de Glandragor",
+                    "kind": "machado",
+                    "number": 233
+                }
+            ]
         },
         "73": {
             "id": 73,
@@ -3039,23 +3051,28 @@
             "choices": [
                 {
                     "to": 332,
-                    "label": "NAP"
+                    "label": "Lançar NAP",
+                    "spell": "NAP"
                 },
                 {
                     "to": 295,
-                    "label": "SIX"
+                    "label": "Lançar SIX",
+                    "spell": "SIX"
                 },
                 {
                     "to": 313,
-                    "label": "BAG"
+                    "label": "Lançar BAG",
+                    "spell": "BAG"
                 },
                 {
                     "to": 380,
-                    "label": "LAW"
+                    "label": "Lançar LAW",
+                    "spell": "LAW"
                 },
                 {
                     "to": 427,
-                    "label": "KIL"
+                    "label": "Lançar KIL",
+                    "spell": "KIL"
                 },
                 {
                     "to": 20,
@@ -3294,7 +3311,14 @@
                     "label": "Alternativamente, você pode investigar um zumbido vindo das proximidades da árvore"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "gainItems": [
+                {
+                    "name": "Página do Grimório",
+                    "kind": "página",
+                    "number": 102
+                }
+            ]
         },
         "184": {
             "id": 184,
@@ -3338,7 +3362,14 @@
                     "label": "voltar pelo caminho por onde veio"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "gainItems": [
+                {
+                    "name": "Chave de prata",
+                    "kind": "chave",
+                    "number": 111
+                }
+            ]
         },
         "187": {
             "id": 187,
@@ -3565,7 +3596,14 @@
                     "label": "tentar a outra caixa sobre a mesa"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "gainItems": [
+                {
+                    "name": "Chave velha e enferrujada",
+                    "kind": "chave",
+                    "number": 54
+                }
+            ]
         },
         "200": {
             "id": 200,
@@ -4308,27 +4346,13 @@
         },
         "236": {
             "id": 236,
-            "text": "Sua resposta está incorreta. Com um movimento da mão do corcunda, você sente uma dor aguda percorrer seu corpo. Perca 2 pontos de ENERGIA e 1 ponto de SORTE e volte à encruzilhada para seguir pelo outro caminho (vá para 38).",
-            "choices": [
-                {
-                    "to": 38,
-                    "label": "Perca 2 pontos de ENERGIA e 1 ponto de SORTE e volte à encruzilhada para seguir pelo outro caminho"
-                }
-            ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": -2,
-                    "auto": true,
-                    "text": "Perca 2 pontos de ENERGIA e 1 ponto de SORTE e volte à encruzilhada para seguir pelo outro caminho (vá para 38)."
-                },
-                {
-                    "stat": "luck",
-                    "amount": -1,
-                    "auto": true,
-                    "text": "Perca 2 pontos de ENERGIA e 1 ponto de SORTE e volte à encruzilhada para seguir pelo outro caminho (vá para 38)."
-                }
-            ]
+            "text": "Teste sua Sorte. Se tiver Sorte, vá para 118. Se tiver Azar, vá para 223.",
+            "choices": [],
+            "effects": [],
+            "luckTest": {
+                "lucky": 118,
+                "unlucky": 223
+            }
         },
         "237": {
             "id": 237,
@@ -4471,7 +4495,14 @@
                     "label": "Vá para 58"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "gainItems": [
+                {
+                    "name": "Chave de cobre",
+                    "kind": "chave",
+                    "number": 206
+                }
+            ]
         },
         "245": {
             "id": 245,
@@ -5057,6 +5088,11 @@
             "id": 277,
             "text": "A queda não é muito grande, mas há possibilidade de ferimentos. Jogue dois dados e compare o total com seu valor de SORTE. Se o total for menor que sua SORTE, você não se machuca. Se o total for igual à sua SORTE, subtraia 1 ponto de ENERGIA por causa de pequenas contusões. Se o total for maior que sua SORTE, subtraia 3 pontos de ENERGIA, pois você torceu gravemente o braço. Se tirar dois seis, você caiu de cabeça, quebrando o pescoço na queda, e sua aventura termina aqui. Vá para 110 se não morrer.",
             "choices": [
+                {
+                    "to": 0,
+                    "label": "Tirou dois seis: você quebra o pescoço na queda",
+                    "diceDeath": true
+                },
                 {
                     "to": 110,
                     "label": "Vá para 110 se não morrer"
