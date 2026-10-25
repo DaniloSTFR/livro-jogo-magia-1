@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { goto, roll2, type Game } from "@/game/useGame";
+import { attackModifier, goto, roll2, type Game } from "@/game/useGame";
 import type { Enemy } from "@/game/book";
 import { Swords, Clover } from "lucide-react";
 
@@ -23,12 +23,16 @@ export function CombatModal({ open, enemies, win, game, onClose }: { open: boole
   const [last, setLast] = useState<Last | null>(null);
   const [luckUsed, setLuckUsed] = useState(false);
   const [msg, setMsg] = useState("");
+  const [met, setMet] = useState(-1);
   const won = eSt <= 0;
+  const mod = attackModifier(s);
   const dead = s.current.stamina <= 0;
 
   const round = () => {
+    // Each monster faced goes to the journal, like the encounter boxes of the original sheet.
+    if (met !== idx) { game.log(`Encontro: ${enemy.name} — HABILIDADE ${enemy.skill}, ENERGIA ${enemy.stamina}`); setMet(idx); }
     const p = roll2(); const e = roll2();
-    const ps = p[0] + p[1] + s.current.skill;
+    const ps = p[0] + p[1] + s.current.skill + mod;
     const es = e[0] + e[1] + enemy.skill;
     const result = ps > es ? "hit" : es > ps ? "hurt" : "tie";
     setLast({ p, e, result }); setLuckUsed(false);
@@ -65,7 +69,10 @@ export function CombatModal({ open, enemies, win, game, onClose }: { open: boole
       <DialogContent className="max-w-lg [&>button]:hidden">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 font-display text-2xl"><Swords className="text-accent" /> Combate</DialogTitle>
-          <DialogDescription>Role 2D6 + Habilidade. Quem tiver maior Força de Ataque fere o outro.</DialogDescription>
+          <DialogDescription>
+            Role 2D6 + Habilidade. Quem tiver maior Força de Ataque fere o outro.
+            {mod !== 0 && ` Seus modificadores da ficha: ${mod > 0 ? "+" : ""}${mod} na sua Força de Ataque.`}
+          </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-2 gap-3">
           {[

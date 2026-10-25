@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SPELLS } from "@/game/adventure";
-import { itemLabel, type Game } from "@/game/useGame";
-import { Coins, Drumstick, Backpack, ScrollText, Sparkles, Skull, History } from "lucide-react";
+import { getParagraph } from "@/game/book";
+import {
+  CONDITION_LABEL, addCondition, addItem, adjustGold, adjustProvisions, canEat, conditionLabel, itemLabel, removeCondition, removeItem,
+  type Condition, type Game,
+} from "@/game/useGame";
+import { Coins, Drumstick, Backpack, ScrollText, Sparkles, Skull, History, Minus, Plus, X } from "lucide-react";
 
 function StatBar({ label, cur, init, color }: { label: string; cur: number; init: number; color: string }) {
   const pct = Math.max(0, Math.min(100, (cur / Math.max(init, 1)) * 100));
@@ -28,8 +34,29 @@ function Section({ icon: Icon, title, children }: { icon: typeof Coins; title: s
   );
 }
 
+function Counter({ value, label, className = "", onChange }: { value: string; label: string; className?: string; onChange: (delta: number) => void }) {
+  return (
+    <div className="flex items-center gap-2">
+      <Button size="icon" variant="ghost" className="h-7 w-7" aria-label={`Menos ${label}`} onClick={() => onChange(-1)}><Minus /></Button>
+      <span className={`text-lg ${className}`}>{value}</span>
+      <Button size="icon" variant="ghost" className="h-7 w-7" aria-label={`Mais ${label}`} onClick={() => onChange(1)}><Plus /></Button>
+    </div>
+  );
+}
+
 export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => void }) {
   const s = game.state!;
+  const [itemName, setItemName] = useState("");
+  const [itemNumber, setItemNumber] = useState("");
+  const [condName, setCondName] = useState("");
+  const [condKind, setCondKind] = useState<Condition["kind"]>("penalty");
+  const [condAttack, setCondAttack] = useState("");
+  const meal = getParagraph(s.paragraph).meal;
+  const mealHint = !meal ? "Só é possível comer quando o texto permitir."
+    : s.ateAt === s.history.length ? "Você já comeu aqui: uma refeição por vez."
+    : s.provisions <= 0 ? "O texto permite comer aqui, mas você não tem Provisões."
+    : meal.alreadyAte !== undefined ? `O texto permite comer aqui: +${meal.stamina} na primeira refeição do dia, +${meal.alreadyAte} se já comeu (escolha no parágrafo).`
+    : `O texto permite comer aqui: +${meal.stamina} ENERGIA.`;
   return (
     <div className="space-y-4 p-5">
       <div>
@@ -49,21 +76,41 @@ export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => v
 
       <Section icon={Drumstick} title="PROVISÕES">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-lg">{s.provisions} refeiç{s.provisions === 1 ? "ão" : "ões"}</span>
-          <Button size="sm" variant="secondary" disabled={s.provisions <= 0 || s.current.stamina >= s.initial.stamina} onClick={game.eat}>
-            Consumir Refeição
+          <Counter value={`${s.provisions} refeiç${s.provisions === 1 ? "ão" : "ões"}`} label="provisões"
+            onChange={(d) => game.update((st) => adjustProvisions(st, d))} />
+          <Button size="sm" variant="secondary" disabled={!canEat(s, meal)} onClick={() => game.eat()}>
+            Consumir Refeição{meal && ` (+${meal.stamina})`}
           </Button>
         </div>
+        <p className="mt-1 text-xs text-muted-foreground">{mealHint}</p>
       </Section>
 
       <Section icon={Coins} title="OURO">
-        <span className="text-lg text-gold">{s.gold} peças de ouro</span>
+        <Counter value={`${s.gold} peças de ouro`} label="ouro" className="text-gold"
+          onChange={(d) => game.update((st) => adjustGold(st, d))} />
       </Section>
 
       <Section icon={Backpack} title="EQUIPAMENTO">
         <ul className="flex flex-wrap gap-2">
-          {s.items.map((i, k) => <li key={k} className="rounded border border-border bg-muted px-2 py-0.5 text-sm">{itemLabel(i)}</li>)}
+          {s.items.map((i, k) => (
+            <li key={k} className="flex items-center gap-1 rounded border border-border bg-muted py-0.5 pl-2 pr-1 text-sm">
+              {itemLabel(i)}
+              <button aria-label={`Remover ${itemLabel(i)}`} className="rounded p-0.5 text-muted-foreground hover:text-destructive"
+                onClick={() => game.update((st) => removeItem(st, k))}><X className="h-3 w-3" /></button>
+            </li>
+          ))}
         </ul>
+        <form className="mt-2 flex gap-2" onSubmit={(e) => {
+          e.preventDefault();
+          const n = itemNumber.trim() === "" ? undefined : Number(itemNumber);
+          if (n !== undefined && !Number.isInteger(n)) return;
+          game.update((st) => addItem(st, itemName, n));
+          setItemName(""); setItemNumber("");
+        }}>
+          <Input value={itemName} onChange={(e) => setItemName(e.target.value)} placeholder="Novo item" className="h-8 bg-muted" />
+          <Input value={itemNumber} onChange={(e) => setItemNumber(e.target.value)} placeholder="Nº" inputMode="numeric" aria-label="Número gravado (opcional)" className="h-8 w-16 bg-muted" />
+          <Button size="sm" type="submit" variant="secondary" disabled={!itemName.trim()} aria-label="Adicionar item"><Plus /></Button>
+        </form>
       </Section>
 
       {s.cls === "mago" && (
@@ -84,11 +131,36 @@ export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => v
         </Section>
       )}
 
-      {s.curses.length > 0 && (
-        <Section icon={Skull} title="MALDIÇÕES">
-          <ul className="text-sm text-destructive">{s.curses.map((c) => <li key={c}>{c}</li>)}</ul>
-        </Section>
-      )}
+      <Section icon={Skull} title="BÔNUS, PENALIDADES, MALDIÇÕES E DOENÇAS">
+        {s.conditions.length === 0 && <p className="text-sm italic text-muted-foreground">Nada anotado.</p>}
+        <ul className="space-y-1 text-sm">
+          {s.conditions.map((c, k) => (
+            <li key={k} className={`flex items-center justify-between gap-2 ${c.kind === "curse" || c.kind === "disease" ? "text-destructive" : ""}`}>
+              <span>{conditionLabel(c)}</span>
+              <button aria-label={`Remover ${c.name}`} className="rounded p-0.5 text-muted-foreground hover:text-destructive"
+                onClick={() => game.update((st) => removeCondition(st, k))}><X className="h-3 w-3" /></button>
+            </li>
+          ))}
+        </ul>
+        <form className="mt-2 grid grid-cols-[minmax(0,1fr)_auto] gap-2" onSubmit={(e) => {
+          e.preventDefault();
+          const attack = Number(condAttack);
+          if (!Number.isInteger(attack)) return;
+          game.update((st) => addCondition(st, { name: condName, kind: condKind, attack }));
+          setCondName(""); setCondAttack("");
+        }}>
+          <Input value={condName} onChange={(e) => setCondName(e.target.value)} placeholder="Nome (ex.: machado de Glandragor)" className="col-span-2 h-8 bg-muted" />
+          <div className="flex gap-2">
+            <select value={condKind} onChange={(e) => setCondKind(e.target.value as Condition["kind"])} aria-label="Tipo"
+              className="h-8 min-w-0 flex-1 rounded-md border border-input bg-muted px-2 text-sm">
+              {Object.entries(CONDITION_LABEL).map(([k, l]) => <option key={k} value={k}>{l}</option>)}
+            </select>
+            <Input value={condAttack} onChange={(e) => setCondAttack(e.target.value)} placeholder="±FA" inputMode="numeric"
+              aria-label="Modificador de Força de Ataque (opcional)" className="h-8 w-16 bg-muted" />
+          </div>
+          <Button size="sm" type="submit" variant="secondary" disabled={!condName.trim()} aria-label="Anotar"><Plus /></Button>
+        </form>
+      </Section>
 
       <Section icon={ScrollText} title="PISTAS & ANOTAÇÕES">
         <Textarea value={s.notes} placeholder="Senhas, códigos, pistas..." className="min-h-20 bg-muted"

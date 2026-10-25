@@ -13,6 +13,10 @@ export type NumberedItem = { name: string; kind: string; number: number };
 /** `numberedItem`: the paragraph lets the reader use an item of `kind`, going to its number + `offset`. */
 export type NumberedItemUse = { kind: string; offset: number; label: string };
 export type Enemy = { name: string; skill: number; stamina: number };
+/** The text lets the reader eat Provisions here: `stamina` for the first meal of the day, `alreadyAte` if they already ate. */
+export type Meal = { stamina: number; alreadyAte?: number };
+/** A fixed price the text quotes in this paragraph. */
+export type Cost = { gold: number; label: string };
 export type BookParagraph = {
   id: number;
   text: string;
@@ -22,6 +26,8 @@ export type BookParagraph = {
   luckTest?: { lucky: number; unlucky: number };
   gainItems?: NumberedItem[];
   numberedItem?: NumberedItemUse;
+  meal?: Meal;
+  costs?: Cost[];
   luckFree?: boolean;
   back?: boolean;
   end?: "win" | "death";
@@ -41,6 +47,12 @@ const DEATH: BookParagraph = {
 
 const BOOK = (data as unknown as { paragraphs: Record<string, BookParagraph> }).paragraphs;
 export const MONSTERS = (data as unknown as { monsters: Monster[] }).monsters;
+
+/** Kinds of numbered items the book hands out or asks for (e.g. "chave"). */
+export const ITEM_KINDS = [...new Set(Object.values(BOOK).flatMap((p) => [
+  ...(p.gainItems ?? []).map((i) => i.kind),
+  ...(p.numberedItem ? [p.numberedItem.kind] : []),
+]))];
 
 /** Paragraphs reached by invoking Libra — entering one consumes the single use. */
 export const LIBRA_TARGETS = new Set<number>(

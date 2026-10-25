@@ -104,7 +104,13 @@
                     "label": "Compre, se quiser, e depois"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 3,
+                    "label": "Saco de dentes"
+                }
+            ]
         },
         "6": {
             "id": 6,
@@ -292,14 +298,11 @@
                     "label": "Quando estiver pronto para continuar"
                 }
             ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Se esta for sua primeira refeição do dia, acrescente 2 pontos de ENERGIA."
-                }
-            ]
+            "effects": [],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "19": {
             "id": 19,
@@ -340,17 +343,15 @@
             "effects": [
                 {
                     "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Você pode comer provisões antes de dormir e acrescentar 2 pontos de ENERGIA (1 ponto se já tiver comido)."
-                },
-                {
-                    "stat": "stamina",
                     "amount": 3,
                     "auto": true,
                     "text": "Acrescente 3 pontos de ENERGIA pelo descanso."
                 }
-            ]
+            ],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "22": {
             "id": 22,
@@ -587,7 +588,13 @@
                     "label": "Se recusar e quiser continuar"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 2,
+                    "label": "Conselho do velho"
+                }
+            ]
         },
         "34": {
             "id": 34,
@@ -613,14 +620,11 @@
                     "label": "Vá para 71"
                 }
             ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Se fizer isso, poderá acrescentar 2 pontos de ENERGIA se esta for sua primeira refeição do dia (1 ponto se já tiver comido)."
-                }
-            ]
+            "effects": [],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "36": {
             "id": 36,
@@ -868,17 +872,15 @@
             "effects": [
                 {
                     "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Se fizer uma refeição, poderá acrescentar 2 pontos de ENERGIA se ainda não tiver comido hoje, mas apenas 1 ponto de ENERGIA se já tiver comido alguma coisa."
-                },
-                {
-                    "stat": "stamina",
                     "amount": -2,
                     "auto": true,
                     "text": "Você deve perder 2 pontos de ENERGIA por viajar a noite inteira sem dormir."
                 }
-            ]
+            ],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "50": {
             "id": 50,
@@ -904,14 +906,10 @@
                     "label": "tentará conversar com ele"
                 }
             ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Você pode parar e comer Provisões, se quiser, e acrescentar 2 pontos de ENERGIA se fizer isso."
-                }
-            ]
+            "effects": [],
+            "meal": {
+                "stamina": 2
+            }
         },
         "52": {
             "id": 52,
@@ -1038,7 +1036,13 @@
                     "label": "Vá para 280"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 10,
+                    "label": "Joia fina"
+                }
+            ]
         },
         "61": {
             "id": 61,
@@ -1071,7 +1075,11 @@
                     "auto": true,
                     "text": "Acrescente 1 ponto de ENERGIA pelo pouco descanso e parta ao amanhecer."
                 }
-            ]
+            ],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "63": {
             "id": 63,
@@ -1247,14 +1255,11 @@
                     "label": "permanecer acordado e alerta, caso alguma coisa aconteça"
                 }
             ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Se quiser, pode sentar-se e comer Provisões (acrescente 2 pontos de ENERGIA se esta for sua primeira refeição do dia; 1 se já tiver comido)."
-                }
-            ]
+            "effects": [],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "72": {
             "id": 72,
@@ -1352,14 +1357,11 @@
                     "label": "se levantará e falará com elas"
                 }
             ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Se não tiver comido desde que deixou o Povoado do Posto Avançado, poderá consumir algumas Provisões, se tiver, e acrescentar 2 pontos de ENERGIA."
-                }
-            ]
+            "effects": [],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "77": {
             "id": 77,
@@ -1616,6 +1618,16 @@
                     "auto": false,
                     "text": "Se comer, pague o preço e acrescente 2 pontos de ENERGIA (1 se já tiver comido hoje)."
                 }
+            ],
+            "costs": [
+                {
+                    "gold": 5,
+                    "label": "Cama para a noite"
+                },
+                {
+                    "gold": 4,
+                    "label": "Refeição"
+                }
             ]
         },
         "93": {
@@ -1800,7 +1812,13 @@
                     "label": "continuará para fora da cidade"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 3,
+                    "label": "Visita à cachoeira"
+                }
+            ]
         },
         "103": {
             "id": 103,
@@ -1905,7 +1923,21 @@
                     "label": "Se não quiser lidar com eles, pode seguir para a estalagem para passar a noite"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 6,
+                    "label": "Espada finamente confeccionada"
+                },
+                {
+                    "gold": 4,
+                    "label": "Gorro de tecido"
+                },
+                {
+                    "gold": 6,
+                    "label": "Provisões para três refeições"
+                }
+            ]
         },
         "107": {
             "id": 107,
@@ -1916,7 +1948,13 @@
                     "label": "Vá para 280"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 4,
+                    "label": "Poção de herbalista"
+                }
+            ]
         },
         "108": {
             "id": 108,
@@ -1938,7 +1976,11 @@
                     "auto": false,
                     "text": "Se tiver tido uma noite tranquila de sono, acrescente 2 pontos de ENERGIA."
                 }
-            ]
+            ],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "109": {
             "id": 109,
@@ -2050,6 +2092,12 @@
                     "auto": false,
                     "text": "Você pode acrescentar 2 pontos de ENERGIA por uma noite de sono revigorante."
                 }
+            ],
+            "costs": [
+                {
+                    "gold": 3,
+                    "label": "Noite na hospedaria"
+                }
             ]
         },
         "116": {
@@ -2067,6 +2115,12 @@
                     "amount": 2,
                     "auto": true,
                     "text": "Acrescente 2 pontos de ENERGIA."
+                }
+            ],
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Refeição"
                 }
             ]
         },
@@ -2307,7 +2361,10 @@
                     "label": "seguirá descendo pela encosta"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "meal": {
+                "stamina": 2
+            }
         },
         "128": {
             "id": 128,
@@ -2466,7 +2523,17 @@
                     "label": "Se não puder pagar ou não quiser pagar, você pode deixar a aldeia em busca de um lugar adequado para acampar durante a noite"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 3,
+                    "label": "Refeição farta"
+                },
+                {
+                    "gold": 3,
+                    "label": "Cama"
+                }
+            ]
         },
         "135": {
             "id": 135,
@@ -2522,14 +2589,11 @@
                     "label": "Vá para 65"
                 }
             ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": 2,
-                    "auto": false,
-                    "text": "Se esta for sua primeira refeição do dia, acrescente 2 pontos de ENERGIA."
-                }
-            ]
+            "effects": [],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "137": {
             "id": 137,
@@ -2949,6 +3013,16 @@
                     "amount": 5,
                     "auto": false,
                     "text": "A cama que lhe dão não é particularmente limpa, mas é confortável, e você pode acrescentar 5 pontos de ENERGIA por uma boa noite de descanso."
+                }
+            ],
+            "costs": [
+                {
+                    "gold": 2,
+                    "label": "Ensopado de Urso-Gambá"
+                },
+                {
+                    "gold": 3,
+                    "label": "Noite de descanso"
                 }
             ]
         },
@@ -3741,7 +3815,13 @@
                     "label": "Vá para 92"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 3,
+                    "label": "Toalha (o malfeitor pega o ouro)"
+                }
+            ]
         },
         "205": {
             "id": 205,
@@ -3876,7 +3956,17 @@
                     "label": "Se o preço for alto demais para você"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 3,
+                    "label": "Noite de descanso"
+                },
+                {
+                    "gold": 2,
+                    "label": "Refeição nutritiva"
+                }
+            ]
         },
         "212": {
             "id": 212,
@@ -4224,7 +4314,13 @@
                     "label": "Se não puder pagar uma bebida"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 2,
+                    "label": "Caneca de cerveja"
+                }
+            ]
         },
         "231": {
             "id": 231,
@@ -4502,6 +4598,12 @@
                     "kind": "chave",
                     "number": 206
                 }
+            ],
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Esmola ao mendigo"
+                }
             ]
         },
         "245": {
@@ -4712,7 +4814,17 @@
                     "label": "Ou, se quiser continuar com ou sem novas Provisões"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Refeição quente"
+                },
+                {
+                    "gold": 2,
+                    "label": "Pão e queijo (duas refeições)"
+                }
+            ]
         },
         "258": {
             "id": 258,
@@ -4874,7 +4986,13 @@
                     "label": "de um homem mais jovem, com traços marcantes"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Caneca de cerveja"
+                }
+            ]
         },
         "267": {
             "id": 267,
@@ -4895,6 +5013,16 @@
                     "amount": 2,
                     "auto": false,
                     "text": "Se ainda não comeu hoje, acrescente 2 pontos de ENERGIA se comprar uma refeição (1 ponto de ENERGIA se já tiver comido)."
+                }
+            ],
+            "costs": [
+                {
+                    "gold": 3,
+                    "label": "Comida quente"
+                },
+                {
+                    "gold": 5,
+                    "label": "Cama para a noite"
                 }
             ]
         },
@@ -5208,7 +5336,11 @@
                     "label": "Vá para 31"
                 }
             ],
-            "effects": []
+            "effects": [],
+            "meal": {
+                "stamina": 2,
+                "alreadyAte": 1
+            }
         },
         "284": {
             "id": 284,
@@ -5219,7 +5351,14 @@
                     "label": "Depois"
                 }
             ],
-            "effects": []
+            "effects": [
+                {
+                    "stat": "stamina",
+                    "amount": 2,
+                    "auto": false,
+                    "text": "Você pode fazer uma refeição com ele e recuperar 2 pontos de ENERGIA."
+                }
+            ]
         },
         "285": {
             "id": 285,
@@ -5464,6 +5603,12 @@
                     "amount": -1,
                     "auto": true,
                     "text": "Subtraia 1 ponto de ENERGIA."
+                }
+            ],
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Peça de Ouro usada na magia"
                 }
             ]
         },
@@ -7232,7 +7377,13 @@
                     }
                 ],
                 "win": 177
-            }
+            },
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Peça de Ouro usada na magia"
+                }
+            ]
         },
         "387": {
             "id": 387,
@@ -7511,6 +7662,12 @@
                     "amount": -1,
                     "auto": true,
                     "text": "Deduza 1 ponto de ENERGIA."
+                }
+            ],
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Peça de Ouro usada na magia"
                 }
             ]
         },
@@ -8328,6 +8485,12 @@
                     "amount": -1,
                     "auto": true,
                     "text": "Deduza 1 ponto de ENERGIA."
+                }
+            ],
+            "costs": [
+                {
+                    "gold": 1,
+                    "label": "Peça de Ouro usada na magia"
                 }
             ]
         },

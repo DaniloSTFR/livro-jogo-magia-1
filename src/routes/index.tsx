@@ -7,12 +7,13 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { visibleChoices } from "@/game/spells";
 import { DEATH_ID, MONSTERS, STAT_LABEL, getParagraph } from "@/game/book";
 import {
-  applyEffect, d6, gainItem, goto, hasItem, itemLabel, numberedItems, previousParagraph, useGame, applyNumberedItem, type GameState,
+  afflictions, applyEffect, canEat, d6, gainItem, goto, hasItem, itemLabel, libraCleanse, libraRevive, numberedItems, pay,
+  previousParagraph, useGame, applyNumberedItem, type GameState,
 } from "@/game/useGame";
 import { Creation } from "@/components/game/Creation";
 import { AdventureSheet } from "@/components/game/Sheet";
 import { CombatModal } from "@/components/game/Combat";
-import { Backpack, BookOpen, Clover, KeyRound, Dices, Skull, Undo2, RotateCcw, Sparkles, Swords, User, Wand2 } from "lucide-react";
+import { Backpack, BookOpen, Clover, Coins, Drumstick, KeyRound, Dices, Skull, Undo2, RotateCcw, Sparkles, Swords, User, Wand2 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,6 +35,7 @@ function Index() {
   const [libraOpen, setLibraOpen] = useState(false);
   const [luckMsg, setLuckMsg] = useState<string | null>(null);
   const [applied, setApplied] = useState<string[]>([]);
+  const [paid, setPaid] = useState<string[]>([]);
   const [dice, setDice] = useState<string | null>(null);
   const [bestiary, setBestiary] = useState(false);
   const [pendingCharacter, setPendingCharacter] = useState<GameState | null>(null);
@@ -67,7 +69,7 @@ function Index() {
   const p = getParagraph(s.paragraph);
   const prev = previousParagraph(s);
   const optional = p.effects.filter((e) => !e.auto);
-  const inCombatPara = !!p.combat;
+  const curable = afflictions(s);
 
   const restart = () => { if (confirm("Recomeçar a aventura? O progresso será perdido.")) game.setState(null); };
 
@@ -89,15 +91,10 @@ function Index() {
     setDice(`${v.join(" + ")}${n > 1 ? ` = ${v.reduce((a, b) => a + b, 0)}` : ""}`);
   };
 
-  const libra = (kind: "revive" | "flee" | "cleanse") => {
-    game.update((st) => {
-      const n = { ...st, libraUsed: true, log: [`Invocou a Deusa Libra (${kind === "revive" ? "Revitalização" : kind === "flee" ? "Fuga" : "Purificação"})`, ...st.log] };
-      if (kind === "revive") return { ...n, current: { ...st.initial } };
-      if (kind === "cleanse") return { ...n, curses: [] };
-      const cur = getParagraph(st.paragraph);
-      return cur.combat ? goto(n, cur.combat.win) : n;
-    });
-    setLibraOpen(false); setCombatKey(null);
+  // Fleeing with Libra only happens through the text's own Libra choices.
+  const libra = (kind: "revive" | "cleanse") => {
+    game.update(kind === "revive" ? libraRevive : libraCleanse);
+    setLibraOpen(false);
   };
 
   const tryItem = (item: (typeof keyItems)[number]) => {
@@ -174,6 +171,40 @@ function Index() {
                     onClick={() => game.update((st) => gainItem(st, item))}>
                     <Backpack /> {has ? "Na ficha" : "Guardar na ficha"}: {itemLabel(item)}
                   </Button>
+                );
+              })}
+            </div>
+          )}
+
+          {p.meal && !p.end && (
+            <div className="mt-6 space-y-2 rounded border border-parchment-edge/60 p-3">
+              <p className="flex items-center gap-2 font-display text-sm tracking-wider"><Drumstick className="h-4 w-4" /> O texto permite comer Provisões aqui ({s.provisions} na mochila).</p>
+              <div className="flex flex-wrap gap-2">
+                <Button size="sm" variant="outline" disabled={!canEat(s, p.meal)} className="border-parchment-edge bg-transparent text-parchment-foreground" onClick={() => game.eat()}>
+                  Comer: +{p.meal.stamina} ENERGIA{p.meal.alreadyAte !== undefined && " (primeira refeição do dia)"}
+                </Button>
+                {p.meal.alreadyAte !== undefined && (
+                  <Button size="sm" variant="outline" disabled={!canEat(s, p.meal)} className="border-parchment-edge bg-transparent text-parchment-foreground" onClick={() => game.eat(true)}>
+                    Comer: +{p.meal.alreadyAte} ENERGIA (já comeu hoje)
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {p.costs && !p.end && (
+            <div className="mt-6 space-y-2 rounded border border-parchment-edge/60 p-3">
+              <p className="flex items-center gap-2 font-display text-sm tracking-wider"><Coins className="h-4 w-4" /> Preços citados no texto (você tem {s.gold} PO):</p>
+              {p.costs.map((c, i) => {
+                const k = `${s.history.length}-${i}`;
+                return (
+                  <div key={i} className="flex items-center justify-between gap-3 text-sm">
+                    <span className="italic opacity-80">{c.label}</span>
+                    <Button size="sm" variant="outline" disabled={s.gold < c.gold || paid.includes(k)} className="shrink-0 border-parchment-edge bg-transparent text-parchment-foreground"
+                      onClick={() => { setPaid((a) => [...a, k]); game.update((st) => pay(st, c)); }}>
+                      {paid.includes(k) ? "Pago" : s.gold < c.gold ? `Ouro insuficiente (${c.gold})` : `Pagar ${c.gold}`}
+                    </Button>
+                  </div>
                 );
               })}
             </div>
@@ -290,12 +321,10 @@ function Index() {
             <Button variant="outline" className="h-auto w-full flex-col items-start whitespace-normal py-3" onClick={() => libra("revive")}>
               <b className="font-display">Revitalização</b><span className="text-sm text-muted-foreground">Restaura Habilidade, Energia e Sorte aos valores iniciais.</span>
             </Button>
-            <Button variant="outline" disabled={!inCombatPara} className="h-auto w-full flex-col items-start whitespace-normal py-3" onClick={() => libra("flee")}>
-              <b className="font-display">Fuga de Emergência</b><span className="text-sm text-muted-foreground">{inCombatPara ? "Escapa do confronto atual e segue adiante." : "Disponível apenas diante de um confronto."}</span>
+            <Button variant="outline" disabled={curable.length === 0} className="h-auto w-full flex-col items-start whitespace-normal py-3" onClick={() => libra("cleanse")}>
+              <b className="font-display">Remoção de Maldições e Doenças</b><span className="text-sm text-muted-foreground">{curable.length ? `Remove: ${curable.map((c) => c.name).join(", ")}.` : "Nenhuma maldição ou doença na ficha."}</span>
             </Button>
-            <Button variant="outline" disabled={s.curses.length === 0} className="h-auto w-full flex-col items-start whitespace-normal py-3" onClick={() => libra("cleanse")}>
-              <b className="font-display">Remoção de Maldições</b><span className="text-sm text-muted-foreground">{s.curses.length ? `Remove: ${s.curses.join(", ")}.` : "Nenhuma maldição ativa."}</span>
-            </Button>
+            <p className="text-sm text-muted-foreground">Para fugir de um perigo com a ajuda de Libra, use as opções de Libra que o próprio texto oferecer.</p>
           </div>
         </DialogContent>
       </Dialog>

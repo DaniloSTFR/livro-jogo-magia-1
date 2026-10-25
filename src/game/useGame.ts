@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import {
-  DEATH_ID, LIBRA_TARGETS, STAT_LABEL, WIN_ID, getParagraph, hasParagraph,
-  type BookChoice, type BookEffect, type NumberedItem, type NumberedItemUse,
+  DEATH_ID, ITEM_KINDS, LIBRA_TARGETS, STAT_LABEL, WIN_ID, getParagraph, hasParagraph,
+  type BookChoice, type BookEffect, type Cost, type Meal, type NumberedItem, type NumberedItemUse,
 } from "./book";
 
 /** Saves made before numbered items keep plain strings, so both shapes stay valid. */
 export type Item = string | NumberedItem;
 export type Stats = { skill: number; stamina: number; luck: number };
+/** Bonuses, penalties, curses and diseases on the sheet; `attack` adds to the Attack Strength in combat. */
+export type Condition = { name: string; kind: "curse" | "disease" | "bonus" | "penalty"; attack?: number };
 export type GameState = {
   cls: "guerreiro" | "mago";
   initial: Stats;
@@ -14,14 +16,19 @@ export type GameState = {
   provisions: number;
   gold: number;
   items: Item[];
-  curses: string[];
+  conditions: Condition[];
   notes: string;
   spells: string[];
   libraUsed: boolean;
   paragraph: number;
   log: string[];
   history: number[];
+  /** `history.length` when the last meal was eaten: one meal per visit to a paragraph that allows it. */
+  ateAt?: number;
 };
+
+/** Saves made before the editable sheet had `curses` instead of `conditions`. */
+type Saved = Omit<GameState, "conditions"> & { conditions?: Condition[]; curses?: string[] };
 
 const KEY = "grimorio-save-v2";
 export const d6 = () => Math.floor(Math.random() * 6) + 1;
@@ -69,7 +76,7 @@ export function goto(s: GameState, to: number, opts: { skipEffects?: boolean } =
   if (!opts.skipEffects) for (const e of p.effects) if (e.auto) n = applyEffect(n, e);
   if (to === WIN_ID) {
     const initial = { ...n.initial, luck: n.initial.luck + 1 };
-    n = addLog({ ...n, initial, current: { ...initial }, curses: [], gold: n.gold + 10, items: [...n.items, "Chave de Kharé"] }, "Maldição quebrada em Torrepani!");
+    n = addLog({ ...n, initial, current: { ...initial }, conditions: n.conditions.filter((c) => c.kind !== "curse"), gold: n.gold + 10, items: [...n.items, "Chave de Kharé"] }, "Maldição quebrada em Torrepani!");
   }
   return checkDeath(n);
 }
@@ -84,9 +91,90 @@ export function previousParagraph(s: GameState): number | null {
 export function createCharacter(cls: GameState["cls"], stats: Stats, spells: string[]): GameState {
   return {
     cls, initial: stats, current: { ...stats }, provisions: 2, gold: 20,
-    items: cls === "guerreiro" ? ["Espada", "Mochila"] : ["Cajado", "Mochila", "Grimório"],
-    curses: [], notes: "", spells, libraUsed: false, paragraph: 1, log: ["A jornada começa"], history: [1],
+    items: ["Espada", "Mochila"],
+    conditions: [], notes: "", spells, libraUsed: false, paragraph: 1, log: ["A jornada começa"], history: [1],
   };
+}
+
+export function normalizeSave(saved: Saved): GameState {
+  const { curses, ...rest } = saved;
+  return {
+    ...rest,
+    spells: Array.isArray(saved.spells) ? saved.spells : [],
+    conditions: Array.isArray(saved.conditions) ? saved.conditions : (curses ?? []).map((name) => ({ name, kind: "curse" })),
+  };
+}
+
+export const canEat = (s: GameState, meal: Meal | undefined): meal is Meal =>
+  !!meal && s.provisions > 0 && s.ateAt !== s.history.length;
+
+export function eatMeal(s: GameState, meal: Meal, alreadyAte = false): GameState {
+  if (!canEat(s, meal)) return s;
+  const gain = alreadyAte ? meal.alreadyAte ?? meal.stamina : meal.stamina;
+  return addLog({
+    ...s, provisions: s.provisions - 1, ateAt: s.history.length,
+    current: { ...s.current, stamina: Math.min(s.initial.stamina, s.current.stamina + gain) },
+  }, `Consumiu uma refeição (+${gain} Energia)`);
+}
+
+export function pay(s: GameState, cost: Cost): GameState {
+  if (s.gold < cost.gold) return s;
+  return addLog({ ...s, gold: s.gold - cost.gold }, `Pagou ${cost.gold} PO: ${cost.label}`);
+}
+
+export function adjustGold(s: GameState, delta: number): GameState {
+  const gold = Math.max(0, s.gold + delta);
+  return gold === s.gold ? s : addLog({ ...s, gold }, `${delta > 0 ? "+" : ""}${gold - s.gold} Peças de Ouro`);
+}
+
+export function adjustProvisions(s: GameState, delta: number): GameState {
+  const provisions = Math.max(0, s.provisions + delta);
+  return provisions === s.provisions ? s : addLog({ ...s, provisions }, `${delta > 0 ? "+" : ""}${provisions - s.provisions} Provisões`);
+}
+
+/** A typed number makes it a numbered item; its kind is the book's kind the name starts with (e.g. "Chave de prata" → chave). */
+export function addItem(s: GameState, name: string, number?: number): GameState {
+  const n = name.trim();
+  if (!n) return s;
+  if (number === undefined) return addLog({ ...s, items: [...s.items, n] }, `Guardou: ${n}`);
+  const lower = n.toLocaleLowerCase("pt-BR");
+  const kind = ITEM_KINDS.find((k) => lower.startsWith(k)) ?? lower.split(/\s+/)[0]!;
+  return gainItem(s, { name: n, kind, number });
+}
+
+export function removeItem(s: GameState, index: number): GameState {
+  const item = s.items[index];
+  if (item === undefined) return s;
+  return addLog({ ...s, items: s.items.filter((_, i) => i !== index) }, `Perdeu: ${itemLabel(item)}`);
+}
+
+export const CONDITION_LABEL: Record<Condition["kind"], string> = { curse: "Maldição", disease: "Doença", bonus: "Bônus", penalty: "Penalidade" };
+export const conditionLabel = (c: Condition) =>
+  `${CONDITION_LABEL[c.kind]}: ${c.name}${c.attack ? ` (${c.attack > 0 ? "+" : ""}${c.attack} Força de Ataque)` : ""}`;
+/** What Libra can lift. */
+export const afflictions = (s: GameState) => s.conditions.filter((c) => c.kind === "curse" || c.kind === "disease");
+export const attackModifier = (s: GameState) => s.conditions.reduce((sum, c) => sum + (c.attack ?? 0), 0);
+
+export function addCondition(s: GameState, c: Condition): GameState {
+  const name = c.name.trim();
+  if (!name) return s;
+  const cond: Condition = c.attack ? { ...c, name } : { name, kind: c.kind };
+  return addLog({ ...s, conditions: [...s.conditions, cond] }, `Anotou: ${conditionLabel(cond)}`);
+}
+
+export function removeCondition(s: GameState, index: number): GameState {
+  const c = s.conditions[index];
+  if (!c) return s;
+  return addLog({ ...s, conditions: s.conditions.filter((_, i) => i !== index) }, `Removeu: ${c.name}`);
+}
+
+export function libraRevive(s: GameState): GameState {
+  return addLog({ ...s, libraUsed: true, current: { ...s.initial } }, "Invocou a Deusa Libra (Revitalização)");
+}
+
+export function libraCleanse(s: GameState): GameState {
+  const conditions = s.conditions.filter((c) => c.kind !== "curse" && c.kind !== "disease");
+  return addLog({ ...s, libraUsed: true, conditions }, "Invocou a Deusa Libra (Remoção de maldições e doenças)");
 }
 
 export function useGame() {
@@ -97,8 +185,7 @@ export function useGame() {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) {
-        const saved = JSON.parse(raw) as GameState;
-        setState({ ...saved, spells: Array.isArray(saved.spells) ? saved.spells : [] });
+        setState(normalizeSave(JSON.parse(raw) as Saved));
       }
     } catch { /* ignore */ }
     setLoaded(true);
@@ -128,11 +215,8 @@ export function useGame() {
       return prev === null ? s : goto(s, prev, { skipEffects: true });
     });
 
-  const eat = () =>
-    update((s) => s.provisions <= 0 ? s : addLog({
-      ...s, provisions: s.provisions - 1,
-      current: { ...s.current, stamina: Math.min(s.initial.stamina, s.current.stamina + 4) },
-    }, "Consumiu uma refeição (+4 Energia)"));
+  const eat = (alreadyAte = false) =>
+    update((s) => { const meal = getParagraph(s.paragraph).meal; return meal ? eatMeal(s, meal, alreadyAte) : s; });
 
   const testLuck = (): { a: number; b: number; lucky: boolean } => {
     const [a, b] = roll2();
