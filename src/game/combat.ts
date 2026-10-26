@@ -25,6 +25,9 @@ export const playerDamage = (c: Combat) => c.damage ?? BASE_DAMAGE;
 /** Luck after a wound the reader dealt: lucky doubles it, unlucky halves it (2 → 4 or 1, as in the rules). */
 export const luckyDamage = (c: Combat, lucky: boolean) => (lucky ? playerDamage(c) : -playerDamage(c) / 2);
 
+/** Luck after a wound the reader took, as ENERGIA given back: lucky softens it to 1, unlucky makes it 3. */
+export const luckyWound = (lucky: boolean) => (lucky ? 1 : -1);
+
 /**
  * Resolves one Attack Round. `sideMod` is everything added to the side's roll (sheet, weapon, the text's rule);
  * `ally` fights skip the reader's modifiers. A sting die is rolled only when the enemy wounds and the fight has a sting.

@@ -2995,14 +2995,14 @@
         },
         "161": {
             "id": 161,
-            "text": "A refeição está sendo servida. Se quiser sentar-se para comer, pague as 2 Peças de Ouro e tome sua tigela de ensopado de Urso-Gambá. Você pode acrescentar 3 pontos de ENERGIA se comer. Você não poderá comer suas próprias Provisões na hospedaria. Se quiser descansar durante a noite, pague as 3 Peças de Ouro. A cama que lhe dão não é particularmente limpa, mas é confortável, e você pode acrescentar 5 pontos de ENERGIA por uma boa noite de descanso.\n\nSe você quis comer, mas não descansar, vá para 62. Se passou a noite, vá agora para 43.",
+            "text": "A refeição está sendo servida. Se quiser sentar-se para comer, pague as 2 Peças de Ouro e tome sua tigela de ensopado de Urso-Gambá. Você pode acrescentar 3 pontos de ENERGIA se comer. Você não poderá comer suas próprias Provisões na hospedaria. Se quiser descansar durante a noite, pague as 3 Peças de Ouro. A cama que lhe dão não é particularmente limpa, mas é confortável, e você pode acrescentar 5 pontos de ENERGIA por uma boa noite de descanso.\n\nSe você quis comer, mas não descansar, vá para 62. Se passou a noite, vá agora para 45.",
             "choices": [
                 {
                     "to": 62,
                     "label": "Se você quis comer, mas não descansar"
                 },
                 {
-                    "to": 43,
+                    "to": 45,
                     "label": "Se passou a noite"
                 }
             ],
@@ -3455,12 +3455,8 @@
             "text": "Ele implora por misericórdia e, quando você recua da batalha, fica extremamente agradecido. Levantando-se e cuidando de seus ferimentos, ele diz que é Flanker, um assassino e ladrão. Ele costuma escolher viajantes para praticar combate e achou que você não seria páreo para ele. Ele também está a caminho de Kharé e, em troca de sua misericórdia, promete que continuará sendo seu amigo. Isso será um recurso valioso na cidade portuária. Quando chegar a Kharé, encontrará Flanker novamente, e ele promete ajudá-lo. Vá para a referência 79 na segunda aventura de Magia! para descobrir como ele ajudará. Ele não o acompanhará até Kharé e, em vez disso, desaparece na floresta. Você conseguiu um contato valioso aqui. Acrescente 2 pontos de SORTE e continue indo para 212.",
             "choices": [
                 {
-                    "to": 79,
-                    "label": "Vá para a referência 79 na segunda aventura de Magia!"
-                },
-                {
                     "to": 212,
-                    "label": "Acrescente 2 pontos de SORTE e"
+                    "label": "Acrescente 2 pontos de SORTE e continue"
                 }
             ],
             "effects": [

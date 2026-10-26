@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { attackModifier, d6, goto, type Game } from "@/game/useGame";
 import type { Combat } from "@/game/book";
 import {
-  canEscape, enemySkill, exchange, luckyDamage, makeAllies, playerDamage, playerSkill, rollFlee, weaponOptions, woundTaken,
+  canEscape, enemySkill, exchange, luckyDamage, luckyWound, makeAllies, playerDamage, playerSkill, rollFlee, weaponOptions, woundTaken,
   type Dice, type Exchange, type Fighter,
 } from "@/game/combat";
 import { Clover, DoorOpen, Minus, Plus, Swords, Users } from "lucide-react";
@@ -176,7 +176,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
       adjustEnemy(idx, -extra);
       setMsg(r.lucky ? `Sortudo! Golpe devastador (+${extra} de dano).` : `Azarado! O golpe só arranha (${extra} de dano).`);
     } else {
-      adjustPlayer(r.lucky ? 1 : -1);
+      adjustPlayer(luckyWound(r.lucky));
       setMsg(r.lucky ? "Sortudo! Você amortece o golpe (+1 Energia)." : "Azarado! O golpe é pior do que parecia (-1 Energia).");
     }
   };

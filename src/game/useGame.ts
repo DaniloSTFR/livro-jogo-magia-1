@@ -168,13 +168,24 @@ export function removeCondition(s: GameState, index: number): GameState {
   return addLog({ ...s, conditions: s.conditions.filter((_, i) => i !== index) }, `Removeu: ${c.name}`);
 }
 
+/** Libra helps only once per adventure: once used, calling her changes nothing. */
 export function libraRevive(s: GameState): GameState {
+  if (s.libraUsed) return s;
   return addLog({ ...s, libraUsed: true, current: { ...s.initial } }, "Invocou a Deusa Libra (Revitalização)");
 }
 
 export function libraCleanse(s: GameState): GameState {
+  if (s.libraUsed) return s;
   const conditions = s.conditions.filter((c) => c.kind !== "curse" && c.kind !== "disease");
   return addLog({ ...s, libraUsed: true, conditions }, "Invocou a Deusa Libra (Remoção de maldições e doenças)");
+}
+
+/** Testing your Luck: two dice totalling at most the current SORTE are lucky, and every test costs 1 SORTE. */
+export function luckTest(s: GameState, a: number, b: number): { state: GameState; lucky: boolean } {
+  const lucky = a + b <= s.current.luck;
+  const state = addLog({ ...s, current: { ...s.current, luck: Math.max(0, s.current.luck - 1) } },
+    `Testou a Sorte: ${a}+${b} — ${lucky ? "Sortudo!" : "Azarado"}`);
+  return { state, lucky };
 }
 
 export function useGame() {
@@ -220,9 +231,8 @@ export function useGame() {
 
   const testLuck = (): { a: number; b: number; lucky: boolean } => {
     const [a, b] = roll2();
-    const lucky = !!state && a + b <= state.current.luck;
-    update((s) => addLog({ ...s, current: { ...s.current, luck: Math.max(0, s.current.luck - 1) } },
-      `Testou a Sorte: ${a}+${b} — ${lucky ? "Sortudo!" : "Azarado"}`));
+    const lucky = !!state && luckTest(state, a, b).lucky;
+    update((s) => luckTest(s, a, b).state);
     return { a, b, lucky };
   };
 

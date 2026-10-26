@@ -1,0 +1,3625 @@
+{
+  "source": ".plan/referencias/shamutanti_en_paragrafos_ocr.json",
+  "groups": [
+    {
+      "paragraphs": [
+        1,
+        2,
+        3
+      ],
+      "exits": [
+        26,
+        63,
+        105,
+        178
+      ],
+      "note": "O §1 está no texto antes do cabeçalho do §2."
+    },
+    {
+      "paragraphs": [
+        4
+      ],
+      "exits": [
+        142
+      ]
+    },
+    {
+      "paragraphs": [
+        5
+      ],
+      "exits": [
+        280
+      ]
+    },
+    {
+      "paragraphs": [
+        6,
+        7
+      ],
+      "exits": [
+        28,
+        66,
+        128
+      ]
+    },
+    {
+      "paragraphs": [
+        8,
+        9
+      ],
+      "exits": [
+        71,
+        157,
+        164
+      ]
+    },
+    {
+      "paragraphs": [
+        10,
+        11
+      ],
+      "exits": [
+        46,
+        150,
+        196
+      ]
+    },
+    {
+      "paragraphs": [
+        12
+      ],
+      "exits": [
+        113,
+        203
+      ]
+    },
+    {
+      "paragraphs": [
+        13,
+        14
+      ],
+      "exits": [
+        49,
+        108,
+        236,
+        252
+      ]
+    },
+    {
+      "paragraphs": [
+        15
+      ],
+      "exits": [
+        144
+      ]
+    },
+    {
+      "paragraphs": [
+        16
+      ],
+      "exits": [
+        151,
+        174
+      ]
+    },
+    {
+      "paragraphs": [
+        17
+      ],
+      "exits": [
+        4,
+        213
+      ]
+    },
+    {
+      "paragraphs": [
+        18
+      ],
+      "exits": [
+        168
+      ]
+    },
+    {
+      "paragraphs": [
+        19
+      ],
+      "exits": [
+        40
+      ]
+    },
+    {
+      "paragraphs": [
+        20
+      ],
+      "exits": [
+        193
+      ]
+    },
+    {
+      "paragraphs": [
+        21
+      ],
+      "exits": [
+        67
+      ]
+    },
+    {
+      "paragraphs": [
+        22
+      ],
+      "exits": [
+        280
+      ]
+    },
+    {
+      "paragraphs": [
+        23
+      ],
+      "exits": [
+        69,
+        99,
+        167,
+        245
+      ]
+    },
+    {
+      "paragraphs": [
+        24
+      ],
+      "exits": [
+        277
+      ]
+    },
+    {
+      "paragraphs": [
+        25
+      ],
+      "exits": [
+        254
+      ]
+    },
+    {
+      "paragraphs": [
+        26,
+        27
+      ],
+      "exits": [
+        38,
+        41,
+        53,
+        83
+      ]
+    },
+    {
+      "paragraphs": [
+        28,
+        29
+      ],
+      "exits": [
+        21,
+        92,
+        191,
+        211,
+        266
+      ]
+    },
+    {
+      "paragraphs": [
+        30
+      ],
+      "exits": [
+        208
+      ]
+    },
+    {
+      "paragraphs": [
+        31
+      ],
+      "exits": [
+        246
+      ]
+    },
+    {
+      "paragraphs": [
+        32,
+        33
+      ],
+      "exits": [
+        81,
+        225,
+        231
+      ]
+    },
+    {
+      "paragraphs": [
+        34
+      ],
+      "exits": [
+        86,
+        106
+      ]
+    },
+    {
+      "paragraphs": [
+        35
+      ],
+      "exits": [
+        71
+      ]
+    },
+    {
+      "paragraphs": [
+        36,
+        37
+      ],
+      "exits": [
+        111,
+        147
+      ]
+    },
+    {
+      "paragraphs": [
+        38
+      ],
+      "exits": [
+        23
+      ]
+    },
+    {
+      "paragraphs": [
+        39
+      ],
+      "exits": [
+        144,
+        285
+      ]
+    },
+    {
+      "paragraphs": [
+        40
+      ],
+      "exits": [
+        133,
+        180
+      ]
+    },
+    {
+      "paragraphs": [
+        41
+      ],
+      "exits": [
+        59,
+        143,
+        238,
+        253
+      ]
+    },
+    {
+      "paragraphs": [
+        42
+      ],
+      "exits": [
+        279
+      ]
+    },
+    {
+      "paragraphs": [
+        43
+      ],
+      "exits": [
+        126
+      ]
+    },
+    {
+      "paragraphs": [
+        44
+      ],
+      "exits": [
+        122,
+        248
+      ]
+    },
+    {
+      "paragraphs": [
+        45
+      ],
+      "exits": [
+        125,
+        226
+      ],
+      "ocr": [],
+      "note": "\"turning either to 125 or 226\"."
+    },
+    {
+      "paragraphs": [
+        46
+      ],
+      "exits": [
+        234
+      ]
+    },
+    {
+      "paragraphs": [
+        47
+      ],
+      "exits": [
+        186
+      ]
+    },
+    {
+      "paragraphs": [
+        48
+      ],
+      "exits": [
+        77,
+        232
+      ]
+    },
+    {
+      "paragraphs": [
+        49
+      ],
+      "exits": [
+        36
+      ]
+    },
+    {
+      "paragraphs": [
+        50
+      ],
+      "exits": [
+        196
+      ]
+    },
+    {
+      "paragraphs": [
+        51
+      ],
+      "exits": [
+        103,
+        117
+      ]
+    },
+    {
+      "paragraphs": [
+        52
+      ],
+      "exits": [
+        203
+      ]
+    },
+    {
+      "paragraphs": [
+        53
+      ],
+      "exits": [
+        3,
+        16
+      ]
+    },
+    {
+      "paragraphs": [
+        54,
+        55
+      ],
+      "exits": [
+        67,
+        176
+      ]
+    },
+    {
+      "paragraphs": [
+        56,
+        57
+      ],
+      "exits": [
+        159,
+        183
+      ]
+    },
+    {
+      "paragraphs": [
+        58,
+        59
+      ],
+      "exits": [
+        10,
+        38,
+        46
+      ]
+    },
+    {
+      "paragraphs": [
+        60
+      ],
+      "exits": [
+        280
+      ]
+    },
+    {
+      "paragraphs": [
+        61
+      ],
+      "exits": [
+        158,
+        271
+      ]
+    },
+    {
+      "paragraphs": [
+        62
+      ],
+      "exits": [
+        45
+      ]
+    },
+    {
+      "paragraphs": [
+        63
+      ],
+      "exits": [
+        165,
+        273
+      ]
+    },
+    {
+      "paragraphs": [
+        64
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        65
+      ],
+      "exits": [
+        76,
+        224
+      ]
+    },
+    {
+      "paragraphs": [
+        66
+      ],
+      "exits": [
+        228
+      ]
+    },
+    {
+      "paragraphs": [
+        67
+      ],
+      "exits": [
+        51,
+        135
+      ]
+    },
+    {
+      "paragraphs": [
+        68
+      ],
+      "exits": [
+        13,
+        175
+      ]
+    },
+    {
+      "paragraphs": [
+        69
+      ],
+      "exits": [
+        237
+      ]
+    },
+    {
+      "paragraphs": [
+        70
+      ],
+      "exits": [
+        139
+      ]
+    },
+    {
+      "paragraphs": [
+        71
+      ],
+      "exits": [
+        109,
+        140
+      ]
+    },
+    {
+      "paragraphs": [
+        72
+      ],
+      "exits": [
+        126
+      ]
+    },
+    {
+      "paragraphs": [
+        73
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        74
+      ],
+      "exits": [
+        50
+      ]
+    },
+    {
+      "paragraphs": [
+        75
+      ],
+      "exits": [
+        134
+      ]
+    },
+    {
+      "paragraphs": [
+        76
+      ],
+      "exits": [
+        12,
+        281
+      ]
+    },
+    {
+      "paragraphs": [
+        77
+      ],
+      "exits": [
+        114
+      ]
+    },
+    {
+      "paragraphs": [
+        78,
+        79
+      ],
+      "exits": [
+        17,
+        220,
+        240
+      ]
+    },
+    {
+      "paragraphs": [
+        80
+      ],
+      "exits": [
+        42,
+        189
+      ]
+    },
+    {
+      "paragraphs": [
+        81
+      ],
+      "exits": [
+        131,
+        257
+      ]
+    },
+    {
+      "paragraphs": [
+        82
+      ],
+      "exits": [
+        181,
+        250
+      ]
+    },
+    {
+      "paragraphs": [
+        83
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        84
+      ],
+      "exits": [
+        31,
+        123
+      ]
+    },
+    {
+      "paragraphs": [
+        85
+      ],
+      "exits": [
+        7
+      ]
+    },
+    {
+      "paragraphs": [
+        86
+      ],
+      "exits": [
+        106,
+        185
+      ]
+    },
+    {
+      "paragraphs": [
+        87
+      ],
+      "exits": [
+        169
+      ]
+    },
+    {
+      "paragraphs": [
+        88
+      ],
+      "exits": [
+        11,
+        179
+      ]
+    },
+    {
+      "paragraphs": [
+        89,
+        90
+      ],
+      "exits": [
+        122,
+        170,
+        248
+      ]
+    },
+    {
+      "paragraphs": [
+        91
+      ],
+      "exits": [
+        126,
+        163
+      ]
+    },
+    {
+      "paragraphs": [
+        92
+      ],
+      "exits": [
+        21,
+        55
+      ]
+    },
+    {
+      "paragraphs": [
+        93
+      ],
+      "exits": [
+        39,
+        144
+      ]
+    },
+    {
+      "paragraphs": [
+        94
+      ],
+      "exits": [
+        105
+      ]
+    },
+    {
+      "paragraphs": [
+        95
+      ],
+      "exits": [
+        104,
+        261
+      ]
+    },
+    {
+      "paragraphs": [
+        96
+      ],
+      "exits": [
+        62,
+        211
+      ]
+    },
+    {
+      "paragraphs": [
+        97
+      ],
+      "exits": [
+        75
+      ]
+    },
+    {
+      "paragraphs": [
+        98
+      ],
+      "exits": [
+        231
+      ]
+    },
+    {
+      "paragraphs": [
+        99
+      ],
+      "exits": [
+        177
+      ]
+    },
+    {
+      "paragraphs": [
+        100
+      ],
+      "exits": [
+        197,
+        286
+      ]
+    },
+    {
+      "paragraphs": [
+        101
+      ],
+      "exits": [
+        4
+      ]
+    },
+    {
+      "paragraphs": [
+        102
+      ],
+      "exits": [
+        21,
+        92,
+        204
+      ]
+    },
+    {
+      "paragraphs": [
+        103
+      ],
+      "exits": [
+        117
+      ],
+      "ocr": [
+        147
+      ],
+      "note": "O OCR leu 147; o §117 é a luta com o estranho de cimitarra (Assassino)."
+    },
+    {
+      "paragraphs": [
+        104
+      ],
+      "exits": [
+        56
+      ]
+    },
+    {
+      "paragraphs": [
+        105
+      ],
+      "exits": [
+        32,
+        57
+      ]
+    },
+    {
+      "paragraphs": [
+        106
+      ],
+      "exits": [
+        97,
+        134,
+        194,
+        229,
+        247
+      ]
+    },
+    {
+      "paragraphs": [
+        107
+      ],
+      "exits": [
+        280
+      ]
+    },
+    {
+      "paragraphs": [
+        108
+      ],
+      "exits": [
+        36,
+        123
+      ]
+    },
+    {
+      "paragraphs": [
+        109
+      ],
+      "exits": [
+        222
+      ]
+    },
+    {
+      "paragraphs": [
+        110
+      ],
+      "exits": [
+        202
+      ]
+    },
+    {
+      "paragraphs": [
+        111
+      ],
+      "exits": [
+        21,
+        92,
+        102,
+        230
+      ]
+    },
+    {
+      "paragraphs": [
+        112
+      ],
+      "exits": [
+        25,
+        242
+      ]
+    },
+    {
+      "paragraphs": [
+        113
+      ],
+      "exits": [
+        52,
+        216
+      ]
+    },
+    {
+      "paragraphs": [
+        114
+      ],
+      "exits": [
+        232
+      ]
+    },
+    {
+      "paragraphs": [
+        115
+      ],
+      "exits": [
+        30
+      ]
+    },
+    {
+      "paragraphs": [
+        116,
+        117
+      ],
+      "exits": [
+        131,
+        153,
+        187
+      ]
+    },
+    {
+      "paragraphs": [
+        118
+      ],
+      "exits": [
+        193
+      ]
+    },
+    {
+      "paragraphs": [
+        119
+      ],
+      "exits": [
+        4,
+        78,
+        213
+      ]
+    },
+    {
+      "paragraphs": [
+        120
+      ],
+      "exits": [
+        144,
+        149
+      ]
+    },
+    {
+      "paragraphs": [
+        121
+      ],
+      "exits": [
+        224
+      ]
+    },
+    {
+      "paragraphs": [
+        122
+      ],
+      "exits": [
+        87
+      ]
+    },
+    {
+      "paragraphs": [
+        123
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        124
+      ],
+      "exits": [
+        196
+      ]
+    },
+    {
+      "paragraphs": [
+        125
+      ],
+      "exits": [
+        54,
+        154
+      ]
+    },
+    {
+      "paragraphs": [
+        126
+      ],
+      "exits": [
+        43,
+        72,
+        95,
+        152,
+        190,
+        249,
+        274
+      ],
+      "ocr": [
+        95
+      ],
+      "note": "Referências entre parênteses: a poção (274), a espada (43)…"
+    },
+    {
+      "paragraphs": [
+        127
+      ],
+      "exits": [
+        27,
+        38
+      ]
+    },
+    {
+      "paragraphs": [
+        128
+      ],
+      "exits": [
+        24,
+        66
+      ]
+    },
+    {
+      "paragraphs": [
+        129
+      ],
+      "exits": [
+        46,
+        173
+      ]
+    },
+    {
+      "paragraphs": [
+        130
+      ],
+      "exits": [
+        64,
+        260
+      ]
+    },
+    {
+      "paragraphs": [
+        131
+      ],
+      "exits": [
+        183
+      ]
+    },
+    {
+      "paragraphs": [
+        132
+      ],
+      "exits": [
+        218
+      ]
+    },
+    {
+      "paragraphs": [
+        133
+      ],
+      "exits": [
+        70,
+        89
+      ]
+    },
+    {
+      "paragraphs": [
+        134
+      ],
+      "exits": [
+        14,
+        115
+      ]
+    },
+    {
+      "paragraphs": [
+        135
+      ],
+      "exits": [
+        51,
+        73
+      ]
+    },
+    {
+      "paragraphs": [
+        136
+      ],
+      "exits": [
+        65
+      ]
+    },
+    {
+      "paragraphs": [
+        137
+      ],
+      "exits": [
+        105
+      ]
+    },
+    {
+      "paragraphs": [
+        138,
+        139
+      ],
+      "exits": [
+        112,
+        149,
+        255
+      ]
+    },
+    {
+      "paragraphs": [
+        140
+      ],
+      "exits": [
+        222
+      ]
+    },
+    {
+      "paragraphs": [
+        141
+      ],
+      "exits": [
+        280
+      ]
+    },
+    {
+      "paragraphs": [
+        142
+      ],
+      "exits": [
+        90,
+        278
+      ],
+      "ocr": [
+        278
+      ],
+      "note": "O OCR leu \"turn to go\" (90)."
+    },
+    {
+      "paragraphs": [
+        143
+      ],
+      "exits": [
+        59,
+        253,
+        262
+      ]
+    },
+    {
+      "paragraphs": [
+        144
+      ],
+      "exits": [
+        217,
+        259
+      ]
+    },
+    {
+      "paragraphs": [
+        145
+      ],
+      "exits": [
+        251,
+        258
+      ]
+    },
+    {
+      "paragraphs": [
+        146
+      ],
+      "exits": [
+        184,
+        219
+      ]
+    },
+    {
+      "paragraphs": [
+        147
+      ],
+      "exits": [
+        61,
+        220
+      ]
+    },
+    {
+      "paragraphs": [
+        148
+      ],
+      "exits": [
+        19,
+        209
+      ]
+    },
+    {
+      "paragraphs": [
+        149
+      ],
+      "exits": [
+        144,
+        268
+      ]
+    },
+    {
+      "paragraphs": [
+        150
+      ],
+      "exits": [
+        54,
+        154
+      ]
+    },
+    {
+      "paragraphs": [
+        151,
+        152,
+        153
+      ],
+      "exits": [
+        126,
+        195,
+        212
+      ]
+    },
+    {
+      "paragraphs": [
+        154,
+        155,
+        156,
+        157
+      ],
+      "exits": [
+        18,
+        94,
+        119,
+        202,
+        210,
+        241,
+        278
+      ]
+    },
+    {
+      "paragraphs": [
+        158,
+        159
+      ],
+      "exits": [
+        79,
+        220,
+        231
+      ]
+    },
+    {
+      "paragraphs": [
+        160
+      ],
+      "exits": [
+        120
+      ]
+    },
+    {
+      "paragraphs": [
+        161
+      ],
+      "exits": [
+        45,
+        62
+      ]
+    },
+    {
+      "paragraphs": [
+        162,
+        163
+      ],
+      "exits": [
+        183,
+        265
+      ]
+    },
+    {
+      "paragraphs": [
+        164
+      ],
+      "exits": [
+        65,
+        136
+      ]
+    },
+    {
+      "paragraphs": [
+        165,
+        166
+      ],
+      "exits": [
+        20,
+        206
+      ]
+    },
+    {
+      "paragraphs": [
+        167
+      ],
+      "exits": [
+        245
+      ]
+    },
+    {
+      "paragraphs": [
+        168
+      ],
+      "exits": [
+        210
+      ]
+    },
+    {
+      "paragraphs": [
+        169
+      ],
+      "exits": [
+        54
+      ]
+    },
+    {
+      "paragraphs": [
+        170,
+        171
+      ],
+      "exits": [
+        37,
+        111
+      ]
+    },
+    {
+      "paragraphs": [
+        172
+      ],
+      "exits": [
+        74,
+        88,
+        145
+      ]
+    },
+    {
+      "paragraphs": [
+        173
+      ],
+      "exits": [
+        46
+      ]
+    },
+    {
+      "paragraphs": [
+        174
+      ],
+      "exits": [
+        130,
+        151
+      ]
+    },
+    {
+      "paragraphs": [
+        175
+      ],
+      "exits": [
+        138,
+        149
+      ]
+    },
+    {
+      "paragraphs": [
+        176,
+        177
+      ],
+      "exits": [
+        34,
+        134,
+        237
+      ]
+    },
+    {
+      "paragraphs": [
+        178,
+        179
+      ],
+      "exits": [
+        33,
+        198,
+        264,
+        279
+      ]
+    },
+    {
+      "paragraphs": [
+        180
+      ],
+      "exits": [
+        133,
+        272
+      ]
+    },
+    {
+      "paragraphs": [
+        181
+      ],
+      "exits": [
+        162,
+        256
+      ]
+    },
+    {
+      "paragraphs": [
+        182
+      ],
+      "exits": [
+        29
+      ]
+    },
+    {
+      "paragraphs": [
+        183
+      ],
+      "exits": [
+        157,
+        164,
+        200
+      ]
+    },
+    {
+      "paragraphs": [
+        184
+      ],
+      "exits": [
+        114
+      ]
+    },
+    {
+      "paragraphs": [
+        185
+      ],
+      "exits": [
+        14
+      ]
+    },
+    {
+      "paragraphs": [
+        186
+      ],
+      "exits": [
+        120,
+        239
+      ]
+    },
+    {
+      "paragraphs": [
+        187
+      ],
+      "exits": [
+        79,
+        212
+      ],
+      "originalOnly": [
+        79
+      ],
+      "note": "A referência 79 é da segunda aventura (Spec 06)."
+    },
+    {
+      "paragraphs": [
+        188
+      ],
+      "exits": [
+        49,
+        108
+      ]
+    },
+    {
+      "paragraphs": [
+        189
+      ],
+      "exits": [
+        74,
+        88,
+        172
+      ]
+    },
+    {
+      "paragraphs": [
+        190
+      ],
+      "exits": [
+        126
+      ]
+    },
+    {
+      "paragraphs": [
+        191
+      ],
+      "exits": [
+        21,
+        92
+      ]
+    },
+    {
+      "paragraphs": [
+        192
+      ],
+      "exits": [
+        62,
+        211
+      ]
+    },
+    {
+      "paragraphs": [
+        193
+      ],
+      "exits": [
+        28
+      ]
+    },
+    {
+      "paragraphs": [
+        194
+      ],
+      "exits": [
+        75
+      ]
+    },
+    {
+      "paragraphs": [
+        195
+      ],
+      "exits": [
+        227
+      ]
+    },
+    {
+      "paragraphs": [
+        196
+      ],
+      "exits": [
+        231
+      ]
+    },
+    {
+      "paragraphs": [
+        197
+      ],
+      "exits": [
+        3,
+        16
+      ]
+    },
+    {
+      "paragraphs": [
+        198
+      ],
+      "exits": [
+        257
+      ]
+    },
+    {
+      "paragraphs": [
+        199
+      ],
+      "exits": [
+        196,
+        251
+      ]
+    },
+    {
+      "paragraphs": [
+        200
+      ],
+      "exits": [
+        9,
+        270
+      ]
+    },
+    {
+      "paragraphs": [
+        201
+      ],
+      "exits": [
+        263
+      ]
+    },
+    {
+      "paragraphs": [
+        202
+      ],
+      "exits": [
+        28
+      ]
+    },
+    {
+      "paragraphs": [
+        203
+      ],
+      "exits": [
+        121
+      ]
+    },
+    {
+      "paragraphs": [
+        204
+      ],
+      "exits": [
+        92
+      ]
+    },
+    {
+      "paragraphs": [
+        205
+      ],
+      "exits": [
+        232
+      ]
+    },
+    {
+      "paragraphs": [
+        206
+      ],
+      "exits": [
+        273
+      ]
+    },
+    {
+      "paragraphs": [
+        207
+      ],
+      "exits": [
+        265
+      ]
+    },
+    {
+      "paragraphs": [
+        208
+      ],
+      "exits": [
+        127,
+        147
+      ]
+    },
+    {
+      "paragraphs": [
+        209
+      ],
+      "exits": [
+        80,
+        156
+      ]
+    },
+    {
+      "paragraphs": [
+        210
+      ],
+      "exits": [
+        84,
+        283
+      ]
+    },
+    {
+      "paragraphs": [
+        211
+      ],
+      "exits": [
+        62,
+        161
+      ]
+    },
+    {
+      "paragraphs": [
+        212
+      ],
+      "exits": [
+        235,
+        243
+      ]
+    },
+    {
+      "paragraphs": [
+        213
+      ],
+      "exits": [
+        278
+      ]
+    },
+    {
+      "paragraphs": [
+        214
+      ],
+      "exits": [
+        280
+      ]
+    },
+    {
+      "paragraphs": [
+        215
+      ],
+      "exits": [
+        100
+      ]
+    },
+    {
+      "paragraphs": [
+        216
+      ],
+      "exits": [
+        148
+      ]
+    },
+    {
+      "paragraphs": [
+        217
+      ],
+      "exits": [
+        155
+      ]
+    },
+    {
+      "paragraphs": [
+        218
+      ],
+      "exits": [
+        196
+      ]
+    },
+    {
+      "paragraphs": [
+        219
+      ],
+      "exits": [
+        232
+      ]
+    },
+    {
+      "paragraphs": [
+        220
+      ],
+      "exits": [
+        171
+      ]
+    },
+    {
+      "paragraphs": [
+        221
+      ],
+      "exits": [
+        207,
+        250
+      ]
+    },
+    {
+      "paragraphs": [
+        222
+      ],
+      "exits": [
+        100,
+        215
+      ]
+    },
+    {
+      "paragraphs": [
+        223
+      ],
+      "exits": [
+        252
+      ]
+    },
+    {
+      "paragraphs": [
+        224
+      ],
+      "exits": [
+        148
+      ]
+    },
+    {
+      "paragraphs": [
+        225
+      ],
+      "exits": [
+        81
+      ]
+    },
+    {
+      "paragraphs": [
+        226
+      ],
+      "exits": [
+        129,
+        244
+      ]
+    },
+    {
+      "paragraphs": [
+        227
+      ],
+      "exits": [
+        456
+      ]
+    },
+    {
+      "paragraphs": [
+        228
+      ],
+      "exits": [
+        120,
+        160
+      ]
+    },
+    {
+      "paragraphs": [
+        229
+      ],
+      "exits": [
+        134,
+        201
+      ]
+    },
+    {
+      "paragraphs": [
+        230
+      ],
+      "exits": [
+        92,
+        182,
+        191
+      ]
+    },
+    {
+      "paragraphs": [
+        231
+      ],
+      "exits": [
+        85
+      ]
+    },
+    {
+      "paragraphs": [
+        232
+      ],
+      "exits": [
+        267,
+        282
+      ]
+    },
+    {
+      "paragraphs": [
+        233
+      ],
+      "exits": [
+        92,
+        102
+      ]
+    },
+    {
+      "paragraphs": [
+        234
+      ],
+      "exits": [
+        82,
+        207,
+        221
+      ]
+    },
+    {
+      "paragraphs": [
+        235
+      ],
+      "exits": [
+        243,
+        269
+      ]
+    },
+    {
+      "paragraphs": [
+        236
+      ],
+      "exits": [
+        118,
+        223
+      ]
+    },
+    {
+      "paragraphs": [
+        237
+      ],
+      "exits": [
+        220
+      ]
+    },
+    {
+      "paragraphs": [
+        238,
+        239
+      ],
+      "exits": [
+        6,
+        38,
+        120
+      ]
+    },
+    {
+      "paragraphs": [
+        240
+      ],
+      "exits": [
+        4,
+        213
+      ]
+    },
+    {
+      "paragraphs": [
+        241
+      ],
+      "exits": [
+        2,
+        275
+      ]
+    },
+    {
+      "paragraphs": [
+        242
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        243
+      ],
+      "exits": [
+        48,
+        146
+      ]
+    },
+    {
+      "paragraphs": [
+        244,
+        245
+      ],
+      "exits": [
+        58,
+        237
+      ]
+    },
+    {
+      "paragraphs": [
+        246
+      ],
+      "exits": [
+        40,
+        68
+      ]
+    },
+    {
+      "paragraphs": [
+        247
+      ],
+      "exits": [
+        75
+      ]
+    },
+    {
+      "paragraphs": [
+        248,
+        249,
+        250
+      ],
+      "exits": [
+        87,
+        126,
+        176,
+        188
+      ],
+      "ocr": [
+        8,
+        126,
+        251
+      ],
+      "note": "§248–250 grudados; o OCR cortou 87 e 188."
+    },
+    {
+      "paragraphs": [
+        251
+      ],
+      "exits": [
+        124
+      ]
+    },
+    {
+      "paragraphs": [
+        252,
+        253
+      ],
+      "exits": [
+        20,
+        38,
+        166
+      ]
+    },
+    {
+      "paragraphs": [
+        254
+      ],
+      "exits": [
+        13,
+        68,
+        98
+      ]
+    },
+    {
+      "paragraphs": [
+        255
+      ],
+      "exits": [
+        47,
+        120
+      ]
+    },
+    {
+      "paragraphs": [
+        256,
+        257
+      ],
+      "exits": [
+        116,
+        131
+      ]
+    },
+    {
+      "paragraphs": [
+        258,
+        259
+      ],
+      "exits": [
+        196,
+        199,
+        202,
+        251
+      ],
+      "ocr": [
+        196,
+        199,
+        251
+      ],
+      "note": "§259 ilegível no OCR (\"Tum tease\" = 202)."
+    },
+    {
+      "paragraphs": [
+        260
+      ],
+      "exits": [
+        3,
+        16
+      ],
+      "ocr": [
+        3
+      ],
+      "note": "OCR ilegível na segunda saída (16)."
+    },
+    {
+      "paragraphs": [
+        261
+      ],
+      "exits": [
+        131
+      ],
+      "ocr": [],
+      "note": "OCR ilegível na saída (131)."
+    },
+    {
+      "paragraphs": [
+        262
+      ],
+      "exits": [
+        220
+      ]
+    },
+    {
+      "paragraphs": [
+        263
+      ],
+      "exits": [
+        208
+      ]
+    },
+    {
+      "paragraphs": [
+        264
+      ],
+      "exits": [
+        5,
+        22,
+        60,
+        107,
+        141,
+        163,
+        214
+      ]
+    },
+    {
+      "paragraphs": [
+        265
+      ],
+      "exits": [
+        250,
+        284
+      ]
+    },
+    {
+      "paragraphs": [
+        266
+      ],
+      "exits": [
+        62,
+        96,
+        192
+      ]
+    },
+    {
+      "paragraphs": [
+        267
+      ],
+      "exits": [
+        8,
+        35
+      ]
+    },
+    {
+      "paragraphs": [
+        268
+      ],
+      "exits": [
+        93
+      ]
+    },
+    {
+      "paragraphs": [
+        269
+      ],
+      "exits": [
+        276
+      ]
+    },
+    {
+      "paragraphs": [
+        270
+      ],
+      "exits": [
+        9
+      ]
+    },
+    {
+      "paragraphs": [
+        271
+      ],
+      "exits": [
+        158
+      ]
+    },
+    {
+      "paragraphs": [
+        272
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        273
+      ],
+      "exits": [
+        3,
+        16
+      ]
+    },
+    {
+      "paragraphs": [
+        274
+      ],
+      "exits": [
+        126
+      ]
+    },
+    {
+      "paragraphs": [
+        275
+      ],
+      "exits": [
+        2
+      ]
+    },
+    {
+      "paragraphs": [
+        276,
+        277
+      ],
+      "exits": [
+        110
+      ]
+    },
+    {
+      "paragraphs": [
+        278
+      ],
+      "exits": [
+        54
+      ]
+    },
+    {
+      "paragraphs": [
+        279
+      ],
+      "exits": [
+        132,
+        218
+      ]
+    },
+    {
+      "paragraphs": [
+        280
+      ],
+      "exits": [
+        5,
+        22,
+        60,
+        91,
+        107,
+        141,
+        214
+      ]
+    },
+    {
+      "paragraphs": [
+        281
+      ],
+      "exits": [
+        12,
+        148
+      ]
+    },
+    {
+      "paragraphs": [
+        282
+      ],
+      "exits": [
+        71
+      ]
+    },
+    {
+      "paragraphs": [
+        283
+      ],
+      "exits": [
+        31,
+        123
+      ]
+    },
+    {
+      "paragraphs": [
+        284,
+        285
+      ],
+      "exits": [
+        15,
+        250
+      ]
+    },
+    {
+      "paragraphs": [
+        286
+      ],
+      "exits": [
+        197
+      ]
+    },
+    {
+      "paragraphs": [
+        287
+      ],
+      "exits": [
+        87
+      ]
+    },
+    {
+      "paragraphs": [
+        288
+      ],
+      "exits": [
+        131
+      ]
+    },
+    {
+      "paragraphs": [
+        289,
+        290
+      ],
+      "exits": [
+        47,
+        277
+      ]
+    },
+    {
+      "paragraphs": [
+        291
+      ],
+      "exits": [
+        39
+      ]
+    },
+    {
+      "paragraphs": [
+        292
+      ],
+      "exits": [
+        196
+      ]
+    },
+    {
+      "paragraphs": [
+        293
+      ],
+      "exits": [
+        124
+      ]
+    },
+    {
+      "paragraphs": [
+        294
+      ],
+      "exits": [
+        203
+      ]
+    },
+    {
+      "paragraphs": [
+        295
+      ],
+      "exits": [
+        20,
+        193
+      ]
+    },
+    {
+      "paragraphs": [
+        296
+      ],
+      "exits": [
+        7,
+        85
+      ]
+    },
+    {
+      "paragraphs": [
+        297
+      ],
+      "exits": [
+        169
+      ]
+    },
+    {
+      "paragraphs": [
+        298
+      ],
+      "exits": [
+        263
+      ]
+    },
+    {
+      "paragraphs": [
+        299
+      ],
+      "exits": [
+        158,
+        220
+      ]
+    },
+    {
+      "paragraphs": [
+        300
+      ],
+      "exits": [
+        220
+      ]
+    },
+    {
+      "paragraphs": [
+        301
+      ],
+      "exits": [
+        227
+      ]
+    },
+    {
+      "paragraphs": [
+        302
+      ],
+      "exits": [
+        227,
+        364
+      ]
+    },
+    {
+      "paragraphs": [
+        303
+      ],
+      "exits": [
+        63,
+        273
+      ]
+    },
+    {
+      "paragraphs": [
+        304
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        305
+      ],
+      "exits": [
+        117
+      ]
+    },
+    {
+      "paragraphs": [
+        306
+      ],
+      "exits": [
+        171
+      ]
+    },
+    {
+      "paragraphs": [
+        307
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        308
+      ],
+      "exits": [
+        104,
+        131
+      ]
+    },
+    {
+      "paragraphs": [
+        309
+      ],
+      "exits": [
+        47
+      ]
+    },
+    {
+      "paragraphs": [
+        310
+      ],
+      "exits": [
+        66
+      ]
+    },
+    {
+      "paragraphs": [
+        311
+      ],
+      "exits": [
+        268
+      ]
+    },
+    {
+      "paragraphs": [
+        312
+      ],
+      "exits": [
+        285
+      ]
+    },
+    {
+      "paragraphs": [
+        313
+      ],
+      "exits": [
+        166
+      ]
+    },
+    {
+      "paragraphs": [
+        314
+      ],
+      "exits": [
+        275
+      ]
+    },
+    {
+      "paragraphs": [
+        315
+      ],
+      "exits": [
+        74
+      ]
+    },
+    {
+      "paragraphs": [
+        316,
+        317
+      ],
+      "exits": [
+        177,
+        196
+      ]
+    },
+    {
+      "paragraphs": [
+        318
+      ],
+      "exits": [
+        263
+      ]
+    },
+    {
+      "paragraphs": [
+        319
+      ],
+      "exits": [
+        256
+      ]
+    },
+    {
+      "paragraphs": [
+        320
+      ],
+      "exits": [
+        4
+      ]
+    },
+    {
+      "paragraphs": [
+        321
+      ],
+      "exits": [
+        51,
+        73
+      ]
+    },
+    {
+      "paragraphs": [
+        322
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        323
+      ],
+      "exits": [
+        16,
+        63
+      ]
+    },
+    {
+      "paragraphs": [
+        324
+      ],
+      "exits": [
+        64
+      ]
+    },
+    {
+      "paragraphs": [
+        325
+      ],
+      "exits": [
+        227,
+        364
+      ],
+      "bookOnly": [
+        456
+      ],
+      "originalOnly": [
+        227
+      ],
+      "note": "Spec 05: a luta com a Mantícora acontece no próprio parágrafo."
+    },
+    {
+      "paragraphs": [
+        326
+      ],
+      "exits": [
+        307
+      ]
+    },
+    {
+      "paragraphs": [
+        327
+      ],
+      "exits": [
+        104
+      ]
+    },
+    {
+      "paragraphs": [
+        328
+      ],
+      "exits": [
+        47
+      ],
+      "bookOnly": [
+        186
+      ],
+      "note": "Spec 05: com cera de abelha a luta acontece no próprio parágrafo."
+    },
+    {
+      "paragraphs": [
+        329
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        330,
+        331,
+        332,
+        333,
+        334
+      ],
+      "exits": [
+        20,
+        112,
+        275,
+        277,
+        285
+      ],
+      "note": "O OCR embaralhou §330–334 (o §332 e o §333 saíram no §334)."
+    },
+    {
+      "paragraphs": [
+        335
+      ],
+      "exits": [
+        50
+      ]
+    },
+    {
+      "paragraphs": [
+        336
+      ],
+      "exits": [
+        220
+      ]
+    },
+    {
+      "paragraphs": [
+        337
+      ],
+      "exits": [
+        158
+      ]
+    },
+    {
+      "paragraphs": [
+        338
+      ],
+      "exits": [
+        265
+      ]
+    },
+    {
+      "paragraphs": [
+        339
+      ],
+      "exits": [
+        87,
+        169
+      ]
+    },
+    {
+      "paragraphs": [
+        340
+      ],
+      "exits": [
+        231
+      ]
+    },
+    {
+      "paragraphs": [
+        341
+      ],
+      "exits": [
+        51,
+        73
+      ]
+    },
+    {
+      "paragraphs": [
+        342
+      ],
+      "exits": [
+        117
+      ]
+    },
+    {
+      "paragraphs": [
+        343
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        344
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        345
+      ],
+      "exits": [
+        227,
+        364
+      ]
+    },
+    {
+      "paragraphs": [
+        346
+      ],
+      "exits": [
+        420
+      ]
+    },
+    {
+      "paragraphs": [
+        347
+      ],
+      "exits": [
+        307
+      ]
+    },
+    {
+      "paragraphs": [
+        348
+      ],
+      "exits": [
+        104
+      ]
+    },
+    {
+      "paragraphs": [
+        349
+      ],
+      "exits": [
+        239
+      ]
+    },
+    {
+      "paragraphs": [
+        350
+      ],
+      "exits": [
+        66
+      ]
+    },
+    {
+      "paragraphs": [
+        351
+      ],
+      "exits": [
+        268
+      ]
+    },
+    {
+      "paragraphs": [
+        352
+      ],
+      "exits": [
+        144
+      ]
+    },
+    {
+      "paragraphs": [
+        353
+      ],
+      "exits": [
+        218
+      ]
+    },
+    {
+      "paragraphs": [
+        354
+      ],
+      "exits": [
+        124
+      ]
+    },
+    {
+      "paragraphs": [
+        355
+      ],
+      "exits": [
+        137
+      ]
+    },
+    {
+      "paragraphs": [
+        356
+      ],
+      "exits": [
+        148,
+        203
+      ],
+      "bookOnly": [
+        121
+      ],
+      "originalOnly": [
+        203
+      ],
+      "note": "Spec 05: a luta com o Elvin acontece no próprio parágrafo."
+    },
+    {
+      "paragraphs": [
+        357
+      ],
+      "exits": [
+        112
+      ]
+    },
+    {
+      "paragraphs": [
+        358
+      ],
+      "exits": [
+        217
+      ]
+    },
+    {
+      "paragraphs": [
+        359
+      ],
+      "exits": [
+        85
+      ]
+    },
+    {
+      "paragraphs": [
+        360
+      ],
+      "exits": [
+        4,
+        142
+      ]
+    },
+    {
+      "paragraphs": [
+        361
+      ],
+      "exits": [
+        256,
+        265
+      ]
+    },
+    {
+      "paragraphs": [
+        362
+      ],
+      "exits": [
+        201
+      ]
+    },
+    {
+      "paragraphs": [
+        363
+      ],
+      "exits": [
+        99
+      ]
+    },
+    {
+      "paragraphs": [
+        364
+      ],
+      "exits": [
+        227
+      ]
+    },
+    {
+      "paragraphs": [
+        365
+      ],
+      "exits": [
+        3,
+        151
+      ]
+    },
+    {
+      "paragraphs": [
+        366
+      ],
+      "exits": [
+        63
+      ]
+    },
+    {
+      "paragraphs": [
+        367
+      ],
+      "exits": [
+        16,
+        63,
+        83
+      ]
+    },
+    {
+      "paragraphs": [
+        368
+      ],
+      "exits": [
+        117
+      ]
+    },
+    {
+      "paragraphs": [
+        369
+      ],
+      "exits": [
+        227,
+        420,
+        456
+      ]
+    },
+    {
+      "paragraphs": [
+        370
+      ],
+      "exits": [
+        307
+      ]
+    },
+    {
+      "paragraphs": [
+        371
+      ],
+      "exits": [
+        104
+      ]
+    },
+    {
+      "paragraphs": [
+        372
+      ],
+      "exits": [
+        6,
+        120
+      ]
+    },
+    {
+      "paragraphs": [
+        373
+      ],
+      "exits": [
+        120
+      ]
+    },
+    {
+      "paragraphs": [
+        374
+      ],
+      "exits": [
+        268
+      ]
+    },
+    {
+      "paragraphs": [
+        375
+      ],
+      "exits": [
+        15,
+        144
+      ]
+    },
+    {
+      "paragraphs": [
+        376
+      ],
+      "exits": [
+        218
+      ]
+    },
+    {
+      "paragraphs": [
+        377
+      ],
+      "exits": [
+        124
+      ]
+    },
+    {
+      "paragraphs": [
+        378
+      ],
+      "exits": [
+        203
+      ]
+    },
+    {
+      "paragraphs": [
+        379
+      ],
+      "exits": [
+        112
+      ]
+    },
+    {
+      "paragraphs": [
+        380
+      ],
+      "exits": [
+        118
+      ]
+    },
+    {
+      "paragraphs": [
+        381
+      ],
+      "exits": [
+        217
+      ]
+    },
+    {
+      "paragraphs": [
+        382
+      ],
+      "exits": [
+        231
+      ]
+    },
+    {
+      "paragraphs": [
+        383
+      ],
+      "exits": [
+        87
+      ],
+      "bookOnly": [
+        169
+      ],
+      "originalOnly": [
+        87
+      ],
+      "note": "Spec 05: a luta com o Golem acontece no próprio parágrafo."
+    },
+    {
+      "paragraphs": [
+        384
+      ],
+      "exits": [
+        256
+      ]
+    },
+    {
+      "paragraphs": [
+        385
+      ],
+      "exits": [
+        158
+      ]
+    },
+    {
+      "paragraphs": [
+        386
+      ],
+      "exits": [
+        99,
+        177
+      ]
+    },
+    {
+      "paragraphs": [
+        387
+      ],
+      "exits": [
+        171
+      ]
+    },
+    {
+      "paragraphs": [
+        388
+      ],
+      "exits": [
+        227,
+        420,
+        456
+      ]
+    },
+    {
+      "paragraphs": [
+        389
+      ],
+      "exits": [
+        227,
+        364
+      ]
+    },
+    {
+      "paragraphs": [
+        390
+      ],
+      "exits": [
+        3,
+        64,
+        151
+      ]
+    },
+    {
+      "paragraphs": [
+        391
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        392
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        393,
+        394
+      ],
+      "exits": [
+        51,
+        73,
+        117
+      ]
+    },
+    {
+      "paragraphs": [
+        395
+      ],
+      "exits": [
+        364
+      ]
+    },
+    {
+      "paragraphs": [
+        396
+      ],
+      "exits": [
+        123
+      ]
+    },
+    {
+      "paragraphs": [
+        397
+      ],
+      "exits": [
+        47
+      ]
+    },
+    {
+      "paragraphs": [
+        398
+      ],
+      "exits": [
+        239
+      ]
+    },
+    {
+      "paragraphs": [
+        399
+      ],
+      "exits": [
+        110
+      ]
+    },
+    {
+      "paragraphs": [
+        400
+      ],
+      "exits": [
+        285
+      ],
+      "bookOnly": [
+        15
+      ],
+      "note": "Spec 05: com a Peça de Ouro a luta com o Ogro acontece no próprio parágrafo."
+    },
+    {
+      "paragraphs": [
+        401
+      ],
+      "exits": [
+        196,
+        218
+      ]
+    },
+    {
+      "paragraphs": [
+        402,
+        403
+      ],
+      "exits": [
+        74,
+        196,
+        258
+      ]
+    },
+    {
+      "paragraphs": [
+        404,
+        405
+      ],
+      "exits": [
+        121,
+        275
+      ]
+    },
+    {
+      "paragraphs": [
+        406
+      ],
+      "exits": [
+        112
+      ]
+    },
+    {
+      "paragraphs": [
+        407
+      ],
+      "exits": [
+        155,
+        202
+      ]
+    },
+    {
+      "paragraphs": [
+        408
+      ],
+      "exits": [
+        7
+      ]
+    },
+    {
+      "paragraphs": [
+        409
+      ],
+      "exits": [
+        122,
+        248
+      ]
+    },
+    {
+      "paragraphs": [
+        410
+      ],
+      "exits": [
+        87
+      ]
+    },
+    {
+      "paragraphs": [
+        411
+      ],
+      "exits": [
+        265
+      ]
+    },
+    {
+      "paragraphs": [
+        412
+      ],
+      "exits": [
+        201
+      ]
+    },
+    {
+      "paragraphs": [
+        413
+      ],
+      "exits": [
+        158
+      ]
+    },
+    {
+      "paragraphs": [
+        414
+      ],
+      "exits": [
+        99
+      ]
+    },
+    {
+      "paragraphs": [
+        415
+      ],
+      "exits": [
+        227,
+        364
+      ]
+    },
+    {
+      "paragraphs": [
+        416
+      ],
+      "exits": [
+        64
+      ]
+    },
+    {
+      "paragraphs": [
+        417
+      ],
+      "exits": [
+        63
+      ]
+    },
+    {
+      "paragraphs": [
+        418
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        419
+      ],
+      "exits": [
+        51,
+        73
+      ]
+    },
+    {
+      "paragraphs": [
+        420
+      ],
+      "exits": [
+        227
+      ]
+    },
+    {
+      "paragraphs": [
+        421
+      ],
+      "exits": [
+        123
+      ]
+    },
+    {
+      "paragraphs": [
+        422
+      ],
+      "exits": [
+        239
+      ]
+    },
+    {
+      "paragraphs": [
+        423
+      ],
+      "exits": [
+        66
+      ]
+    },
+    {
+      "paragraphs": [
+        424
+      ],
+      "exits": [
+        277
+      ]
+    },
+    {
+      "paragraphs": [
+        425
+      ],
+      "exits": [
+        50
+      ]
+    },
+    {
+      "paragraphs": [
+        426
+      ],
+      "exits": [
+        94
+      ]
+    },
+    {
+      "paragraphs": [
+        427
+      ],
+      "exits": [
+        166
+      ]
+    },
+    {
+      "paragraphs": [
+        428
+      ],
+      "exits": [
+        217
+      ]
+    },
+    {
+      "paragraphs": [
+        429
+      ],
+      "exits": [
+        4
+      ]
+    },
+    {
+      "paragraphs": [
+        430
+      ],
+      "exits": [
+        256
+      ]
+    },
+    {
+      "paragraphs": [
+        431
+      ],
+      "exits": [
+        79
+      ]
+    },
+    {
+      "paragraphs": [
+        432
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        433
+      ],
+      "exits": [
+        273
+      ]
+    },
+    {
+      "paragraphs": [
+        434
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        435
+      ],
+      "exits": [
+        51,
+        73
+      ],
+      "ocr": [
+        51,
+        73
+      ],
+      "note": "O OCR leu \"turty to 51\"."
+    },
+    {
+      "paragraphs": [
+        436
+      ],
+      "exits": [
+        307
+      ]
+    },
+    {
+      "paragraphs": [
+        437
+      ],
+      "exits": [
+        123
+      ]
+    },
+    {
+      "paragraphs": [
+        438
+      ],
+      "exits": [
+        186
+      ]
+    },
+    {
+      "paragraphs": [
+        439
+      ],
+      "exits": [
+        277
+      ]
+    },
+    {
+      "paragraphs": [
+        440
+      ],
+      "exits": [
+        74
+      ]
+    },
+    {
+      "paragraphs": [
+        441
+      ],
+      "exits": [
+        203
+      ],
+      "bookOnly": [
+        121
+      ],
+      "note": "Spec 05: com a Peça de Ouro a luta com o Elvin acontece no próprio parágrafo."
+    },
+    {
+      "paragraphs": [
+        442
+      ],
+      "exits": [
+        217
+      ],
+      "bookOnly": [
+        155
+      ],
+      "note": "Spec 05: com cera de abelha a luta com os Goblins acontece no próprio parágrafo."
+    },
+    {
+      "paragraphs": [
+        443
+      ],
+      "exits": [
+        4
+      ]
+    },
+    {
+      "paragraphs": [
+        444
+      ],
+      "exits": [
+        201
+      ]
+    },
+    {
+      "paragraphs": [
+        445
+      ],
+      "exits": [
+        64
+      ]
+    },
+    {
+      "paragraphs": [
+        446
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        447
+      ],
+      "exits": [
+        456
+      ]
+    },
+    {
+      "paragraphs": [
+        448
+      ],
+      "exits": []
+    },
+    {
+      "paragraphs": [
+        449
+      ],
+      "exits": [
+        144,
+        268
+      ]
+    },
+    {
+      "paragraphs": [
+        450
+      ],
+      "exits": [
+        112
+      ]
+    },
+    {
+      "paragraphs": [
+        451,
+        452
+      ],
+      "exits": [
+        117,
+        220
+      ]
+    },
+    {
+      "paragraphs": [
+        453
+      ],
+      "exits": [
+        123
+      ]
+    },
+    {
+      "paragraphs": [
+        454
+      ],
+      "exits": [
+        6,
+        120
+      ]
+    },
+    {
+      "paragraphs": [
+        455
+      ],
+      "exits": [
+        196
+      ]
+    },
+    {
+      "paragraphs": [
+        456
+      ],
+      "exits": [
+        12
+      ],
+      "originalOnly": [
+        12
+      ],
+      "note": "A referência 12 é da segunda aventura."
+    }
+  ]
+}
