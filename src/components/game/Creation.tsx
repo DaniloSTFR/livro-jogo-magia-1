@@ -5,6 +5,7 @@ import { MAX_REFERENCE_SPELLS } from "@/game/spells";
 import { createCharacter, d6, type GameState, type Stats } from "@/game/useGame";
 import { Dices, Sword, Wand2, Check } from "lucide-react";
 
+/** Rola os atributos iniciais conforme a classe: guerreiros têm HABILIDADE 1d6+6 e magos 1d6+4. */
 function rollStats(cls: GameState["cls"]): Stats {
   return {
     skill: d6() + (cls === "guerreiro" ? 6 : 4),
@@ -13,13 +14,24 @@ function rollStats(cls: GameState["cls"]): Stats {
   };
 }
 
+/**
+ * Tela de criação do personagem, em três passos: escolher a classe, rolar os atributos e
+ * (só para magos) marcar as magias de referência.
+ * @param onStart chamada com o personagem pronto; quem a recebe mostra a introdução antes do parágrafo 1.
+ */
 export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
+  // Classe escolhida (null até o leitor escolher).
   const [cls, setCls] = useState<GameState["cls"] | null>(null);
+  // Atributos rolados (podem ser rolados de novo antes de começar).
   const [stats, setStats] = useState<Stats | null>(null);
+  // Passo atual da criação: classe → rolagem → magias.
   const [step, setStep] = useState<"class" | "roll" | "spells">("class");
+  // Códigos das magias marcadas como referência.
   const [spells, setSpells] = useState<string[]>([]);
 
+  // Escolhe a classe, já rola os atributos e avança para o passo de rolagem.
   const pick = (c: GameState["cls"]) => { setCls(c); setStats(rollStats(c)); setStep("roll"); };
+  // Marca ou desmarca uma magia, respeitando o limite de MAX_REFERENCE_SPELLS.
   const toggle = (code: string) =>
     setSpells((s) => (s.includes(code) ? s.filter((x) => x !== code) : s.length < MAX_REFERENCE_SPELLS ? [...s, code] : s));
 
@@ -33,6 +45,7 @@ export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
         </p>
       </header>
 
+      {/* Passo 1: escolha da classe. */}
       {step === "class" && (
         <div className="grid gap-4 sm:grid-cols-2">
           {([
@@ -49,6 +62,7 @@ export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
         </div>
       )}
 
+      {/* Passo 2: atributos rolados; o mago segue para o grimório, o guerreiro já começa. */}
       {step === "roll" && stats && cls && (
         <div className="parchment rounded-lg p-8 text-parchment-foreground">
           <h2 className="font-display text-2xl">Seus Atributos Iniciais</h2>
@@ -72,6 +86,7 @@ export function Creation({ onStart }: { onStart: (s: GameState) => void }) {
         </div>
       )}
 
+      {/* Passo 3 (só magos): marcar até 6 magias de referência entre as 48 do catálogo. */}
       {step === "spells" && stats && (
         <div>
           <h2 className="font-display text-2xl">Magias de referência</h2>

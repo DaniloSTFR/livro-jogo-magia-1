@@ -1,3 +1,4 @@
+/** Gera o HTML completo e independente da página de erro, usado pelo servidor quando a renderização falha. */
 export function renderErrorPage(): string {
   return `<!doctype html>
 <html lang="en">

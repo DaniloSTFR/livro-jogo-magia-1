@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+/** Página exibida quando a rota não existe (erro 404). */
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -35,6 +36,10 @@ function NotFoundComponent() {
   );
 }
 
+/**
+ * Página exibida quando uma rota falha ao carregar. Registra o erro, avisa o Lovable e oferece
+ * tentar de novo (`reset` + recarregar os dados do roteador) ou voltar ao início.
+ */
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
@@ -73,6 +78,10 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+/**
+ * Rota raiz: define os metadados e estilos de todas as páginas, o "esqueleto" HTML,
+ * e as páginas de 404 e de erro. O contexto leva o `queryClient` do React Query.
+ */
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -102,6 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+/** Documento HTML que envolve todas as páginas (cabeçalho com metadados e scripts). */
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
@@ -116,12 +126,13 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/** Componente raiz: fornece o React Query para toda a aplicação e renderiza a rota atual. */
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      {/* Obrigatório: as rotas filhas são renderizadas aqui. Remover o <Outlet /> quebra todas elas. */}
       <Outlet />
     </QueryClientProvider>
   );

@@ -10,7 +10,12 @@ import {
 } from "@/game/useGame";
 import { Coins, Drumstick, Backpack, ScrollText, Sparkles, Skull, History, Minus, Plus, X } from "lucide-react";
 
+/**
+ * Barra de um atributo: valor atual sobre o inicial, com preenchimento proporcional.
+ * @param color classe Tailwind da cor da barra.
+ */
 function StatBar({ label, cur, init, color }: { label: string; cur: number; init: number; color: string }) {
+  // Porcentagem preenchida, limitada entre 0 e 100.
   const pct = Math.max(0, Math.min(100, (cur / Math.max(init, 1)) * 100));
   return (
     <div>
@@ -25,6 +30,7 @@ function StatBar({ label, cur, init, color }: { label: string; cur: number; init
   );
 }
 
+/** Seção da ficha com ícone e título. */
 function Section({ icon: Icon, title, children }: { icon: typeof Coins; title: string; children: React.ReactNode }) {
   return (
     <section className="border-t border-border pt-4">
@@ -34,6 +40,12 @@ function Section({ icon: Icon, title, children }: { icon: typeof Coins; title: s
   );
 }
 
+/**
+ * Contador com botões de menos e mais.
+ * @param value texto exibido entre os botões.
+ * @param label nome usado na acessibilidade dos botões.
+ * @param onChange recebe -1 ou +1.
+ */
 function Counter({ value, label, className = "", onChange }: { value: string; label: string; className?: string; onChange: (delta: number) => void }) {
   return (
     <div className="flex items-center gap-2">
@@ -44,14 +56,23 @@ function Counter({ value, label, className = "", onChange }: { value: string; la
   );
 }
 
+/**
+ * Ficha de Aventura: atributos, Libra, provisões, ouro, equipamento, magias de referência,
+ * anotações e diário. Todas as alterações passam por `game.update`, que salva a partida.
+ * @param onLibra abre a janela de invocação da Deusa Libra.
+ */
 export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => void }) {
   const s = game.state!;
+  // Campos do formulário de novo item (nome e número gravado opcional).
   const [itemName, setItemName] = useState("");
   const [itemNumber, setItemNumber] = useState("");
+  // Campos do formulário de nova anotação (nome, tipo e modificador de Força de Ataque).
   const [condName, setCondName] = useState("");
   const [condKind, setCondKind] = useState<Condition["kind"]>("penalty");
   const [condAttack, setCondAttack] = useState("");
+  // Refeição permitida pelo parágrafo atual, se houver.
   const meal = getParagraph(s.paragraph).meal;
+  // Dica abaixo do botão de comer, explicando por que dá (ou não dá) para comer agora.
   const mealHint = !meal ? "Só é possível comer quando o texto permitir."
     : s.ateAt === s.history.length ? "Você já comeu aqui: uma refeição por vez."
     : s.provisions <= 0 ? "O texto permite comer aqui, mas você não tem Provisões."
@@ -69,6 +90,7 @@ export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => v
         <StatBar label="SORTE" cur={s.current.luck} init={s.initial.luck} color="bg-stat-luck" />
       </div>
 
+      {/* Botão da Deusa Libra: um único uso por aventura. */}
       <button onClick={onLibra} disabled={s.libraUsed}
         className={`w-full rounded-md border border-gold px-4 py-3 font-display tracking-wider text-gold transition disabled:opacity-40 ${s.libraUsed ? "" : "gold-glow hover:bg-gold/10"}`}>
         <Sparkles className="mr-2 inline h-4 w-4" />Deusa Libra [{s.libraUsed ? 0 : 1}/1 Uso]
@@ -102,6 +124,7 @@ export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => v
         </ul>
         <form className="mt-2 flex gap-2" onSubmit={(e) => {
           e.preventDefault();
+          // Número vazio = item comum; número inteiro = item numerado; outro valor é ignorado.
           const n = itemNumber.trim() === "" ? undefined : Number(itemNumber);
           if (n !== undefined && !Number.isInteger(n)) return;
           game.update((st) => addItem(st, itemName, n));
@@ -144,6 +167,7 @@ export function AdventureSheet({ game, onLibra }: { game: Game; onLibra: () => v
         </ul>
         <form className="mt-2 grid grid-cols-[minmax(0,1fr)_auto] gap-2" onSubmit={(e) => {
           e.preventDefault();
+          // Campo vazio vira 0 (sem modificador); valores não inteiros são ignorados.
           const attack = Number(condAttack);
           if (!Number.isInteger(attack)) return;
           game.update((st) => addCondition(st, { name: condName, kind: condKind, attack }));

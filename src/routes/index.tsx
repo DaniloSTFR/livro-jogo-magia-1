@@ -15,6 +15,7 @@ import { AdventureSheet } from "@/components/game/Sheet";
 import { CombatModal } from "@/components/game/Combat";
 import { Backpack, BookOpen, Clover, Coins, Drumstick, KeyRound, Dices, Skull, Undo2, RotateCcw, Sparkles, Swords, User, Wand2 } from "lucide-react";
 
+/** Rota da página inicial ("/"), que contém o jogo inteiro; `head` define título e metadados para buscadores e redes sociais. */
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -29,24 +30,43 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+/**
+ * Página do jogo. Decide o que mostrar: a criação do personagem, a introdução (personagem criado
+ * mas ainda não iniciado) ou o parágrafo atual com as escolhas, a ficha e as janelas de combate,
+ * bestiário e Libra.
+ */
 function Index() {
+  // Estado da partida e ações de jogo (salvos no navegador).
   const game = useGame();
+  // Identificador da janela de combate aberta (null = fechada); um valor novo reinicia o combate do zero.
   const [combatKey, setCombatKey] = useState<number | null>(null);
+  // Se a janela da Deusa Libra está aberta.
   const [libraOpen, setLibraOpen] = useState(false);
+  // Resultado do teste de sorte exibido; enquanto aparece, as escolhas ficam bloqueadas.
   const [luckMsg, setLuckMsg] = useState<string | null>(null);
+  // Chaves dos efeitos condicionais já aplicados (para não aplicar duas vezes).
   const [applied, setApplied] = useState<string[]>([]);
+  // Chaves dos preços já pagos nesta visita ao parágrafo.
   const [paid, setPaid] = useState<string[]>([]);
+  // Resultado da última rolagem livre de dados.
   const [dice, setDice] = useState<string | null>(null);
+  // Se a janela do bestiário está aberta.
   const [bestiary, setBestiary] = useState(false);
+  // Personagem recém-criado aguardando o botão da introdução para começar no parágrafo 1.
   const [pendingCharacter, setPendingCharacter] = useState<GameState | null>(null);
+  // Aviso quando um item numerado não leva a lugar nenhum (vale só para o parágrafo em que apareceu).
   const [itemMsg, setItemMsg] = useState<{ paragraph: number; text: string } | null>(null);
 
+  // Volta ao topo da página a cada troca de parágrafo ou de tela.
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [game.state?.paragraph, game.loaded, pendingCharacter]);
 
+  // Enquanto o save não foi lido, mostra uma tela vazia.
   if (!game.loaded) return <div className="min-h-screen" />;
+  // Personagem criado: mostra a introdução (de introduction.txt) antes do parágrafo 1.
   if (!game.state && pendingCharacter) {
+    // O primeiro bloco do texto é o título; os demais, separados por linha em branco, são parágrafos.
     const [title = "", ...paragraphs] = introduction.trim().split(/\n\s*\n/);
     return (
       <main className="mx-auto max-w-3xl px-4 py-6 sm:px-8 sm:py-10">
@@ -63,16 +83,23 @@ function Index() {
       </main>
     );
   }
+  // Sem partida salva: mostra a criação do personagem.
   if (!game.state) return <Creation onStart={setPendingCharacter} />;
 
+  // Atalhos para o estado e o parágrafo atuais.
   const s = game.state;
   const p = getParagraph(s.paragraph);
+  // Parágrafo anterior, para o botão "Voltar à referência anterior".
   const prev = previousParagraph(s);
+  // Efeitos condicionais: o leitor aplica com um botão se a situação se encaixar.
   const optional = p.effects.filter((e) => !e.auto);
+  // Maldições e doenças que Libra pode remover.
   const curable = afflictions(s);
 
+  // Apaga a partida (após confirmação) e volta à criação.
   const restart = () => { if (confirm("Recomeçar a aventura? O progresso será perdido.")) game.setState(null); };
 
+  // Teste de sorte do parágrafo: mostra os dados e, depois de 1,4 s, segue para o destino do sortudo ou do azarado.
   const doLuck = () => {
     if (!p.luckTest) return;
     const r = game.testLuck();
@@ -81,30 +108,35 @@ function Index() {
     setTimeout(() => { setLuckMsg(null); game.update((st) => goto(st, to)); }, 1400);
   };
 
+  // Teste de sorte livre: só mostra o resultado; o texto diz o que fazer com ele.
   const freeLuck = () => {
     const r = game.testLuck();
     setLuckMsg(`Dados: ${r.a} + ${r.b} = ${r.a + r.b} — ${r.lucky ? "Sortudo!" : "Azarado..."}`);
   };
 
+  // Rola `n` dados livres e mostra os valores (e a soma, se houver mais de um).
   const rollDice = (n: number) => {
     const v = Array.from({ length: n }, d6);
     setDice(`${v.join(" + ")}${n > 1 ? ` = ${v.reduce((a, b) => a + b, 0)}` : ""}`);
   };
 
-  // Fleeing with Libra only happens through the text's own Libra choices.
+  // Aplica um milagre de Libra e fecha a janela. Fugir com a ajuda de Libra só acontece pelas escolhas de Libra do próprio texto.
   const libra = (kind: "revive" | "cleanse") => {
     game.update(kind === "revive" ? libraRevive : libraCleanse);
     setLibraOpen(false);
   };
 
+  // Usa um item numerado: vai para o número dele + deslocamento, ou avisa que não serve aqui.
   const tryItem = (item: (typeof keyItems)[number]) => {
     const use = p.numberedItem!;
     const next = applyNumberedItem(s, item, use);
     if (next) game.update(() => next);
     else setItemMsg({ paragraph: s.paragraph, text: `O número ${item.number + use.offset} não leva a lugar nenhum: ${itemLabel(item)} não serve aqui.` });
   };
+  // Itens numerados da ficha do tipo que o parágrafo aceita.
   const keyItems = p.numberedItem ? numberedItems(s, p.numberedItem.kind) : [];
 
+  // A ficha aparece na lateral (telas grandes) ou numa gaveta aberta pelo botão "Ficha" (telas pequenas).
   const sheet = <AdventureSheet game={game} onLibra={() => setLibraOpen(true)} />;
 
   return (
@@ -130,12 +162,14 @@ function Index() {
           </div>
         </header>
 
+        {/* O parágrafo atual, em estilo de pergaminho. */}
         <article key={s.paragraph} className="parchment mx-auto max-w-3xl rounded-lg px-6 py-8 text-parchment-foreground sm:px-12 sm:py-12">
           <div className="text-center">
             <span className="font-display text-5xl font-bold text-parchment-edge">{p.id === DEATH_ID ? "✝" : p.id}</span>
             <div className="mx-auto mt-4 h-px w-24 bg-parchment-edge" />
           </div>
           <div className="mt-8 space-y-4 text-lg leading-relaxed sm:text-xl">
+            {/* Separa o texto em parágrafos e mostra os trechos entre ** em negrito. */}
             {p.text.split(/\n{2,}/).map((para, i) => (
               <p key={i} className="whitespace-pre-line">
                 {para.split(/(\*\*[^*]+\*\*)/).map((t, j) => t.startsWith("**") ? <b key={j} className="font-display">{t.slice(2, -2)}</b> : t)}
@@ -143,6 +177,7 @@ function Index() {
             ))}
           </div>
 
+          {/* Efeitos condicionais do texto. */}
           {optional.length > 0 && !p.end && (
             <div className="mt-6 space-y-2 rounded border border-parchment-edge/60 p-3">
               <p className="font-display text-sm tracking-wider">Efeitos condicionais — aplique se a situação se encaixar:</p>
@@ -161,6 +196,7 @@ function Index() {
             </div>
           )}
 
+          {/* Itens numerados que o leitor pode guardar na ficha. */}
           {p.gainItems && !p.end && (
             <div className="mt-6 flex flex-wrap gap-2">
               {p.gainItems.map((item) => {
@@ -176,6 +212,7 @@ function Index() {
             </div>
           )}
 
+          {/* Refeição permitida pelo texto. */}
           {p.meal && !p.end && (
             <div className="mt-6 space-y-2 rounded border border-parchment-edge/60 p-3">
               <p className="flex items-center gap-2 font-display text-sm tracking-wider"><Drumstick className="h-4 w-4" /> O texto permite comer Provisões aqui ({s.provisions} na mochila).</p>
@@ -192,6 +229,7 @@ function Index() {
             </div>
           )}
 
+          {/* Preços citados no texto. */}
           {p.costs && !p.end && (
             <div className="mt-6 space-y-2 rounded border border-parchment-edge/60 p-3">
               <p className="flex items-center gap-2 font-display text-sm tracking-wider"><Coins className="h-4 w-4" /> Preços citados no texto (você tem {s.gold} PO):</p>
@@ -210,9 +248,11 @@ function Index() {
             </div>
           )}
 
+          {/* Resultado do teste de sorte ou dos dados livres. */}
           {(luckMsg || dice) && <p className="mt-6 rounded border border-parchment-edge p-3 text-center font-display">{luckMsg ?? `Dados: ${dice}`}</p>}
 
           <div className="mt-10 space-y-3 border-t border-parchment-edge pt-6">
+            {/* Fim da aventura (vitória ou morte) ou as ações disponíveis no parágrafo. */}
             {p.end ? (
               <div className="text-center">
                 <p className="mb-4 font-display text-xl">{p.end === "win" ? "Vitória! A maldição de Torrepani foi quebrada." : "Fim da jornada"}</p>
@@ -229,8 +269,11 @@ function Index() {
                 {p.luckTest && (
                   <Button className="w-full justify-start" disabled={!!luckMsg} onClick={doLuck}><Clover /> Testar a Sorte (Sortudo → {p.luckTest.lucky} · Azarado → {p.luckTest.unlucky})</Button>
                 )}
+                {/* Escolhas do parágrafo; as de magia mostram o código e, se marcada como referência, o nome e o custo. */}
                 {visibleChoices(p.choices, s.cls, s.spells, s.libraUsed).map(({ choice: c, reference }, i) => {
+                  // Escolha de Libra indisponível porque ela já foi usada.
                   const libraBlocked = c.libra && s.libraUsed;
+                  // Escolhas curtas como "Vá para…" ou "Continue…" viram simplesmente "Continuar".
                   const label = /^(vá|va|continue|siga)\b/i.test(c.label) && c.label.length < 30 ? "Continuar" : c.label;
                   return (
                     <Button key={i} disabled={!!libraBlocked || !!luckMsg} onClick={() => { setDice(null); game.choose(c); }}
@@ -256,6 +299,7 @@ function Index() {
                     </Button>
                   );
                 })}
+                {/* Uso de item numerado (ex.: uma chave com número gravado). */}
                 {p.numberedItem && (
                   <div className="space-y-2 rounded border border-parchment-edge p-3">
                     <p className="flex items-center gap-2 font-display text-sm tracking-wider"><KeyRound className="h-4 w-4" /> {p.numberedItem.label}</p>
@@ -269,12 +313,14 @@ function Index() {
                     {itemMsg?.paragraph === s.paragraph && <p className="text-sm italic">{itemMsg.text}</p>}
                   </div>
                 )}
+                {/* Voltar à referência anterior, quando o texto manda. */}
                 {p.back && prev !== null && (
                   <Button variant="outline" className="w-full justify-between border-parchment-edge bg-transparent text-parchment-foreground" onClick={game.goBack}>
                     <span className="flex items-center gap-2"><Undo2 /> Voltar à referência anterior</span>
                     <span className="font-display text-sm opacity-70">→ {prev}</span>
                   </Button>
                 )}
+                {/* Teste de sorte livre e rolagens de dados avulsas. */}
                 <div className="flex flex-wrap gap-2 pt-2">
                   {p.luckFree && !p.luckTest && <Button size="sm" variant="secondary" disabled={!!luckMsg} onClick={freeLuck}><Clover /> Testar a Sorte</Button>}
                   <Button size="sm" variant="secondary" onClick={() => rollDice(1)}><Dices /> 1 dado</Button>
@@ -291,10 +337,12 @@ function Index() {
         <div className="sticky top-0 max-h-screen overflow-y-auto">{sheet}</div>
       </aside>
 
+      {/* Janela de combate; a `key` faz cada combate começar do zero. */}
       {combatKey && p.combat && (
         <CombatModal key={combatKey} open combat={p.combat} game={game} onClose={() => setCombatKey(null)} />
       )}
 
+      {/* Bestiário: lista de monstros com atributos e parágrafos em que aparecem. */}
       <Dialog open={bestiary} onOpenChange={setBestiary}>
         <DialogContent className="max-h-[85vh] overflow-y-auto">
           <DialogHeader>
@@ -312,6 +360,7 @@ function Index() {
         </DialogContent>
       </Dialog>
 
+      {/* Janela da Deusa Libra: escolha entre os dois milagres (uso único). */}
       <Dialog open={libraOpen} onOpenChange={setLibraOpen}>
         <DialogContent>
           <DialogHeader>

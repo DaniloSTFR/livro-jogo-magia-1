@@ -9,6 +9,7 @@ import {
 } from "@/game/combat";
 import { Clover, DoorOpen, Minus, Plus, Swords, Users } from "lucide-react";
 
+/** Um dado na tela; a `key` aleatória refaz a animação a cada rolagem. */
 function Die({ v }: { v: number }) {
   return (
     <span key={Math.random()} className="inline-grid h-10 w-10 animate-in spin-in-90 zoom-in place-items-center rounded-md border border-parchment-edge bg-parchment font-display text-xl text-parchment-foreground">
@@ -17,8 +18,16 @@ function Die({ v }: { v: number }) {
   );
 }
 
+/** Formata um número com sinal (ex.: +2, -1). */
 const signed = (n: number) => `${n > 0 ? "+" : ""}${n}`;
 
+/**
+ * Cartão de um combatente com HABILIDADE, ENERGIA e os dados da última rolagem.
+ * - `rollKey`: muda a cada série, para animar os dados de novo.
+ * - `note`: observação curta (ex.: "HABILIDADE dobrada").
+ * - `onAdjust`: mostra botões de ±1 ENERGIA para correções manuais.
+ * - `active` / `onSelect`: destaque e clique para escolher o alvo nos combates em que todos atacam juntos.
+ */
 function FighterCard({ name, skill, stamina, dice, rollKey, note, onAdjust, active, onSelect }: {
   name: string; skill: number; stamina: number; dice?: Dice | undefined; rollKey?: number; note?: string | undefined;
   onAdjust?: (d: number) => void; active?: boolean | undefined; onSelect?: (() => void) | undefined;
@@ -41,46 +50,80 @@ function FighterCard({ name, skill, stamina, dice, rollKey, note, onAdjust, acti
   );
 }
 
+/**
+ * Janela de combate. Conduz as Séries de Ataque do leitor (ou de um aliado) contra os inimigos do parágrafo,
+ * com fuga de inimigos, criação de aliados, teste de sorte, fuga do leitor e vitória.
+ * @param combat o combate descrito no parágrafo atual.
+ * @param onClose fecha a janela (ao vencer, fugir, morrer ou quando o texto decide o que vem depois).
+ */
 export function CombatModal({ open, combat: c, game, onClose }: { open: boolean; combat: Combat; game: Game; onClose: () => void }) {
   const s = game.state!;
+  // Combate em que um aliado luta pelo leitor.
   const allyMode = c.mode === "ally";
+  // Cópia dos inimigos, com a ENERGIA que vai baixando durante a luta.
   const [enemies, setEnemies] = useState<Fighter[]>(() => c.enemies.map((e) => ({ ...e })));
+  // Índice do inimigo atual (ou do alvo escolhido, quando todos atacam juntos).
   const [idx, setIdx] = useState(0);
+  // Se a rolagem de fuga dos inimigos já foi feita (ou não é necessária).
   const [fleeDone, setFleeDone] = useState(!c.flee);
+  // Aliados do leitor; null enquanto ele ainda não escolheu quantos criar.
   const [allies, setAllies] = useState<Fighter[] | null>(() => (allyMode && !c.ally?.choose ? makeAllies(c) : null));
+  // Índice do aliado que está lutando agora.
   const [allyIdx, setAllyIdx] = useState(0);
+  // Quantos aliados o leitor quer criar (quando o texto deixa escolher).
   const [allyCount, setAllyCount] = useState(1);
+  // Se é o próprio leitor quem luta (falso enquanto um aliado luta por ele).
   const [self, setSelf] = useState(!allyMode);
+  // Número de séries já disputadas contra o inimigo atual.
   const [round, setRound] = useState(0);
+  // Se o inimigo já se recuperou da magia que o enfraquecia.
   const [recovered, setRecovered] = useState(false);
+  // Resultado da última série (para mostrar os dados e permitir testar a sorte).
   const [last, setLast] = useState<Exchange | null>(null);
+  // Se a sorte já foi testada nesta série.
   const [luckUsed, setLuckUsed] = useState(false);
+  // Mensagem que narra o que aconteceu na última ação.
   const [msg, setMsg] = useState("");
+  // Nomes dos monstros já registrados no diário neste combate.
   const [met, setMet] = useState<string[]>([]);
+  // Índice da arma escolhida na lista `weapons`.
   const [weapon, setWeapon] = useState(0);
 
+  // Armas disponíveis na ficha (a espada comum sempre aparece).
   const weapons = weaponOptions(s);
+  // Modificador total da Força de Ataque do leitor: ficha + arma + regra do texto.
   const mod = attackModifier(s) + (weapons[weapon]?.attack ?? 0) + (c.playerRoll ?? 0);
+  // Inimigos ainda de pé, com o índice original de cada um.
   const alive = enemies.map((e, i) => ({ e, i })).filter(({ e }) => e.stamina > 0);
   const enemy = enemies[idx]!;
+  // Aliado atual (undefined quando todos já caíram).
   const ally = allies?.[allyIdx];
+  // HABILIDADE do inimigo na próxima série.
   const skillNow = enemySkill(c, enemy.skill, round + 1, recovered);
   const allDown = alive.length === 0;
+  // Vitória: todos caídos (quando atacam juntos) ou o inimigo atual caído.
   const won = c.together ? allDown : enemy.stamina <= 0;
+  // O leitor caiu lutando.
   const dead = self && s.current.stamina <= 0;
+  // Todos os aliados caíram e o leitor ainda não assumiu a luta.
   const alliesLost = allyMode && !self && allies !== null && !ally;
+  // Ainda na preparação: falta rolar a fuga dos inimigos ou criar os aliados.
   const setup = !fleeDone || (allyMode && allies === null);
 
+  // Muda a ENERGIA do inimigo `i` em `d` (sem ficar negativa).
   const adjustEnemy = (i: number, d: number) => setEnemies((es) => es.map((e, j) => (j === i ? { ...e, stamina: Math.max(0, e.stamina + d) } : e)));
+  // Tira `n` de ENERGIA do leitor.
   const hurtPlayer = (n: number) => game.update((st) => ({ ...st, current: { ...st.current, stamina: Math.max(0, st.current.stamina - n) } }));
+  // Muda a ENERGIA do leitor em `d`, entre 0 e o valor inicial.
   const adjustPlayer = (d: number) => game.update((st) => ({ ...st, current: { ...st.current, stamina: Math.max(0, Math.min(st.initial.stamina, st.current.stamina + d)) } }));
   const meet = (e: Fighter) => {
-    // Each monster faced goes to the journal, like the encounter boxes of the original sheet.
+    // Cada monstro enfrentado vai para o diário, como os quadros de encontro da ficha original.
     if (met.includes(e.name)) return;
     game.log(`Encontro: ${e.name} — HABILIDADE ${e.skill}, ENERGIA ${e.stamina}`);
     setMet((m) => [...m, e.name]);
   };
 
+  // Rola a fuga de cada inimigo; só os que ficam continuam no combate.
   const doFlee = () => {
     const r = rollFlee(enemies, d6);
     const stay = r.filter((x) => !x.fled).map((x) => x.enemy);
@@ -90,6 +133,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
     else setEnemies([]);
   };
 
+  // Cria os aliados escolhidos, cobrando a ENERGIA de cada um; com zero aliados o próprio leitor luta.
   const createAllies = () => {
     const cost = (c.ally!.choose?.cost ?? 0) * allyCount;
     if (cost) { hurtPlayer(cost); game.log(`Criou ${allyCount} ${c.ally!.name}(s) (-${cost} Energia)`); }
@@ -97,7 +141,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
     setAllies(makeAllies(c, allyCount));
   };
 
-  // Spells that wear off: before each round past the last weakened one, a die says whether the enemy recovers.
+  // Magias que perdem o efeito: antes de cada série depois das enfraquecidas, um dado diz se o inimigo se recupera.
   const nextSkill = (): { skill: number; note: string } => {
     const w = c.weakened;
     const r = round + 1;
@@ -108,9 +152,11 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
     return { skill: back ? enemy.skill : w.skill, note: `Dado ${die}: ${back ? `${enemy.name} se recupera (HABILIDADE ${enemy.skill}). ` : "a magia ainda o atrapalha. "}` };
   };
 
+  // Uma série de ataque do próprio leitor.
   const playerRound = () => {
     const pSkill = playerSkill(c, s.current.skill);
     if (c.together) {
+      // Todos atacam juntos: o leitor disputa uma série com cada inimigo, mas só fere o alvo escolhido.
       const target = enemies[idx]!.stamina > 0 ? idx : alive[0]!.i;
       let hurt = 0;
       const parts: string[] = [];
@@ -128,6 +174,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
       setMsg(`${parts.join("; ")}.`);
       return;
     }
+    // Combate normal: uma série contra o inimigo atual.
     meet(enemy);
     const { skill, note } = nextSkill();
     const ex = exchange(c, pSkill, mod, skill, d6);
@@ -139,6 +186,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
       let saved = false;
       let stingMsg = "";
       if (ex.stung) {
+        // Ferroada: com `luckSaves`, um teste de sorte bem-sucedido a reduz a um ferimento normal.
         stingMsg = ` Dado do ferrão: ${ex.stingDie} — ferrão!`;
         if (c.sting?.luckSaves) {
           const r = game.testLuck(); saved = r.lucky;
@@ -151,6 +199,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
     }
   };
 
+  // Uma série de ataque do aliado (sem os modificadores do leitor); se o aliado cair, passa para o próximo.
   const allyRound = () => {
     meet(enemy);
     const { skill, note } = nextSkill();
@@ -168,6 +217,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
     if (left <= 0) { game.log(`${a.name} caiu`); setAllyIdx((i) => i + 1); setLast(null); }
   };
 
+  // Testa a sorte depois de uma série: aumenta o dano causado ou reduz o dano sofrido.
   const luck = () => {
     if (!last || last.result === "tie") return;
     const r = game.testLuck(); setLuckUsed(true);
@@ -181,6 +231,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
     }
   };
 
+  // Inimigo derrotado: passa ao próximo ou, se era o último, segue para o parágrafo de vitória.
   const finish = () => {
     if (c.together) {
       for (const e of enemies) game.log(`Derrotou ${e.name}`);
@@ -196,15 +247,19 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
     onClose();
   };
 
+  // Usa a fuga do texto, pagando a penalidade de ENERGIA.
   const escape = () => {
     const e = c.escape!;
     game.update((st) => goto({ ...st, current: { ...st.current, stamina: st.current.stamina - (e.penalty ?? 0) } }, e.to));
     onClose();
   };
 
+  // Todos os inimigos fugiram: segue para o parágrafo indicado.
   const fleeAll = () => { game.update((st) => goto(st, c.flee!.to)); onClose(); };
 
+  // Inimigos exibidos: todos (quando atacam juntos) ou só o atual.
   const showEnemies = c.together ? enemies.map((e, i) => ({ e, i })) : [{ e: enemy, i: idx }];
+  // Cartão do lado esquerdo: o leitor ou o aliado que está lutando.
   const left = self
     ? { name: "Você", skill: playerSkill(c, s.current.skill), stamina: s.current.stamina, onAdjust: adjustPlayer, note: c.doubleSkill ? "HABILIDADE dobrada" : undefined }
     : ally ? { name: ally.name, skill: ally.skill, stamina: ally.stamina, note: allies!.length > 1 ? `Aliado ${allyIdx + 1} de ${allies!.length}` : "Aliado",
@@ -247,6 +302,7 @@ export function CombatModal({ open, combat: c, game, onClose }: { open: boolean;
           </div>
         )}
         {msg && <p className="rounded bg-secondary p-3 italic">{msg}</p>}
+        {/* Botões de ação, conforme a fase do combate: fuga dos inimigos, criação de aliados, vitória, morte ou luta. */}
         <div className="flex flex-wrap gap-2">
           {!fleeDone ? (
             <Button onClick={doFlee} className="flex-1">Rolar a fuga dos inimigos</Button>

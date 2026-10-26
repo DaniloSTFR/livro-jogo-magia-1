@@ -1,5 +1,18 @@
+/**
+ * Uma magia do grimório do livro.
+ * - `code`: código de três letras usado no texto do livro e nas escolhas dos parágrafos (ex.: "ZAP").
+ * - `name`: nome da magia em português, exibido para o leitor.
+ * - `desc`: descrição curta do efeito da magia.
+ * - `cost`: quantos pontos de ENERGIA o mago gasta ao lançá-la.
+ * - `item`: objeto necessário para lançá-la ("Nenhum" quando não exige item).
+ * - `basic`: marca as magias básicas de ataque e defesa (custo fixo de 4 ENERGIA).
+ */
 export type Spell = { code: string; name: string; desc: string; cost: number; item: string; basic?: boolean };
 
+/**
+ * Catálogo central com as 48 magias do livro. Toda a jogabilidade deve referenciar as magias
+ * pelo `code` deste catálogo, para que uma atualização de conteúdo valha no jogo inteiro.
+ */
 export const SPELLS: Spell[] = [
   { code: "ZAP", name: "Relâmpago", desc: "Dispara um relâmpago pelas pontas dos dedos contra criaturas sem defesa mágica.", cost: 4, item: "Nenhum", basic: true },
   { code: "HOT", name: "Bola de Fogo", desc: "Cria uma bola de fogo que causa queimaduras sérias no alvo.", cost: 4, item: "Nenhum", basic: true },
