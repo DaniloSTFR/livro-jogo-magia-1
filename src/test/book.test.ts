@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 import data from "@/game/book.json";
 import exceptions from "@/game/reachability-exceptions.json";
-import { DEATH_ID, type BookParagraph } from "@/game/book";
+import { DEATH_ID, combatExits, type BookParagraph } from "@/game/book";
 
 const BOOK = (data as unknown as { paragraphs: Record<string, BookParagraph> }).paragraphs;
 const paragraphs = Object.values(BOOK);
 const exits = (p: BookParagraph) => [
   ...p.choices.map((c) => c.to),
-  ...(p.combat ? [p.combat.win] : []),
+  ...(p.combat ? combatExits(p.combat) : []),
   ...(p.luckTest ? [p.luckTest.lucky, p.luckTest.unlucky] : []),
 ];
 const exitsOf = (id: number) => exits(BOOK[String(id)]!);

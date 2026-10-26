@@ -13,6 +13,43 @@ export type NumberedItem = { name: string; kind: string; number: number };
 /** `numberedItem`: the paragraph lets the reader use an item of `kind`, going to its number + `offset`. */
 export type NumberedItemUse = { kind: string; offset: number; label: string };
 export type Enemy = { name: string; skill: number; stamina: number };
+/** A creature fighting for the reader; `choose`: the reader picks how many (e.g. one per tooth), paying `cost` ENERGIA each. */
+export type Ally = Enemy & { choose?: { cost: number } };
+/**
+ * A fight as the text describes it. Defaults follow the rules: the reader fights each enemy in turn and wounds deal 2.
+ * - `mode: "ally"`: the reader watches `ally` fight; `allyLost: "self"` makes the reader finish the fight, otherwise
+ *   the paragraph's own choices say what comes next.
+ * - `together`: every enemy attacks each round; the reader only wounds the one they target.
+ * - `rules`: the text's special rule, shown in the combat window.
+ * - `damage`: what each of the reader's wounds deals (4 with a magically sharpened sword).
+ * - `playerRoll` / `enemyRoll`: added to the dice roll for Attack Strength. `doubleSkill`: the reader's SKILL counts twice.
+ * - `weakened`: the enemy fights with `skill` for the first `rounds` Attack Rounds; with `recover: "even"` a die is rolled
+ *   before each later round and only an even result restores its SKILL.
+ * - `sting`: each time the enemy wounds, a die of 5–6 deals `damage` instead (or kills an ally with `kill`); with
+ *   `luckSaves` a successful luck test turns it back into a normal wound.
+ * - `flee`: before the fight two dice are rolled per enemy; a result of at least its SKILL makes it run; if all run, go to `to`.
+ * - `escape`: the way out the text offers during the fight, optionally only when the enemy's ENERGIA is at most
+ *   `enemyAtMost` and the reader's at least `playerAtLeast`; `penalty` is the ENERGIA it costs.
+ */
+export type Combat = {
+  enemies: Enemy[];
+  win: number;
+  mode?: "ally";
+  ally?: Ally;
+  allyLost?: "self";
+  together?: boolean;
+  rules?: string;
+  damage?: number;
+  playerRoll?: number;
+  enemyRoll?: number;
+  doubleSkill?: boolean;
+  weakened?: { skill: number; rounds: number; recover?: "even" };
+  sting?: { damage: number; kill?: boolean; luckSaves?: boolean };
+  flee?: { to: number };
+  escape?: { to: number; label: string; penalty?: number; enemyAtMost?: number; playerAtLeast?: number };
+};
+/** A weapon the text gives an Attack Strength modifier, recognized by the item's name (e.g. Glandragor's axe, −1). */
+export type Weapon = { match: string[]; attack: number; paragraph: number };
 /** The text lets the reader eat Provisions here: `stamina` for the first meal of the day, `alreadyAte` if they already ate. */
 export type Meal = { stamina: number; alreadyAte?: number };
 /** A fixed price the text quotes in this paragraph. */
@@ -22,7 +59,7 @@ export type BookParagraph = {
   text: string;
   choices: BookChoice[];
   effects: BookEffect[];
-  combat?: { enemies: Enemy[]; win: number };
+  combat?: Combat;
   luckTest?: { lucky: number; unlucky: number };
   gainItems?: NumberedItem[];
   numberedItem?: NumberedItemUse;
@@ -47,6 +84,10 @@ const DEATH: BookParagraph = {
 
 const BOOK = (data as unknown as { paragraphs: Record<string, BookParagraph> }).paragraphs;
 export const MONSTERS = (data as unknown as { monsters: Monster[] }).monsters;
+export const WEAPONS = (data as unknown as { weapons: Weapon[] }).weapons;
+
+/** Every paragraph a fight can lead to, besides the paragraph's own choices. */
+export const combatExits = (c: Combat) => [c.win, ...(c.flee ? [c.flee.to] : []), ...(c.escape ? [c.escape.to] : [])];
 
 /** Kinds of numbered items the book hands out or asks for (e.g. "chave"). */
 export const ITEM_KINDS = [...new Set(Object.values(BOOK).flatMap((p) => [

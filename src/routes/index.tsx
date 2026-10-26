@@ -222,7 +222,8 @@ function Index() {
               <>
                 {p.combat && (
                   <Button className="h-auto w-full justify-start whitespace-normal py-3" variant="destructive" onClick={() => setCombatKey(Date.now())}>
-                    <Swords /> Lutar: {p.combat.enemies.map((e) => `${e.name} (Hab ${e.skill} · Ene ${e.stamina})`).join(", ")} <span className="ml-auto opacity-70">vitória → {p.combat.win}</span>
+                    <Swords /> {p.combat.mode === "ally" && p.combat.ally ? `Combate do aliado: ${p.combat.ally.name} × ` : "Lutar: "}
+                    {p.combat.enemies.map((e) => `${e.name} (Hab ${e.skill} · Ene ${e.stamina})`).join(", ")} <span className="ml-auto opacity-70">vitória → {p.combat.win}</span>
                   </Button>
                 )}
                 {p.luckTest && (
@@ -291,7 +292,7 @@ function Index() {
       </aside>
 
       {combatKey && p.combat && (
-        <CombatModal key={combatKey} open enemies={p.combat.enemies} win={p.combat.win} game={game} onClose={() => setCombatKey(null)} />
+        <CombatModal key={combatKey} open combat={p.combat} game={game} onClose={() => setCombatKey(null)} />
       )}
 
       <Dialog open={bestiary} onOpenChange={setBestiary}>

@@ -328,7 +328,9 @@
                         "stamina": 5
                     }
                 ],
-                "win": 193
+                "win": 193,
+                "playerRoll": -2,
+                "rules": "O cheiro é tão forte que você subtrai 2 da sua rolagem de Força de Ataque."
             }
         },
         "21": {
@@ -2157,10 +2159,6 @@
                     "label": "Lançar FIX",
                     "spell": "FIX",
                     "known": true
-                },
-                {
-                    "to": 187,
-                    "label": "Como alternativa, você pode optar por poupar a vida dele quando sua ENERGIA for reduzida a 3 pontos ou menos, desde que esteja claramente vencendo (ou seja, sua própria ENERGIA seja de pelo menos 6 pontos)"
                 }
             ],
             "effects": [],
@@ -2172,7 +2170,14 @@
                         "stamina": 6
                     }
                 ],
-                "win": 153
+                "win": 153,
+                "escape": {
+                    "to": 187,
+                    "label": "Poupar a vida do Assassino",
+                    "enemyAtMost": 3,
+                    "playerAtLeast": 6
+                },
+                "rules": "Você pode poupar a vida dele quando a ENERGIA dele chegar a 3 ou menos, se estiver claramente vencendo (sua ENERGIA de pelo menos 6)."
             }
         },
         "118": {
@@ -3803,7 +3808,9 @@
                         "stamina": 4
                     }
                 ],
-                "win": 121
+                "win": 121,
+                "enemyRoll": 2,
+                "rules": "A velocidade do Elvin soma 2 à rolagem dele na Força de Ataque."
             }
         },
         "204": {
@@ -4076,6 +4083,16 @@
                         "name": "Primeiro Goblin",
                         "skill": 5,
                         "stamina": 4
+                    },
+                    {
+                        "name": "Segundo Goblin",
+                        "skill": 6,
+                        "stamina": 4
+                    },
+                    {
+                        "name": "Terceiro Goblin",
+                        "skill": 5,
+                        "stamina": 5
                     }
                 ],
                 "win": 155
@@ -4250,7 +4267,12 @@
                         "stamina": 18
                     }
                 ],
-                "win": 456
+                "win": 456,
+                "sting": {
+                    "damage": 6,
+                    "luckSaves": true
+                },
+                "rules": "Ferrão: a cada ferimento que a Mantícora causar, role um dado; 5 ou 6 causa 6 de dano, a menos que você tenha SORTE ao Testar a SORTE."
             },
             "luckFree": true
         },
@@ -6007,11 +6029,17 @@
                 "enemies": [
                     {
                         "name": "Sentinela Troll",
-                        "skill": 4,
+                        "skill": 8,
                         "stamina": 7
                     }
                 ],
-                "win": 177
+                "win": 177,
+                "weakened": {
+                    "skill": 4,
+                    "rounds": 4,
+                    "recover": "even"
+                },
+                "rules": "A magia dura 4 Rodadas de Ataque (HABILIDADE 4). Depois, antes de cada rodada, role um dado: ímpar, o Troll continua sem a alabarda (HABILIDADE 4); par, ele a recupera e luta com HABILIDADE 8."
             }
         },
         "318": {
@@ -6149,10 +6177,6 @@
             "text": "Subtraia 2 pontos de ENERGIA. A criatura dá meia-volta e se prepara para golpear você com sua cauda venenosa.\nMas, quando você lança a magia, ela para por um instante e balança a cabeça, como se algo a tivesse atingido.\nSeus movimentos ficam lentos e agora você pode aproveitar a oportunidade para atacá-la com sua arma (vá para 227) ou lançar uma magia de ataque (vá para 364).\nSe escolher atacar, ela lutará com metade da HABILIDADE durante as 4 primeiras Rodadas de Ataque.",
             "choices": [
                 {
-                    "to": 227,
-                    "label": "Seus movimentos ficam lentos e agora você pode aproveitar a oportunidade para atacá-la com sua arma"
-                },
-                {
                     "to": 364,
                     "label": "lançar uma magia de ataque"
                 }
@@ -6164,7 +6188,26 @@
                     "auto": true,
                     "text": "Subtraia 2 pontos de ENERGIA."
                 }
-            ]
+            ],
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Mantícora",
+                        "skill": 12,
+                        "stamina": 18
+                    }
+                ],
+                "win": 456,
+                "weakened": {
+                    "skill": 6,
+                    "rounds": 4
+                },
+                "sting": {
+                    "damage": 6,
+                    "luckSaves": true
+                },
+                "rules": "A Mantícora luta com metade da HABILIDADE (6) nas 4 primeiras Rodadas de Ataque. Ferrão: a cada ferimento que ela causar, role um dado; 5 ou 6 causa 6 de dano, a menos que você tenha SORTE (como no §227)."
+            }
         },
         "326": {
             "id": 326,
@@ -6208,7 +6251,7 @@
             "choices": [
                 {
                     "to": 47,
-                    "label": "Volte para 47 e lute contra o Goblin"
+                    "label": "Sem cera de abelha: o Goblin o ataca (-3 ENERGIA); volte para 47 e lute contra ele"
                 }
             ],
             "effects": [
@@ -6224,7 +6267,19 @@
                     "auto": false,
                     "text": "Sem cera de abelha: o Goblin o ataca (3 pontos adicionais de ENERGIA)."
                 }
-            ]
+            ],
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Goblin",
+                        "skill": 7,
+                        "stamina": 6
+                    }
+                ],
+                "win": 186,
+                "damage": 4,
+                "rules": "Só com cera de abelha: sua espada afiada pela magia causa o dobro do dano ao Goblin nesta luta. Você usou metade da cera."
+            }
         },
         "329": {
             "id": 329,
@@ -6720,7 +6775,12 @@
         "356": {
             "id": 356,
             "text": "Deduza 2 pontos de ENERGIA. Você lança a magia e imediatamente começa a crescer. Em poucos instantes, você está três vezes maior que seu tamanho normal. O Elvin observa maravilhado e hesita, sem saber se deve lutar ou fugir. Você pode atacá-lo ou Testar sua SORTE. Se tiver SORTE, a criatura voará para longe, seguida por seus companheiros, que entrarão na floresta e permitirão que você volte a dormir. Você acorda ao nascer do sol — vá para 148. Se tiver Azar, o Elvin continuará a luta. Se acabar lutando contra a criatura, volte para 203 e trave a batalha, mas, devido ao seu tamanho, você pode dobrar seu valor de HABILIDADE.",
-            "choices": [],
+            "choices": [
+                {
+                    "to": 148,
+                    "label": "Se tiver SORTE, a criatura voa para longe com os companheiros e você volta a dormir"
+                }
+            ],
             "effects": [
                 {
                     "stat": "stamina",
@@ -6729,11 +6789,20 @@
                     "text": "Deduza 2 pontos de ENERGIA."
                 }
             ],
-            "luckTest": {
-                "lucky": 148,
-                "unlucky": 203
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Elvin",
+                        "skill": 6,
+                        "stamina": 4
+                    }
+                ],
+                "win": 121,
+                "doubleSkill": true,
+                "enemyRoll": 2,
+                "rules": "Gigante pela magia, você dobra sua HABILIDADE. A velocidade do Elvin soma 2 à rolagem dele (§203)."
             },
-            "back": true
+            "luckFree": true
         },
         "357": {
             "id": 357,
@@ -6840,14 +6909,17 @@
                         "name": "Gigante Da Colina",
                         "skill": 9,
                         "stamina": 11
-                    },
-                    {
-                        "name": "Gigante Mágico",
-                        "skill": 8,
-                        "stamina": 9
                     }
                 ],
-                "win": 265
+                "win": 265,
+                "mode": "ally",
+                "ally": {
+                    "name": "Gigante Mágico",
+                    "skill": 8,
+                    "stamina": 9
+                },
+                "allyLost": "self",
+                "rules": "Se o Gigante da Colina derrotar seu campeão, você termina a batalha sozinho, com a ENERGIA que restar a ele."
             }
         },
         "362": {
@@ -7014,7 +7086,7 @@
         },
         "369": {
             "id": 369,
-            "text": "Você tem dentes de Goblin? Se tiver, pode jogar no chão quantos quiser e lançar sua magia. Perca 1 ponto de ENERGIA por dente. Com uma nuvem de fumaça, esse número de Goblins surge diante de você, e você pode ordenar que ataquem a Mantícora. Resolva a batalha (os Goblins atacarão um após o outro):\n\n**MANTÍCORA — HABILIDADE: 12, ENERGIA: 18.**\n\n**GOBLINS — HABILIDADE: 5, ENERGIA: 3.**\n\nCada vez que a Mantícora atingir um Goblin, jogue um dado. Com um resultado de 5 ou 6, ela terá atingido o Goblin com sua cauda venenosa, matando-o. Resultados de 1 a 4 são golpes normais. Se seus Goblins vencerem, vá para 456. Se a Mantícora derrotar todos os seus Goblins, você poderá terminar o serviço com sua espada (vá para 227) ou lançar outra magia (vá para 420).",
+            "text": "Você tem dentes de Goblin? Se tiver, pode jogar no chão quantos quiser e lançar sua magia. Perca 1 ponto de ENERGIA por dente. Com uma nuvem de fumaça, esse número de Goblins surge diante de você, e você pode ordenar que ataquem a Mantícora. Resolva a batalha (os Goblins atacarão um após o outro):\n\n**MANTÍCORA — HABILIDADE: 12, ENERGIA: 18.**\n\n**GOBLINS — HABILIDADE: 5, ENERGIA: 5.**\n\nCada vez que a Mantícora atingir um Goblin, jogue um dado. Com um resultado de 5 ou 6, ela terá atingido o Goblin com sua cauda venenosa, matando-o. Resultados de 1 a 4 são golpes normais. Se seus Goblins vencerem, vá para 456. Se a Mantícora derrotar todos os seus Goblins, você poderá terminar o serviço com sua espada (vá para 227) ou lançar outra magia (vá para 420).",
             "choices": [
                 {
                     "to": 227,
@@ -7025,28 +7097,30 @@
                     "label": "lançar outra magia"
                 }
             ],
-            "effects": [
-                {
-                    "stat": "stamina",
-                    "amount": -1,
-                    "auto": true,
-                    "text": "Perca 1 ponto de ENERGIA por dente."
-                }
-            ],
+            "effects": [],
             "combat": {
                 "enemies": [
                     {
                         "name": "Mantícora",
                         "skill": 12,
                         "stamina": 18
-                    },
-                    {
-                        "name": "Goblins",
-                        "skill": 5,
-                        "stamina": 3
                     }
                 ],
-                "win": 456
+                "win": 456,
+                "mode": "ally",
+                "ally": {
+                    "name": "Goblin",
+                    "skill": 5,
+                    "stamina": 5,
+                    "choose": {
+                        "cost": 1
+                    }
+                },
+                "sting": {
+                    "damage": 0,
+                    "kill": true
+                },
+                "rules": "Os Goblins atacam um após o outro. Ferrão: cada vez que a Mantícora atingir um Goblin, role um dado; 5 ou 6 o mata. Se ela derrotar todos, termine com sua espada (227) ou lance outra magia (420)."
             }
         },
         "370": {
@@ -7148,10 +7222,6 @@
             "text": "Perca 2 pontos de ENERGIA. Você lança a magia e espera que ela faça efeito. O Ogro avança contra você, mas para de repente e balança a cabeça, olhando para si mesmo e depois para você com uma expressão confusa. Ele dá um passo à frente, grunhe e recua, completamente confuso. Você pode lutar contra ele agora, enquanto está incapacitado (ele lutará com HABILIDADE 4 e ENERGIA 7) e, se vencer, vá para 15. Alternativamente, você pode deixar a sala (vá para 144).",
             "choices": [
                 {
-                    "to": 15,
-                    "label": "Você pode lutar contra ele agora, enquanto está incapacitado (ele lutará com HABILIDADE 4 e ENERGIA 7) e, se vencer"
-                },
-                {
                     "to": 144,
                     "label": "Alternativamente, você pode deixar a sala"
                 }
@@ -7163,7 +7233,18 @@
                     "auto": true,
                     "text": "Perca 2 pontos de ENERGIA."
                 }
-            ]
+            ],
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Ogro",
+                        "skill": 4,
+                        "stamina": 7
+                    }
+                ],
+                "win": 15,
+                "rules": "O Ogro está confuso pela magia e luta com HABILIDADE 4."
+            }
         },
         "376": {
             "id": 376,
@@ -7294,12 +7375,7 @@
         "383": {
             "id": 383,
             "text": "Deduza 2 pontos de ENERGIA. Você lança a magia e a criatura para. Ela dá um passo à frente, mas seus movimentos ficaram lentos sob o efeito da sua magia. Volte à referência 87 e lute contra ela; durante as quatro primeiras Rodadas de Ataque, o Golem de Madeira lutará com HABILIDADE 4.",
-            "choices": [
-                {
-                    "to": 87,
-                    "label": "Volte à referência 87 e lute contra ela; durante as quatro primeiras Rodadas de Ataque, o Golem de Madeira lutará com HABILIDADE 4"
-                }
-            ],
+            "choices": [],
             "effects": [
                 {
                     "stat": "stamina",
@@ -7307,7 +7383,22 @@
                     "auto": true,
                     "text": "Deduza 2 pontos de ENERGIA."
                 }
-            ]
+            ],
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Golem De Madeira",
+                        "skill": 8,
+                        "stamina": 6
+                    }
+                ],
+                "win": 169,
+                "weakened": {
+                    "skill": 4,
+                    "rounds": 4
+                },
+                "rules": "Lento pela magia, o Golem de Madeira luta com HABILIDADE 4 nas quatro primeiras Rodadas de Ataque."
+            }
         },
         "384": {
             "id": 384,
@@ -7376,7 +7467,9 @@
                         "stamina": 7
                     }
                 ],
-                "win": 177
+                "win": 177,
+                "enemyRoll": -2,
+                "rules": "O escudo da magia subtrai 2 da rolagem do Troll. Depois da luta, a Peça de Ouro vira metal inútil."
             },
             "costs": [
                 {
@@ -7409,7 +7502,7 @@
             "choices": [
                 {
                     "to": 227,
-                    "label": "Sem dente de Gigante, ou se a Mantícora vencer o Gigante: lute com sua arma"
+                    "label": "Sem dente de Gigante, ou se a Mantícora vencer o Gigante: termine o trabalho com sua arma"
                 },
                 {
                     "to": 420,
@@ -7430,14 +7523,19 @@
                         "name": "Mantícora",
                         "skill": 12,
                         "stamina": 18
-                    },
-                    {
-                        "name": "Gigante",
-                        "skill": 8,
-                        "stamina": 9
                     }
                 ],
-                "win": 456
+                "win": 456,
+                "mode": "ally",
+                "ally": {
+                    "name": "Gigante",
+                    "skill": 8,
+                    "stamina": 9
+                },
+                "sting": {
+                    "damage": 6
+                },
+                "rules": "Ferrão: cada vez que a Mantícora atingir o Gigante, role um dado; 5 ou 6 causa 6 de dano. Se a Mantícora vencer, termine você mesmo (227) ou lance outra magia (420)."
             }
         },
         "389": {
@@ -7653,7 +7751,7 @@
             "choices": [
                 {
                     "to": 285,
-                    "label": "Se não tiver, deduza 2 pontos adicionais de ENERGIA quando o Ogro saltar sobre você e atacar enquanto você tenta lançar a magia"
+                    "label": "Sem Peça de Ouro: o Ogro o ataca enquanto você lança a magia (-2 ENERGIA); volte para 285"
                 }
             ],
             "effects": [
@@ -7662,6 +7760,12 @@
                     "amount": -1,
                     "auto": true,
                     "text": "Deduza 1 ponto de ENERGIA."
+                },
+                {
+                    "stat": "stamina",
+                    "amount": -2,
+                    "auto": false,
+                    "text": "Sem Peça de Ouro: o Ogro salta sobre você (2 pontos adicionais de ENERGIA)."
                 }
             ],
             "costs": [
@@ -7669,7 +7773,19 @@
                     "gold": 1,
                     "label": "Peça de Ouro usada na magia"
                 }
-            ]
+            ],
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Ogro",
+                        "skill": 8,
+                        "stamina": 7
+                    }
+                ],
+                "win": 15,
+                "enemyRoll": -2,
+                "rules": "Com a Peça de Ouro, o escudo invisível subtrai 2 da rolagem do Ogro. Depois da luta, a moeda vira metal inútil."
+            }
         },
         "401": {
             "id": 401,
@@ -7802,12 +7918,7 @@
         "407": {
             "id": 407,
             "text": "Deduza 4 pontos de ENERGIA. Você lança a magia e aponta para o primeiro Goblin. Um raio de luz dispara de seu dedo e atinge a criatura em cheio no peito, matando-a instantaneamente. Os outros dois param, decidindo se devem continuar o ataque. Jogue dois dados para cada um dos Goblins restantes. Se o número obtido para qualquer um deles (ou para ambos) for igual ou maior que seu valor de HABILIDADE, isso significa que ele se virará e fugirá para a floresta. Caso contrário, continuará o ataque.\n\nSEGUNDO GOBLIN — HABILIDADE: 6, ENERGIA: 4.\nTERCEIRO GOBLIN — HABILIDADE: 5, ENERGIA: 5.\n\nSe tiver que lutar contra qualquer um deles e vencer, vá para 155. Se ambos fugirem, vá para 202.",
-            "choices": [
-                {
-                    "to": 202,
-                    "label": "Se ambos fugirem"
-                }
-            ],
+            "choices": [],
             "effects": [
                 {
                     "stat": "stamina",
@@ -7829,7 +7940,11 @@
                         "stamina": 5
                     }
                 ],
-                "win": 155
+                "win": 155,
+                "flee": {
+                    "to": 202
+                },
+                "rules": "O primeiro Goblin morreu com a magia. Role dois dados para cada um dos outros: com resultado igual ou maior que a HABILIDADE dele, ele foge. Se ambos fugirem, vá para 202."
             }
         },
         "408": {
@@ -7910,7 +8025,9 @@
                         "stamina": 11
                     }
                 ],
-                "win": 265
+                "win": 265,
+                "doubleSkill": true,
+                "rules": "Do tamanho do Gigante, você dobra sua HABILIDADE enquanto durar a magia."
             }
         },
         "412": {
@@ -8176,14 +8293,14 @@
         },
         "425": {
             "id": 425,
-            "text": "Você tem algum dente de Goblin com você? Se tiver, pode jogar no chão quantos quiser e lançar sua magia sobre eles. Você deve deduzir 1 ponto de ENERGIA para cada Goblin que criar. Cada Goblin terá HABILIDADE 5 e ENERGIA 5, e você poderá ordenar que ataquem o CÃO-LOBO. Se suas criações matarem a fera, vá para 50; caso contrário, termine o serviço você mesmo e vá para 50 se conseguir.\n\nSe você não tiver dentes de Goblin, tentará lançar a magia em vão, e o CÃO-LOBO saltará em sua garganta, causando 3 pontos de dano de ENERGIA — você terá de lutar contra ele:\n\n**CÃO-LOBO — HABILIDADE: 7, ENERGIA: 6.**\n\nVá para 50 se vencer.",
+            "text": "Você tem algum dente de Goblin com você? Se tiver, pode jogar no chão quantos quiser e lançar sua magia sobre eles. Você deve deduzir 1 ponto de ENERGIA para cada Goblin que criar. Cada Goblin terá HABILIDADE 5 e ENERGIA 5, e você poderá ordenar que ataquem o CÃO-LOBO. Se suas criações matarem a fera, vá para 50; caso contrário, termine o serviço você mesmo e vá para 50 se conseguir.\n\nSe você não tiver dentes de Goblin, tentará lançar a magia em vão, e o CÃO-LOBO saltará em sua garganta, causando 5 pontos de dano de ENERGIA — você terá de lutar contra ele:\n\n**CÃO-LOBO — HABILIDADE: 7, ENERGIA: 6.**\n\nVá para 50 se vencer.",
             "choices": [],
             "effects": [
                 {
                     "stat": "stamina",
-                    "amount": -1,
+                    "amount": -5,
                     "auto": false,
-                    "text": "Você deve deduzir 1 ponto de ENERGIA para cada Goblin que criar."
+                    "text": "Sem dentes de Goblin: o Cão-Lobo salta em sua garganta (5 pontos de ENERGIA)."
                 }
             ],
             "combat": {
@@ -8194,7 +8311,18 @@
                         "stamina": 6
                     }
                 ],
-                "win": 50
+                "win": 50,
+                "mode": "ally",
+                "ally": {
+                    "name": "Goblin",
+                    "skill": 5,
+                    "stamina": 5,
+                    "choose": {
+                        "cost": 1
+                    }
+                },
+                "allyLost": "self",
+                "rules": "Cada Goblin custa 1 de ENERGIA. Se eles não matarem o Cão-Lobo, você termina o serviço. Sem dentes de Goblin, crie 0 Goblins e lute você mesmo (aplique os 5 de dano abaixo)."
             }
         },
         "426": {
@@ -8476,7 +8604,7 @@
             "choices": [
                 {
                     "to": 203,
-                    "label": "Se não tiver, a magia não funciona e o pequeno Elvin dispara para baixo e corta você novamente, causando 2 pontos de dano à sua ENERGIA"
+                    "label": "Sem Peça de Ouro: a magia não funciona e o Elvin o corta de novo (-2 ENERGIA); volte para 203 e escolha novamente"
                 }
             ],
             "effects": [
@@ -8485,6 +8613,12 @@
                     "amount": -1,
                     "auto": true,
                     "text": "Deduza 1 ponto de ENERGIA."
+                },
+                {
+                    "stat": "stamina",
+                    "amount": -2,
+                    "auto": false,
+                    "text": "Sem Peça de Ouro: o Elvin corta você novamente (2 pontos de ENERGIA)."
                 }
             ],
             "costs": [
@@ -8492,7 +8626,19 @@
                     "gold": 1,
                     "label": "Peça de Ouro usada na magia"
                 }
-            ]
+            ],
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Elvin",
+                        "skill": 6,
+                        "stamina": 4
+                    }
+                ],
+                "win": 121,
+                "enemyRoll": 0,
+                "rules": "Com a Peça de Ouro, o escudo subtrai 2 da rolagem do Elvin, o que anula os 2 da velocidade dele (§203). Depois da luta, a moeda não serve mais."
+            }
         },
         "442": {
             "id": 442,
@@ -8500,7 +8646,7 @@
             "choices": [
                 {
                     "to": 217,
-                    "label": "Volte para 217 e lute contra os Goblins, mas, cada vez que atingir um Goblin, você poderá dobrar o dano causado"
+                    "label": "Sem cera de abelha: a espada não foi afiada; volte para 217 e lute com dano normal"
                 }
             ],
             "effects": [
@@ -8510,7 +8656,29 @@
                     "auto": true,
                     "text": "Deduza 1 ponto de ENERGIA e lance sua magia."
                 }
-            ]
+            ],
+            "combat": {
+                "enemies": [
+                    {
+                        "name": "Primeiro Goblin",
+                        "skill": 5,
+                        "stamina": 4
+                    },
+                    {
+                        "name": "Segundo Goblin",
+                        "skill": 6,
+                        "stamina": 4
+                    },
+                    {
+                        "name": "Terceiro Goblin",
+                        "skill": 5,
+                        "stamina": 5
+                    }
+                ],
+                "win": 155,
+                "damage": 4,
+                "rules": "Só com cera de abelha: cada vez que atingir um Goblin, você dobra o dano. Se já usou esta magia antes, a cera acabou; senão, usou metade."
+            }
         },
         "443": {
             "id": 443,
@@ -8923,6 +9091,23 @@
             "paragraphs": [
                 20
             ]
+        }
+    ],
+    "weapons": [
+        {
+            "match": [
+                "machado"
+            ],
+            "attack": -1,
+            "paragraph": 72
+        },
+        {
+            "match": [
+                "espada larga",
+                "lâmina larga"
+            ],
+            "attack": 1,
+            "paragraph": 43
         }
     ]
 }

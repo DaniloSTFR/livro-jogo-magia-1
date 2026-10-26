@@ -8,7 +8,7 @@ Origem: `.plan/correcoes-magias-e-livro-2026-10-24.md` (cada fase do plano virou
 | 02 | [book.json: mortes falsas e saídas perdidas](02-book-json-saidas-e-mortes-falsas.md) | Concluída (2026-10-24) | — |
 | 03 | [Erros de tradução e parágrafos inalcançáveis](03-traducao-e-inalcancaveis.md) | Concluída (2026-10-24) | 02 |
 | 04 | [Ficha e regras divergentes das fontes](04-ficha-e-regras.md) | Concluída (2026-10-24) | 01 |
-| 05 | [Combates especiais](05-combates-especiais.md) | A fazer | 02, 04 |
+| 05 | [Combates especiais](05-combates-especiais.md) | Concluída (2026-10-25) | 02, 04 |
 | 06 | [Testes e verificação](06-testes-e-verificacao.md) | A fazer | 02 (iniciar junto) |
 | 07 | Limite de visualização da referência de magias | A definir (spec a criar) | 01 |
 | 08 | [Caminhos ocultos: §44, §101, §205 e §319](08-caminhos-ocultos.md) | Em refinamento | 02, 03 |
